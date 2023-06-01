@@ -1,0 +1,13 @@
+  .front-page{
+
+  }
+
+  .front-top-box{
+    height:200px;
+  }
+  
+  .front-card-list{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:space-around;
+  }
