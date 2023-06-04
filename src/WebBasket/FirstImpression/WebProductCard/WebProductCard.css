@@ -1,4 +1,4 @@
-.front-card{
+.web-product-card{
     margin:40px;
     padding:1px;
     box-sizing:border-box;
@@ -9,7 +9,7 @@
     flex-direction: column;
   }
 
-  .front-card-sec1{
+  .web-product-card-sec1{
     padding:10px;
     box-sizing:border-box;
     width:100%;
@@ -19,7 +19,7 @@
     /* border: black solid; */
   }
 
-  .front-card-sec2{
+  .web-product-card-sec2{
     box-sizing:border-box;
     width:100%;
     flex-grow: 1;
@@ -27,7 +27,7 @@
     /* border: black solid; */
   }
 
-  .front-card-sec3{
+  .web-product-card-sec3{
     padding:10px;
     box-sizing:border-box;
     width:100%;
@@ -36,7 +36,7 @@
     /* border: black solid; */
   }
 
-  .front-card-sec4{
+  .web-product-card-sec4{
     padding:10px;
     box-sizing:border-box;
     width:100%;

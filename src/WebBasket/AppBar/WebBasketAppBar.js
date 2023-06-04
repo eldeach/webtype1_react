@@ -1,8 +1,13 @@
-import { AppBar, Divider, Box, Toolbar, Typography, Button, IconButton, Drawer, ListItemButton, ListItemIcon, ListItemText, ListItem, List} from '@mui/material/';
+// ======================================================================================== [Import Libaray] Material UI
+import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material/';
 
+// ======================================================================================== [Import Libaray] Material Icon
 import MenuIcon from '@mui/icons-material/Menu';
 
-function CdmsAppBar(){
+// ======================================================================================== [Import Component] js
+import LoginButton from '../Login/LoginButton';
+
+function WebBasketAppBar(){
     return(
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
@@ -19,11 +24,11 @@ function CdmsAppBar(){
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     FrontAppBar
                 </Typography>
-                <Button color="inherit">Login</Button>
+                <LoginButton labelText="Login"/> 
             </Toolbar>
             </AppBar>
         </Box>
     )
 }
 
-export default CdmsAppBar;
+export default WebBasketAppBar;

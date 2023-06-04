@@ -1,12 +1,12 @@
-  .front-page{
+  .first-impression{
 
   }
 
-  .front-top-box{
+  .first-impression-tob-box{
     height:200px;
   }
   
-  .front-card-list{
+  .first-impression-card-list{
     display:flex;
     flex-wrap: wrap;
     justify-content:space-around;
