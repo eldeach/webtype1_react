@@ -1,6 +1,6 @@
 // ======================================================================================== [Import Libaray] Material Icon
 import ProductCard from './WebProductCard/WebProductCard';
-import cardContent from './WebProductCard/WebProductCardContent';
+import cardContent from './WebProductCard/cardContent';
 
 // ======================================================================================== [Import Component] CSS
 import './FirstImpression.css';

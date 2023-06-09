@@ -9,11 +9,13 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 // ======================================================================================== [Import Component] js
-import GlobalFormik from '../Formiks/GlobalFormik'
-import FormContent from './FormikContents/FormContent';
-
-
-
+import GlobalFormik from '../GlobalFormik/GlobalFormik';
+// ======================================================================================== [Import Component] form
+import FormContent from './Form/Contents/FormContent';
+import initialValues from './Form/Contents/initialValues'
+import formSize from './Form/Contents/formSize'
+import yupSchema from './Form/YupSchema/yupSchema';
+import onSubmitFunc from './Form/Functions/onSubmitFunc';
 
 const style = {
   position: 'absolute',
@@ -23,12 +25,6 @@ const style = {
   boxShadow: 24,
   p: 2,
 };
-
-const formikStyle={
-  width: 350,
-  height:350,
-  bgcolor: 'background.paper',
-}
 
 function Login(props){
     const [open, setOpen] = React.useState(false);
@@ -40,7 +36,7 @@ function Login(props){
           <Button variant="outlined" color = "white" size="small" onClick={handleOpen}>{props.labelText}</Button>
           <Modal open={open} onClose={handleClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formikStyle} formContent = {<FormContent/>}/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} onSubmitFunc={onSubmitFunc} formId="UserLogin" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

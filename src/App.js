@@ -16,10 +16,7 @@ import FirstImpression from './WebServiceFrame/FirstImpression/FirstImpression'
 import CdmsFrontPage from './CDMS/FrontPage/CdmsFrontPage'
 import VmpFrontPage from './VMP/FrontPage/VmpFrontPage'
 import PqrFrontPage from './PQR/FrontPage/PqrFrontPage'
-
-
-
-import GlobalTheme from './WebServiceFrame/Themes/GlobalTheme';
+import globalTheme from './WebServiceFrame/Themes/globalTheme';
 
 // ======================================================================================== [Import Component] CSS
 import './App.css';
@@ -43,7 +40,7 @@ function App() {
 
 
   return (
-    <ThemeProvider theme={GlobalTheme}>
+    <ThemeProvider theme={globalTheme}>
     <div className="App">
       {
         appVar === "/cdms" ? <CdmsAppBar/> : <div></div>
