@@ -28,15 +28,15 @@ const style = {
 
 function Login(props){
     const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const handleModalOpen = () => setOpen(true);
+    const handleModalClose = () => setOpen(false);
 
     return(
         <div>
-          <Button variant="outlined" color = "white" size="small" onClick={handleOpen}>{props.labelText}</Button>
-          <Modal open={open} onClose={handleClose}>
+          <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
+          <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} onSubmitFunc={onSubmitFunc} formId="UserLogin" autoComplete="off"/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalOpen, handleModalClose}} formId="UserLogin" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

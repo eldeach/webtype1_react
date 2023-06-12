@@ -13,13 +13,13 @@ import { Formik } from 'formik';
 
 function GlobalFormik(props){
 
-    const { formContent, initialValues, yupSchema, onSubmitFunc, formId, autoComplete, sx } = props;
+    const { formContent, initialValues, yupSchema, formFunctions, formId, autoComplete, sx } = props;
 
     return(
         <Formik
         validationSchema={yupSchema}
         onSubmit={async (values, {resetForm})=>{
-            onSubmitFunc(values)
+            formFunctions.onSubmitFunc(values)
         }}
         initialValues={initialValues}
         >
@@ -32,7 +32,7 @@ function GlobalFormik(props){
             autoComplete={autoComplete}
             sx={sx}
             >
-            {formContent({ formikValues: values, formHandleChange: handleChange, formHandleBlur: handleBlur, formTouched: touched, formErrers: errors })}
+            {formContent({ formFunctions:formFunctions, formikValues: values, formHandleChange: handleChange, formHandleBlur: handleBlur, formTouched: touched, formErrers: errors })}
             </Box>
       )}
         </Formik>

@@ -9,7 +9,7 @@ import { Button, TextField, ThemeProvider, createTheme } from '@mui/material';
 import './FormContent.css'
 
 function FormContent(props){
-    const { formikValues, formHandleChange, formHandleBlur, formTouched, formErrers } = props;
+    const { formFunctions, formikValues, formHandleChange, formHandleBlur, formTouched, formErrers } = props;
 
     const TextFieldStyle={
         fontSize: 14
@@ -56,7 +56,9 @@ function FormContent(props){
                 InputLabelProps={{style: TextFieldStyle}} // font size of input label
                 />
             </div>
-            <div className='button-box'><Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">Sign in</Button></div>             
+            <div className='button-box'>
+                <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">Sign in</Button>
+            </div>             
         </div>
     )
 
