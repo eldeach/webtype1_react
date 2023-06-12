@@ -32,7 +32,7 @@ function GlobalFormik(props){
             autoComplete={autoComplete}
             sx={sx}
             >
-            {formContent({ formFunctions:formFunctions, formikValues: values, formHandleChange: handleChange, formHandleBlur: handleBlur, formTouched: touched, formErrers: errors })}
+            {formContent({ formFunctions:formFunctions, formikValues: values, formikObj:{formHandleChange: handleChange, formHandleBlur: handleBlur, formTouched: touched, formErrers: errors} })}
             </Box>
       )}
         </Formik>

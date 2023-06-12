@@ -36,7 +36,7 @@ function Login(props){
           <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalOpen, handleModalClose}} formId="UserLogin" autoComplete="off"/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, modalFunc:{handleModalOpen, handleModalClose}}} formId="UserLogin" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

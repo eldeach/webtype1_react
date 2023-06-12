@@ -21,10 +21,6 @@ import globalTheme from './WebServiceFrame/Themes/globalTheme';
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
-
-
-
-
 function App() {
 
   const location = useLocation();
