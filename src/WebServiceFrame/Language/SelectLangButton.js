@@ -11,10 +11,8 @@ import Modal from '@mui/material/Modal';
 import GlobalFormik from '../GlobalFormik/GlobalFormik';
 // form
 import FormContent from './Form/Contents/FormContent';
-import initialValues from './Form/Contents/initialValues'
 import formSize from './Form/Contents/formSize'
-import yupSchema from './Form/YupSchema/yupSchema';
-import onSubmitFunc from './Form/Functions/onSubmitFunc';
+import setCookies from './Form/Functions/setCookies'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -27,7 +25,7 @@ const style = {
   p: 2,
 };
 
-function LoginButton(props){
+function SelectLangButton(props){
     const [open, setOpen] = React.useState(false);
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
@@ -37,11 +35,11 @@ function LoginButton(props){
           <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose}} formId="UserLogin" autoComplete="off"/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose, setCookies}} formId="SelectLang" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>
     )
 }
 
-export default LoginButton;
+export default SelectLangButton;

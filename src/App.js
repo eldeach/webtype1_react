@@ -1,35 +1,37 @@
 // ======================================================================================== [Import Libaray]
 import { Routes, Route, useLocation  } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from "react-redux"
-// ======================================================================================== [Import Libaray] Material UI
+import cookies from 'react-cookies'
+
+// ======================================================================================== [Import Material UI Libaray]  
 import { ThemeProvider } from '@mui/material/styles';
 
-// ======================================================================================== [Import Component] js - AppBar
+// ======================================================================================== [Import Component] js
+// App Bar
 import WebFrameAppBar from './WebServiceFrame/AppBar/WebFrameAppBar'
 import CdmsAppBar from './CDMS/AppBar/CdmsAppBar'
 import VmpAppBar from './VMP/AppBar/VmpAppBar'
 import PqrAppBar from './PQR/AppBar/PqrAppBar'
-
-// ======================================================================================== [Import Component] js
+// rest
 import FirstImpression from './WebServiceFrame/FirstImpression/FirstImpression'
 import CdmsFrontPage from './CDMS/FrontPage/CdmsFrontPage'
 import VmpFrontPage from './VMP/FrontPage/VmpFrontPage'
 import PqrFrontPage from './PQR/FrontPage/PqrFrontPage'
 import globalTheme from './WebServiceFrame/Themes/globalTheme';
-import { setMsgCodeBook } from "./../store.js" // redux js 임포트
+import setCookies from './WebServiceFrame/Language/Form/Functions/setCookies'
+
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
 function App() {
-  //========================================================== [변수, 객체 선언] 선택된 정보 redux 저장용
-  let rdx = useSelector((state) => { return state } )
-  let dispatch = useDispatch();
-
   const location = useLocation();
   let [appVar,setAppVar] = useState("/");
 
   useEffect(() => {
+    if(!cookies.load('site-lang')){
+      setCookies('eng')
+    }
+
     if(location.pathname.indexOf("/cdms")!==-1) setAppVar("/cdms")
     else if(location.pathname.indexOf("/vmp")!==-1) setAppVar("/vmp")
     else if(location.pathname.indexOf("/pqr")!==-1) setAppVar("/pqr")

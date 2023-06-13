@@ -1,16 +1,13 @@
-
 // ======================================================================================== [Import Libaray]
-import axios from 'axios';
-
-// ======================================================================================== [Import Libaray] Material UI
 
 
-// ======================================================================================== [Import Libaray] Material Icon
-import CloseIcon from '@mui/icons-material/Close';
+// ======================================================================================== [Import Material UI Libaray]  
+import { Button, TextField } from '@mui/material';
+
+// ======================================================================================== [Import Component] js
 
 
 // ======================================================================================== [Import Component] CSS
-import { Button, TextField, ThemeProvider, createTheme } from '@mui/material';
 import './FormContent.css'
 
 function FormContent(props){
@@ -24,7 +21,7 @@ function FormContent(props){
     return(
         <div className="form-content">
             <div className='button-box-close'>
-                <button className='button-close' onClick={()=>{formFunctions.modalFunc.handleModalClose()}}>X</button>
+                <button className='button-close' onClick={()=>{formFunctions.handleModalClose()}}>X</button>
             </div>
             <div className='sign-in-title'>Sign in</div>
             <div className='input-box'>
@@ -66,34 +63,6 @@ function FormContent(props){
             </div>
             <div className='button-box'>
                 <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">Sign in</Button>
-                <Button fullWidth variant="contained" onClick={async ()=>{
-                    let qryBody={required:'aa'}
-                    let lastRevNoResult = await axios({
-                        method:"get",
-                        url:'/auth-check',
-                        params:qryBody,
-                        headers:{
-                            'Content-Type':'application/json'
-                        }})
-                        .then((res)=>{
-                          console.log(res.data)
-                        })
-                        .catch((err)=>console.log(err))
-                }}>authcheck</Button>
-
-                <Button fullWidth variant="contained" onClick={async ()=>{
-                    let qryBody={required:'aa'}
-                    let lastRevNoResult = await axios({
-                        method:"get",
-                        url:'/logout',
-                        headers:{
-                            'Content-Type':'application/json'
-                        }})
-                        .then((res)=>{
-                          console.log(res.data)
-                        })
-                        .catch((err)=>console.log(err))
-                }}>logout</Button>
             </div>             
         </div>
     )

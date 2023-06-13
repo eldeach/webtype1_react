@@ -1,11 +1,18 @@
-// ======================================================================================== [Import Libaray] Material UI
-import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material/';
+// ======================================================================================== [Import Libaray]
 
-// ======================================================================================== [Import Libaray] Material Icon
+
+// ======================================================================================== [Import Material UI Libaray]  
+import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material/';
+//icon
 import MenuIcon from '@mui/icons-material/Menu';
+import LanguageIcon from '@mui/icons-material/Language';
 
 // ======================================================================================== [Import Component] js
 import LoginButton from '../Login/LoginButton';
+import SelectLangButton from '../Language/SelectLangButton';
+
+// ======================================================================================== [Import Component] CSS
+
 
 function WebBasketAppBar(){
     return(
@@ -24,6 +31,7 @@ function WebBasketAppBar(){
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     FrontAppBar
                 </Typography>
+                <SelectLangButton labelText={<LanguageIcon/>}/>
                 <LoginButton labelText="Login"/> 
             </Toolbar>
             </AppBar>

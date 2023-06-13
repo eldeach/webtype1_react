@@ -1,14 +1,17 @@
 // ======================================================================================== [Import Libaray]
 import { useNavigate  } from 'react-router-dom';
 
-// ======================================================================================== [Import Libaray] Material UI
+// ======================================================================================== [Import Material UI Libaray]  
 import { Button, Paper } from '@mui/material';
-
-// ======================================================================================== [Import Libaray] Material Icon
+//icon
 import LaunchIcon from '@mui/icons-material/Launch';
+
+// ======================================================================================== [Import Component] js
+
 
 // ======================================================================================== [Import Component] CSS
 import './WebProductCard.css';
+
 
 function WebProductCard(props){
     let navigate = useNavigate();
