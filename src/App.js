@@ -1,7 +1,7 @@
 // ======================================================================================== [Import Libaray]
 import { Routes, Route, useLocation  } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import { useDispatch, useSelector } from "react-redux"
 // ======================================================================================== [Import Libaray] Material UI
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -17,11 +17,14 @@ import CdmsFrontPage from './CDMS/FrontPage/CdmsFrontPage'
 import VmpFrontPage from './VMP/FrontPage/VmpFrontPage'
 import PqrFrontPage from './PQR/FrontPage/PqrFrontPage'
 import globalTheme from './WebServiceFrame/Themes/globalTheme';
-
+import { setMsgCodeBook } from "./../store.js" // redux js 임포트
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
 function App() {
+  //========================================================== [변수, 객체 선언] 선택된 정보 redux 저장용
+  let rdx = useSelector((state) => { return state } )
+  let dispatch = useDispatch();
 
   const location = useLocation();
   let [appVar,setAppVar] = useState("/");

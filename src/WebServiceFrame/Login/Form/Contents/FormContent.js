@@ -1,3 +1,7 @@
+
+// ======================================================================================== [Import Libaray]
+import axios from 'axios';
+
 // ======================================================================================== [Import Libaray] Material UI
 
 
@@ -62,6 +66,34 @@ function FormContent(props){
             </div>
             <div className='button-box'>
                 <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">Sign in</Button>
+                <Button fullWidth variant="contained" onClick={async ()=>{
+                    let qryBody={required:'aa'}
+                    let lastRevNoResult = await axios({
+                        method:"get",
+                        url:'/auth-check',
+                        params:qryBody,
+                        headers:{
+                            'Content-Type':'application/json'
+                        }})
+                        .then((res)=>{
+                          console.log(res.data)
+                        })
+                        .catch((err)=>console.log(err))
+                }}>authcheck</Button>
+
+                <Button fullWidth variant="contained" onClick={async ()=>{
+                    let qryBody={required:'aa'}
+                    let lastRevNoResult = await axios({
+                        method:"get",
+                        url:'/logout',
+                        headers:{
+                            'Content-Type':'application/json'
+                        }})
+                        .then((res)=>{
+                          console.log(res.data)
+                        })
+                        .catch((err)=>console.log(err))
+                }}>logout</Button>
             </div>             
         </div>
     )

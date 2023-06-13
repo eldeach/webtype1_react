@@ -19,7 +19,7 @@ function GlobalFormik(props){
         <Formik
         validationSchema={yupSchema}
         onSubmit={async (values, {resetForm})=>{
-            formFunctions.onSubmitFunc(values)
+            formFunctions.onSubmitFunc({values:values,formFunctions:formFunctions})
         }}
         initialValues={initialValues}
         >

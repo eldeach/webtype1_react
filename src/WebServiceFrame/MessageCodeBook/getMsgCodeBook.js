@@ -1,8 +1,7 @@
 // ======================================================================================== [Import Libaray]
 import axios from 'axios';
 
-async function onSubmitFunc(props){
-
+async function getMsgCodeBook(){
     await axios.post('/local-login' ,props.values)
     .then((res)=>{
         console.log(res.data)
@@ -27,12 +26,4 @@ async function onSubmitFunc(props){
     })
 }
 
-export default onSubmitFunc;
-
-
-
-
-
-
-
-
+export default getMsgCodeBook;
