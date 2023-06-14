@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Material UI Libaray]  
 import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/material/';
 //icon
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import RuleIcon from '@mui/icons-material/Rule';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
@@ -18,9 +18,9 @@ function AddDocNoPattern(){
 
             }}>
                 <ListItemIcon>
-                <ManageAccountsIcon color="primary"/> 
+                <RuleIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.manageuser[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.DocNoPattern.button.AddDocNoPattern[cookies.load('site-lang')]}  />
             </ListItemButton>
         </ListItem>
     )

@@ -74,12 +74,12 @@ function CdmsMenu(props){
             </List>
             <Divider />
             <List>
-                <AddBinder/>
+                <AddDocNo/>
                 <MngDocNo/>
             </List>
             <Divider />
             <List>
-                <AddDocNo/>
+                <AddBinder/>
                 <MngBinder/>
             </List>
             <Divider />

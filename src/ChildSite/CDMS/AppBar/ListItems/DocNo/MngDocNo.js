@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Material UI Libaray]  
 import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/material/';
 //icon
-import RuleFolderIcon from '@mui/icons-material/RuleFolder';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
@@ -18,9 +18,9 @@ function MngDocNo(){
 
             }}>
                 <ListItemIcon>
-                <RuleFolderIcon color="primary"/> 
+                <FormatListNumberedIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.audittrail[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.DocNo.button.MngDocNo[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )

@@ -20,7 +20,7 @@ function MngDocNoPattern(){
                 <ListItemIcon>
                 <RuleFolderIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.audittrail[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.DocNoPattern.button.MngDocNoPattern[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )

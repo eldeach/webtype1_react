@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Material UI Libaray]  
 import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/material/';
 //icon
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PostAddIcon from '@mui/icons-material/PostAdd';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
@@ -18,9 +18,9 @@ function AddDoc(){
 
             }}>
                 <ListItemIcon>
-                <ManageAccountsIcon color="primary"/> 
+                <PostAddIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.manageuser[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.Doc.button.AddDoc[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )

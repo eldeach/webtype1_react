@@ -20,7 +20,7 @@ function ConfigBinderLocation(){
                 <ListItemIcon>
                 <RuleFolderIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.audittrail[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.TraceBinder.button.ConfigBinderLocation[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )
