@@ -18,7 +18,7 @@ function AddDoc(){
 
             }}>
                 <ListItemIcon>
-                <PostAddIcon color="primary"/> 
+                <PostAddIcon color="cdms"/> 
                 </ListItemIcon>
                 <ListItemText primary={langCodeBook.cdms.Doc.button.AddDoc[cookies.load('site-lang')]} />
             </ListItemButton>

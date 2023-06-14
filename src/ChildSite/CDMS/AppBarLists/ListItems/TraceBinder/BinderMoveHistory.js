@@ -18,7 +18,7 @@ function BinderMoveHistory(){
 
             }}>
                 <ListItemIcon>
-                <ManageAccountsIcon color="primary"/> 
+                <ManageAccountsIcon color="cdms"/> 
                 </ListItemIcon>
                 <ListItemText primary={langCodeBook.cdms.TraceBinder.button.BinderMoveHistory[cookies.load('site-lang')]} />
             </ListItemButton>

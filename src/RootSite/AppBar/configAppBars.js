@@ -1,23 +1,24 @@
 
-import ListsPackage from "./Menu/Lists/ListsPackage"
+import RootSite from "./Menu/Lists/ListsPackage"
+import CdmsSite from "../../ChildSite/CDMS/AppBarLists/ListsPackage"
 
 
 const configAppBars = {
     cdms:{
         title:"CDMS",
-        listPackage:ListsPackage
+        listPackage:CdmsSite
     },
     vmp : {
         title:"VMP",
-        listPackage:ListsPackage
+        listPackage:RootSite
     },
     pqr :{
         title :  "PQR",
-        listPackage:ListsPackage
+        listPackage:RootSite
     },
     rootsite : {
         title : "Root Site",
-        listPackage:ListsPackage
+        listPackage:RootSite
     }
 }
 

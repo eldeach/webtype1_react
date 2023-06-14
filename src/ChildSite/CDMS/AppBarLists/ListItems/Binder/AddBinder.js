@@ -18,7 +18,7 @@ function AddBinder(){
 
             }}>
                 <ListItemIcon>
-                <CreateNewFolderIcon color="primary"/> 
+                <CreateNewFolderIcon color="cdms"/> 
                 </ListItemIcon>
                 <ListItemText primary={langCodeBook.cdms.Binder.button.AddBinder[cookies.load('site-lang')]} />
             </ListItemButton>

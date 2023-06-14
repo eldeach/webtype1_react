@@ -18,7 +18,7 @@ function ConfigBinderLocation(){
 
             }}>
                 <ListItemIcon>
-                <RuleFolderIcon color="primary"/> 
+                <RuleFolderIcon color="cdms"/> 
                 </ListItemIcon>
                 <ListItemText primary={langCodeBook.cdms.TraceBinder.button.ConfigBinderLocation[cookies.load('site-lang')]} />
             </ListItemButton>
