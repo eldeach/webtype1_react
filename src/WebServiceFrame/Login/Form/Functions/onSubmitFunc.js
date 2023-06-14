@@ -16,9 +16,17 @@ async function onSubmitFunc(props){
     await axios.post('/local-login' ,props.values)
     .then((res)=>{
         console.log(res.data)
+
+        if (res.data.dr && res.data.msgCode === "msg1"){
+            props.formFunctions.switchLoginStatus(true)
+        }
+        else {
+            props.formFunctions.switchLoginStatus(false)
+        }
         props.formFunctions.handleModalClose();
     })
     .catch((error)=>{
+        props.formFunctions.switchLoginStatus(false)
         if (error.response.data.dr)
         {
             console.log(error.response.status)

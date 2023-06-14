@@ -5,3 +5,11 @@
 div {
     font-family: sans-serif;
 }
+
+
+.login-and-lang-box{
+    display: flex;
+    position:absolute;
+    background-color: black;
+    right:0;
+}

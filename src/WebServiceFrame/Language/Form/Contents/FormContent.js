@@ -26,7 +26,6 @@ function FormContent(props){
     }
 
     useEffect(() => {
-        console.log(cookies.load('site-lang'))
         setSiteLang(cookies.load('site-lang'))
       }, []);
 

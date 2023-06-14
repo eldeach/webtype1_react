@@ -10,33 +10,26 @@ import LanguageIcon from '@mui/icons-material/Language';
 // ======================================================================================== [Import Component] js
 import LoginButton from '../Login/LoginButton';
 import SelectLangButton from '../Language/SelectLangButton';
+import appBars from './appBars';
 
 // ======================================================================================== [Import Component] CSS
 
 
-function WebBasketAppBar(){
+function SiteAppBar(props){
     return(
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
             <Toolbar variant="dense">
-                <IconButton
-                    size="large"
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    sx={{ mr: 2 }}
-                >
-                    <MenuIcon />
-                </IconButton>
+                {appBars[props.appBar].listButton()}
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    FrontAppBar
+                    {appBars[props.appBar].title}
                 </Typography>
                 <SelectLangButton labelText={<LanguageIcon/>}/>
-                <LoginButton labelText="Login"/> 
+                <LoginButton/> 
             </Toolbar>
             </AppBar>
         </Box>
     )
 }
 
-export default WebBasketAppBar;
+export default SiteAppBar;

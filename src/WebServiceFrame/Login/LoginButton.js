@@ -1,5 +1,6 @@
 // ======================================================================================== [Import Libaray]
 import * as React from 'react';
+import { useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { Paper } from '@mui/material';
@@ -27,17 +28,20 @@ const style = {
   p: 2,
 };
 
-function LoginButton(props){
-    const [open, setOpen] = React.useState(false);
+function LoginButton(){
+    const [open, setOpen] = useState(false);
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
+    
+    const [loginStatus, setLoginStatus] = useState(false);
+    const switchLoginStatus = (boolValue) => setLoginStatus(boolValue)
 
     return(
         <div>
-          <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
+          <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{loginStatus ? "Logout" : "Login"}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose}} formId="UserLogin" autoComplete="off"/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose, switchLoginStatus}} formId="UserLogin" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>
