@@ -2,9 +2,8 @@
 
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { AppBar, Box, Toolbar, Typography, IconButton } from '@mui/material/';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material/';
 //icon
-import MenuIcon from '@mui/icons-material/Menu';
 import LanguageIcon from '@mui/icons-material/Language';
 
 // ======================================================================================== [Import Component] js

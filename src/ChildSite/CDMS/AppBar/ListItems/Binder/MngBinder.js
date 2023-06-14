@@ -7,7 +7,7 @@ import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/mater
 import RuleFolderIcon from '@mui/icons-material/RuleFolder';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../Language/langCodeBook'
+import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -20,7 +20,7 @@ function MngBinder(){
                 <ListItemIcon>
                 <RuleFolderIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.audittrail[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.binder.button.mngbinder[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )

@@ -7,7 +7,7 @@ import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/mater
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../Language/langCodeBook'
+import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -20,7 +20,7 @@ function AddBinder(){
                 <ListItemIcon>
                 <ManageAccountsIcon color="primary"/> 
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.manageuser[cookies.load('site-lang')]} />
+                <ListItemText primary={langCodeBook.cdms.binder.button.addbinder[cookies.load('site-lang')]} />
             </ListItemButton>
         </ListItem>
     )
