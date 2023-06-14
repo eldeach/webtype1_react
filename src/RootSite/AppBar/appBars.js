@@ -1,9 +1,10 @@
 import RootMenu from "./RootMenu";
+import CdmsMenu from "../../ChildSite/CDMS/AppBar/CdmsMenu"
 
 const appBars = {
     cdms:{
         title:"CDMS",
-        listButton:RootMenu
+        listButton:CdmsMenu
     },
     vmp : {
         title:"VMP",

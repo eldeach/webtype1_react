@@ -9,15 +9,29 @@ import MenuIcon from '@mui/icons-material/Menu';
 // ======================================================================================== [Import Component] js
 import appBars from './appBars';
 //List items
-import ManageUser from './ListItems/ManageUser'
-import AuditTrail from './ListItems/AuditTrail'
+//DocNoPattern
+import AddDocNoPattern from './ListItems/DocNoPattern/AddDocNoPattern'
+import MngDocNoPattern from './ListItems/DocNoPattern/MngDocNoPattern'
+//DocNo
+import AddDocNo from './ListItems/DocNo/AddDocNo'
+import MngDocNo from './ListItems/DocNo/MngDocNo'
+//Doc
+import AddDoc from './ListItems/Doc/AddDoc'
+import MngDoc from './ListItems/Doc/MngDoc'
+//Binder
+import AddBinder from './ListItems/Binder/AddBinder'
+import MngBinder from './ListItems/Binder/MngBinder'
+//TraceBinder
+import BinderMoveHistory from './ListItems/TraceBinder/BinderMoveHistory'
+import ConfigBinderLocation from './ListItems/TraceBinder/ConfigBinderLocation'
+
 
 
 // ======================================================================================== [Import Component] CSS
 
 
 
-function RootMenu(props){
+function CdmsMenu(props){
 
     let [state, setState] = useState({
         top: false,
@@ -45,8 +59,33 @@ function RootMenu(props){
             <div className='app-bar-menu-title'>{appBars[props.appBar].title}</div>
             <Divider />
             <List>
-                <ManageUser/>
-                <AuditTrail/>
+                <AddDocNoPattern/>
+                <MngDocNoPattern/>
+            </List>
+            <Divider />
+            <List>
+                <AddDocNo/>
+                <MngDocNo/>
+            </List>
+            <Divider />
+            <List>
+                <AddDoc/>
+                <MngDoc/>
+            </List>
+            <Divider />
+            <List>
+                <AddBinder/>
+                <MngDocNo/>
+            </List>
+            <Divider />
+            <List>
+                <AddDocNo/>
+                <MngBinder/>
+            </List>
+            <Divider />
+            <List>
+                <BinderMoveHistory/>
+                <ConfigBinderLocation/>
             </List>
             <Divider />
         </Box>
@@ -77,4 +116,4 @@ function RootMenu(props){
 
 }
 
-export default RootMenu;
+export default CdmsMenu;
