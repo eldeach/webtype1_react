@@ -1,21 +1,21 @@
-import SiteListButton from "./SiteListButton";
+import RootMenu from "./RootMenu";
 
 const appBars = {
     cdms:{
         title:"CDMS",
-        listButton:SiteListButton
+        listButton:RootMenu
     },
     vmp : {
         title:"VMP",
-        listButton:SiteListButton
+        listButton:RootMenu
     },
     pqr :{
         title :  "PQR",
-        listButton:SiteListButton
+        listButton:RootMenu
     },
-    siteroot : {
-        title : "SiteRoot",
-        listButton:SiteListButton
+    rootsite : {
+        title : "Root Site",
+        listButton:RootMenu
     }
 }
 

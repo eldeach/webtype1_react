@@ -20,7 +20,7 @@ function SiteAppBar(props){
         <Box sx={{ flexGrow: 1 }}>
             <AppBar position="static">
             <Toolbar variant="dense">
-                {appBars[props.appBar].listButton()}
+                {appBars[props.appBar].listButton({appBar : props.appBar})}
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {appBars[props.appBar].title}
                 </Typography>

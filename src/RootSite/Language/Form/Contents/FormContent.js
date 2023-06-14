@@ -20,7 +20,6 @@ function FormContent(props){
 
     let [siteLang,setSiteLang] = useState('');
     const handleLang = (event) => {
-        console.log(event.target.value)
         setSiteLang(event.target.value)
         formFunctions.setCookies(event.target.value)
     }

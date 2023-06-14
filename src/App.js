@@ -10,22 +10,21 @@ import { ThemeProvider } from '@mui/material/styles';
 // ======================================================================================== [Import Component] js
 // App Bar
 import SiteAppBar from './RootSite/AppBar/SiteAppBar'
-// App Bar Drawer List
-
-// rest
+// Root Site Component
 import globalTheme from './RootSite/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
-import CdmsFrontPage from './CDMS/FrontPage/CdmsFrontPage'
-import VmpFrontPage from './VMP/FrontPage/VmpFrontPage'
-import PqrFrontPage from './PQR/FrontPage/PqrFrontPage'
 import setCookies from './RootSite/Language/Form/Functions/setCookies'
+//Child Site Component
+import CdmsFrontPage from './ChildSite/CDMS/FrontPage/CdmsFrontPage'
+import VmpFrontPage from './ChildSite/VMP/FrontPage/VmpFrontPage'
+import PqrFrontPage from './ChildSite/PQR/FrontPage/PqrFrontPage'
 
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
 function App() {
   const location = useLocation();
-  let [appBar,setAppBar] = useState("siteroot");
+  let [appBar,setAppBar] = useState("rootsite");
 
   useEffect(() => {
     if(!cookies.load('site-lang')){
@@ -35,7 +34,7 @@ function App() {
     if(location.pathname.indexOf("/cdms")!==-1) setAppBar("cdms")
     else if(location.pathname.indexOf("/vmp")!==-1) setAppBar("vmp")
     else if(location.pathname.indexOf("/pqr")!==-1) setAppBar("pqr")
-    else setAppBar("siteroot")
+    else setAppBar("rootsite")
   }, [location]);
 
   return (

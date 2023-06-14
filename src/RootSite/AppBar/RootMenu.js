@@ -1,21 +1,24 @@
 // ======================================================================================== [Import Libaray]
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { Divider, Box, IconButton, Drawer, ListItemButton, ListItemIcon, ListItemText, ListItem, List} from '@mui/material/';
 //icon
 import MenuIcon from '@mui/icons-material/Menu';
-import RuleIcon from '@mui/icons-material/Rule';
-import DnsIcon from '@mui/icons-material/Dns';
 
 // ======================================================================================== [Import Component] js
+import appBars from './appBars';
+//List items
+import ManageUser from './ListItems/ManageUser'
+import AuditTrail from './ListItems/AuditTrail'
+
 
 
 // ======================================================================================== [Import Component] CSS
+import './RootMenu.css'
 
 
-
-function SiteListButton(props){
+function RootMenu(props){
 
     let [state, setState] = useState({
         top: false,
@@ -40,26 +43,11 @@ function SiteListButton(props){
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div>{"aa"}</div>
+            <div className='menu-title'>{appBars[props.appBar].title}</div>
+            <Divider />
             <List>
-                <ListItem disablePadding>
-                <ListItemButton onClick={()=>{
-                    }}>
-                    <ListItemIcon>
-                    <DnsIcon color="primary"/> 
-                    </ListItemIcon>
-                    <ListItemText primary={"aa"} />
-                </ListItemButton>
-                </ListItem>
-            <ListItem disablePadding>
-                <ListItemButton onClick={()=>{
-                    }}>
-                    <ListItemIcon>
-                    <RuleIcon color="primary"/> 
-                    </ListItemIcon>
-                    <ListItemText primary={"문서번호 패턴 추가"} />
-                </ListItemButton>
-                </ListItem>
+                <ManageUser/>
+                <AuditTrail/>
             </List>
             <Divider />
         </Box>
@@ -90,4 +78,4 @@ function SiteListButton(props){
 
 }
 
-export default SiteListButton;
+export default RootMenu;
