@@ -32,7 +32,7 @@ function SelectLangButton(props){
 
     return(
         <div>
-          <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
+          <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
               <GlobalFormik sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose, setCookies}} formId="SelectLang" autoComplete="off"/>
