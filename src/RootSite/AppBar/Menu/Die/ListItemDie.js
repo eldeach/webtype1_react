@@ -1,29 +1,29 @@
 // ======================================================================================== [Import Libaray]
-import cookies from 'react-cookies'
+import { useNavigate } from "react-router-dom";
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/material/';
-//icon
-import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../Language/langCodeBook'
+
 
 // ======================================================================================== [Import Component] CSS
 
-function ManageUser(){
+function ListItemDie(props){
+    let navigate = useNavigate();
+
     return(
         <ListItem disablePadding>
             <ListItemButton onClick={()=>{
-
+                navigate(props.path)
             }}>
                 <ListItemIcon>
-                <ContentPasteSearchIcon color="primary"/> 
+                {props.iconComponent}
                 </ListItemIcon>
-                <ListItemText primary={langCodeBook.roosite.button.audittrail[cookies.load('site-lang')]} />
+                <ListItemText primary={props.labelText} />
             </ListItemButton>
         </ListItem>
     )
 }
 
-export default ManageUser;
+export default ListItemDie;

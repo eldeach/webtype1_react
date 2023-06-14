@@ -7,7 +7,7 @@ import { Divider, Box, IconButton, Drawer, List} from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // ======================================================================================== [Import Component] js
-import appBars from '../../../RootSite/AppBar/appBars';
+import configAppBars from '../../../RootSite/AppBar/configAppBars';
 //List items
 //DocNoPattern
 import AddDocNoPattern from './ListItems/DocNoPattern/AddDocNoPattern'
@@ -56,7 +56,7 @@ function CdmsMenu(props){
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div className='app-bar-menu-title'>{appBars[props.appBar].title}</div>
+            <div className='app-bar-menu-title'>{configAppBars[props.appBar].title}</div>
             <Divider />
             <List>
                 <AddDocNoPattern/>

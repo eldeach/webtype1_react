@@ -2,16 +2,12 @@
 import { useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Divider, Box, IconButton, Drawer, List} from '@mui/material/';
+import { Divider, Box, IconButton, Drawer } from '@mui/material/';
 //icon
 import MenuIcon from '@mui/icons-material/Menu';
 
 // ======================================================================================== [Import Component] js
-import appBars from './appBars';
-//List items
-import ManageUser from './ListItems/ManageUser'
-import AuditTrail from './ListItems/AuditTrail'
-
+import configAppBars from '../../configAppBars'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -42,13 +38,9 @@ function RootMenu(props){
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div className='app-bar-menu-title'>{appBars[props.appBar].title}</div>
+            <div className='app-bar-menu-title'>{configAppBars[props.appBar].title}</div>
             <Divider />
-            <List>
-                <ManageUser/>
-                <AuditTrail/>
-            </List>
-            <Divider />
+            {props.listPackage()}
         </Box>
     );
     return(

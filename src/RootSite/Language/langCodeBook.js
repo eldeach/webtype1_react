@@ -1,12 +1,17 @@
 const langCodeBook = {
     roosite:{
         button :{
-            manageuser : {
-                kor : "사용자 관리",
-                eng : "User Management"
+            AddUser : {
+                kor : "사용자 추가",
+                eng : "Add user"
             },
 
-            audittrail : {
+            ManageUser : {
+                kor : "사용자 관리",
+                eng : "Manage user"
+            },
+
+            AuditTrail : {
                 kor : "Audit Trail",
                 eng : "Audit Trail"
             }
