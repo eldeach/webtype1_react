@@ -14,7 +14,7 @@ import langCodeBook from '../../../../Language/langCodeBook';
 function ManageUser(){
 
     return(
-        <ListItemDie path={'/cdms'} iconComponent={<ManageAccountsIcon color='rootsite'/>} labelText={langCodeBook.roosite.button.ManageUser[cookies.load('site-lang')]} />
+        <ListItemDie path={'/manageuser'} iconComponent={<ManageAccountsIcon color='rootsite'/>} labelText={langCodeBook.roosite.menu.users.button.ManageUser[cookies.load('site-lang')]} />
     )
 }
 

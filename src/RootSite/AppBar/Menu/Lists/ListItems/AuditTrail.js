@@ -14,7 +14,7 @@ import langCodeBook from '../../../../Language/langCodeBook';
 function AuditTrail(){
 
     return(
-        <ListItemDie path={'/cdms'} iconComponent={<ContentPasteSearchIcon color='rootsite'/>} labelText={langCodeBook.roosite.button.AuditTrail[cookies.load('site-lang')]} />
+        <ListItemDie path={'/cdms'} iconComponent={<ContentPasteSearchIcon color='rootsite'/>} labelText={langCodeBook.roosite.menu.auditTrail.button.AuditTrail[cookies.load('site-lang')]} />
     )
 }
 

@@ -1,21 +1,23 @@
 // ======================================================================================== [Import Libaray]
-import cookies from 'react-cookies'
+import * as yup from 'yup';
 
 // ======================================================================================== [Import Material UI Libaray]  
-//icon
-import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
+
 
 // ======================================================================================== [Import Component] js
-import ListItemDie from '../../Die/ListItemDie'
-import langCodeBook from '../../../../Language/langCodeBook';
+
 
 // ======================================================================================== [Import Component] CSS
 
-function AddUser(){
+  
+  
+  const yupSchema = yup.object().shape({
 
-    return(
-        <ListItemDie path={'/adduser'} iconComponent={<PersonAddAlt1Icon color='rootsite'/>} labelText={langCodeBook.roosite.menu.users.button.AddUser[cookies.load('site-lang')]} />
-    )
-}
+    user_account: yup.string()
+    .required('계정을 입력해주세요.'),
 
-export default AddUser;
+    user_pw: yup.string()
+    .required('비밀번호를 입력해주세요.')
+  });
+
+  export default yupSchema;

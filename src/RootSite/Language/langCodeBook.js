@@ -1,22 +1,58 @@
 const langCodeBook = {
     roosite:{
-        button :{
-            AddUser : {
-                kor : "사용자 추가",
-                eng : "Add user"
+        menu:{
+            users:{
+                button :{
+                    AddUser : {
+                        kor : "사용자 추가",
+                        eng : "Add user"
+                    },
+        
+                    ManageUser : {
+                        kor : "사용자 관리",
+                        eng : "Manage user"
+                    },
+                }
             },
-
-            ManageUser : {
-                kor : "사용자 관리",
-                eng : "Manage user"
+            auditTrail : {
+                button:{
+                    AuditTrail:{
+                        kor : "Audit Trail",
+                        eng : "Audit Trail"
+                    }
+                }
+            }
+        },
+        form :{
+            login :{
+                input :{
+                    user_account : {
+                        placeholder :{
+                            kor : "사용자 계정",
+                            eng : "User Account"
+                        }
+                    },
+                    user_pw : {
+                        placeholder :{
+                            kor : "비밀번호",
+                            eng : "Password"
+                        }
+                    }
+                },
+                button :{
+                    signIn : {
+                        kor : "로그인",
+                        eng : "Sign in"
+                    }
+                }
             },
+            users :{
+                AddUser:{
+                    
+                }
 
-            AuditTrail : {
-                kor : "Audit Trail",
-                eng : "Audit Trail"
             }
         }
-
     },
 
     cdms : {

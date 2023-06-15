@@ -14,7 +14,10 @@ import SiteAppBar from './RootSite/AppBar/SiteAppBar'
 import globalTheme from './RootSite/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
 import setCookies from './RootSite/Language/Form/Functions/setCookies'
-//Child Site Component
+// Root Site Forms
+import AddUserForm from './RootSite/Forms/Users/AddUser/AddUserForm';
+import ManageUserForm from './RootSite/Forms/Users/ManageUser/ManageUserForm';
+// Child Site Component
 import CdmsFrontPage from './ChildSite/CDMS/FrontPage/CdmsFrontPage'
 import VmpFrontPage from './ChildSite/VMP/FrontPage/VmpFrontPage'
 import PqrFrontPage from './ChildSite/PQR/FrontPage/PqrFrontPage'
@@ -46,6 +49,9 @@ function App() {
       
       <Routes>
         <Route path='/' element={<FirstImpression/>}/>
+        <Route path='/adduser' element={<AddUserForm/>}/>
+        <Route path='/manageuser' element={<ManageUserForm/>}/>
+        
 
         <Route path='/cdms' element={<CdmsFrontPage/>}/>
 
