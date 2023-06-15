@@ -11,11 +11,11 @@ import Modal from '@mui/material/Modal';
 // ======================================================================================== [Import Component] js
 import GlobalFormik from '../GlobalFormik/GlobalFormik';
 // form
-import FormContent from './Form/Contents/FormContent';
-import initialValues from './Form/Contents/initialValues'
-import formSize from './Form/Contents/formSize'
-import yupSchema from './Form/YupSchema/yupSchema';
-import onSubmitFunc from './Form/Functions/onSubmitFunc';
+import FormContent from './Contents/FormContent';
+import initialValues from './Contents/initialValues'
+import formSize from './Contents/formSize'
+import yupSchema from './YupSchema/yupSchema';
+import onSubmitFunc from './Functions/onSubmitFunc';
 
 // ======================================================================================== [Import Component] CSS
 
