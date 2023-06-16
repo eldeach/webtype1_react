@@ -2,7 +2,7 @@
 import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Button, Paper, TextField } from '@mui/material';
+import { Autocomplete, Button, Paper, TextField } from '@mui/material';
 import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -16,10 +16,11 @@ import './FormContent.css'
 
 
 const paperStyle = {
-    width:'20%',
-    height:'20%',
+    width:500,
     p: 2,
   };
+
+  const gender = ["Male","Female"]
 
 function FormContent(props){
 
@@ -31,7 +32,7 @@ function FormContent(props){
 
 
     return(
-        <div>
+        <div className='form-content'>
             <Paper sx={paperStyle} elevation={3}>
                 <TextField
                 required
@@ -69,7 +70,6 @@ function FormContent(props){
                 InputLabelProps={{style: textFieldStyle}} // font size of input label
                 />
                 <TextField
-                required
                 variant="outlined"
                 id="user_name"
                 name="user_name"
@@ -86,7 +86,6 @@ function FormContent(props){
                 InputLabelProps={{style: textFieldStyle}} // font size of input label
                 />
                 <TextField
-                required
                 variant="outlined"
                 id="user_nickname"
                 name="user_nickname"
@@ -118,23 +117,19 @@ function FormContent(props){
                         />
                     </LocalizationProvider>
                 </div>
-                <TextField
-                required
-                variant="outlined"
-                id="user_gender"
-                name="user_gender"
-                label={langCodeBook.roosite.form.users.AddUser.input.user_gender.placeholder[cookies.load('site-lang')]}
+                <div className='datepicker-box'>
+                <Autocomplete
                 value={formikValues.user_gender}
-                onChange={formikObj.formHandleChange}
-                onBlur={formikObj.formHandleBlur}
-                helperText={formikObj.formTouched.user_gender ? formikObj.formErrers.user_gender : ""}
-                error={formikObj.formTouched.user_gender && Boolean(formikObj.formErrers.user_gender)}
-                size='small'
-                margin="dense"
-                fullWidth
-                inputProps={{style: textFieldStyle}} // font size of input text
-                InputLabelProps={{style: textFieldStyle}} // font size of input label
+                // onChange={(event, newValue) => {
+                // setDocAttFiled({abb:newValue.split(" : ")[0], att_name : newValue.split(" : ")[1]});
+                // }}
+                disablePortal
+                size="small"
+                id="user_gender"
+                options={gender.map((option) => option)}
+                renderInput={(params) => <TextField {...params} color="primary" label={langCodeBook.roosite.form.users.AddUser.input.user_gender.placeholder[cookies.load('site-lang')]} />}
                 />
+                </div>
             </Paper>
             
         </div>
