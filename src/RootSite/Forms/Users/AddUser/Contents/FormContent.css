@@ -16,6 +16,7 @@
 
 
 .input-box{
+
     padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 10px;
@@ -27,9 +28,30 @@
     border: #D3D3D3 solid 1px;
 }
 
+.option-box{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    border: #D3D3D3 solid 1px;
+}
+
+.option-box .MuiFormControlLabel-label{
+    font-size: 14px;
+}
+
+.option-box .MuiFormLabel-root{
+    font-size: 14px;
+}
+
 .datepicker-box{
     margin-top: 5px;
 }
+
 .datepicker-box .MuiInputLabel-root{
     font-size: 14px;
 }

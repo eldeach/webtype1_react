@@ -1,12 +1,17 @@
 // ======================================================================================== [Import Libaray]
 import cookies from 'react-cookies'
-
+import dayjs from 'dayjs';
 // ======================================================================================== [Import Material UI Libaray]  
 import { Autocomplete, Button, Paper, TextField } from '@mui/material';
-import dayjs from 'dayjs';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
+
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../Configure/Language/langCodeBook';
@@ -20,7 +25,9 @@ const paperStyle = {
     p: 2,
   };
 
-  const gender = ["Male","Female"]
+const gender = ["Male","Female"]
+
+const emails = []
 
 function FormContent(props){
 
@@ -117,19 +124,22 @@ function FormContent(props){
                         />
                     </LocalizationProvider>
                 </div>
-                <div className='datepicker-box'>
-                <Autocomplete
-                value={formikValues.user_gender}
-                // onChange={(event, newValue) => {
-                // setDocAttFiled({abb:newValue.split(" : ")[0], att_name : newValue.split(" : ")[1]});
-                // }}
-                disablePortal
-                size="small"
-                id="user_gender"
-                options={gender.map((option) => option)}
-                renderInput={(params) => <TextField {...params} color="primary" label={langCodeBook.roosite.form.users.AddUser.input.user_gender.placeholder[cookies.load('site-lang')]} />}
-                />
+                <div className='option-box '>
+                <FormControl>
+                    <FormLabel id="user_gender">Gender</FormLabel>
+                    <RadioGroup
+                    row
+                    name="user_gender"
+                    value={formikValues.user_gender}
+                    >
+                        <FormControlLabel value="male" control={<Radio />} label="Male" />
+                        <FormControlLabel value="female" control={<Radio />} label="Female" />     
+                    </RadioGroup>
+                </FormControl>
                 </div>
+            </Paper>
+            <Paper sx={paperStyle} elevation={3}>
+          
             </Paper>
             
         </div>
