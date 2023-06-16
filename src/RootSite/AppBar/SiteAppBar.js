@@ -7,9 +7,9 @@ import { AppBar, Box, Toolbar, Typography } from '@mui/material/';
 import LanguageIcon from '@mui/icons-material/Language';
 
 // ======================================================================================== [Import Component] js
-import LoginButton from '../Login/LoginButton';
-import SelectLangButton from '../Language/SelectLangButton';
-import configAppBars from './configAppBars';
+import LoginButton from '../Forms/LoginButton/LoginButton';
+import LangButton from '../Forms/LangButton/LangButton';
+import configAppBars from '../Configure/AppBar/configAppBars';
 import MenuDie from '../AppBar/Menu/Die/MenuDie'
 
 // ======================================================================================== [Import Component] CSS
@@ -24,7 +24,7 @@ function SiteAppBar(props){
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                     {configAppBars[props.appBar].title}
                 </Typography>
-                <SelectLangButton labelText={<LanguageIcon/>}/>
+                <LangButton labelText={<LanguageIcon/>}/>
                 <LoginButton/> 
             </Toolbar>
             </AppBar>

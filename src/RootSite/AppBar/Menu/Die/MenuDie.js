@@ -7,7 +7,7 @@ import { Divider, Box, IconButton, Drawer } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // ======================================================================================== [Import Component] js
-import configAppBars from '../../configAppBars'
+import configAppBars from '../../../Configure/AppBar/configAppBars'
 
 // ======================================================================================== [Import Component] CSS
 

@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 // ======================================================================================== [Import Component] js
-import GlobalFormik from '../GlobalFormik/GlobalFormik';
+import GlobalFormik from '../../GlobalFormik/GlobalFormik';
 // form
 import FormContent from './Contents/FormContent';
 import initialValues from './Contents/initialValues'

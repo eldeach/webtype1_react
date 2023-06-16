@@ -8,11 +8,11 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 // ======================================================================================== [Import Component] js
-import GlobalFormik from '../GlobalFormik/GlobalFormik';
+import GlobalFormik from '../../GlobalFormik/GlobalFormik';
 // form
-import FormContent from './Form/Contents/FormContent';
-import formSize from './Form/Contents/formSize'
-import setCookies from './Form/Functions/setCookies'
+import FormContent from './Contents/FormContent';
+import formSize from './Contents/formSize'
+import setCookies from './Functions/setCookies'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -25,7 +25,7 @@ const style = {
   p: 2,
 };
 
-function SelectLangButton(props){
+function LangButton(props){
     const [open, setOpen] = React.useState(false);
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
@@ -42,4 +42,4 @@ function SelectLangButton(props){
     )
 }
 
-export default SelectLangButton;
+export default LangButton;

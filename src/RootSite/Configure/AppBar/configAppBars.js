@@ -1,6 +1,6 @@
 
-import RootSite from "./Menu/Lists/ListsPackage"
-import CdmsSite from "../../ChildSite/CDMS/AppBarLists/ListsPackage"
+import RootSite from "../../AppBar/Menu/Lists/ListsPackage"
+import CdmsSite from "../../../ChildSite/CDMS/AppBarLists/ListsPackage"
 
 
 const configAppBars = {
