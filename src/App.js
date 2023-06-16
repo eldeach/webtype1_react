@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Box } from '@mui/material/';
 import { ThemeProvider } from '@mui/material/styles';
 
 // ======================================================================================== [Import Component] js
@@ -13,7 +12,6 @@ import SiteAppBar from './RootSite/AppBar/SiteAppBar'
 // Root Site Component
 import globalTheme from './RootSite/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
-import setCookies from './RootSite/Language/Form/Functions/setCookies'
 // Root Site Forms
 import AddUserForm from './RootSite/Forms/Users/AddUser/AddUserForm';
 import ManageUserForm from './RootSite/Forms/Users/ManageUser/ManageUserForm';
@@ -31,7 +29,7 @@ function App() {
 
   useEffect(() => {
     if(!cookies.load('site-lang')){
-      setCookies('eng')
+      cookies.save('site-lang','eng',{path :'/'})
     }
 
     if(location.pathname.indexOf("/cdms")!==-1) setAppBar("cdms")

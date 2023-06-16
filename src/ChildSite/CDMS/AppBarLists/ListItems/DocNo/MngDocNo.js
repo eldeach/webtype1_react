@@ -7,7 +7,7 @@ import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/mater
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../RootSite/Language/langCodeBook'
+import langCodeBook from '../../../../../RootSite/Configure/Language/langCodeBook';
 
 // ======================================================================================== [Import Component] CSS
 

@@ -5,7 +5,7 @@ import cookies from 'react-cookies'
 import { Button, TextField } from '@mui/material';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../Configure/Language/langCodeBook';
 
 
 // ======================================================================================== [Import Component] CSS
@@ -31,7 +31,7 @@ function FormContent(props){
                 variant="outlined"
                 id="user_account"
                 name="user_account"
-                label={langCodeBook.roosite.form.login.input.user_account.placeholder[cookies.load('site-lang')]}
+                label={langCodeBook.roosite.form.system.login.input.user_account.placeholder[cookies.load('site-lang')]}
                 value={formikValues.user_account}
                 onChange={formikObj.formHandleChange}
                 onBlur={formikObj.formHandleBlur}
@@ -48,7 +48,7 @@ function FormContent(props){
                 variant="outlined"
                 id="user_pw"
                 name="user_pw"
-                label={langCodeBook.roosite.form.login.input.user_pw.placeholder[cookies.load('site-lang')]}
+                label={langCodeBook.roosite.form.system.login.input.user_pw.placeholder[cookies.load('site-lang')]}
                 type="password"
                 value={formikValues.user_pw}
                 onChange={formikObj.formHandleChange}
@@ -63,7 +63,7 @@ function FormContent(props){
                 />
             </div>
             <div className='button-box'>
-                <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">{langCodeBook.roosite.form.login.button.signIn[cookies.load('site-lang')]}</Button>
+                <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">{langCodeBook.roosite.form.system.login.button.signIn[cookies.load('site-lang')]}</Button>
             </div>             
         </div>
     )

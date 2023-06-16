@@ -11,14 +11,19 @@ const globalTheme = createTheme({
     danger: '#e53e3e',
   },
   palette: {
-    primary: {
-      main: '#0971f1',
-      darker: '#053e85',
-    },
     rootsite: {
       main: '#0971f1',
       darker: '#053e85',
       contrastText: '#fff',
+    },
+    info: {
+      main: '#0971f1',
+      darker: '#053e85',
+      contrastText: '#fff',
+    },
+    primary: {
+      main: '#0971f1',
+      darker: '#053e85',
     },
     cdms: {
       main: '#3f50b5',
@@ -28,10 +33,12 @@ const globalTheme = createTheme({
     vmp: {
       main: '#0971f1',
       darker: '#053e85',
+      contrastText: '#fff',
     },
     pqr: {
       main: '#0971f1',
       darker: '#053e85',
+      contrastText: '#fff',
     },
     neutral: {
       main: '#fff',

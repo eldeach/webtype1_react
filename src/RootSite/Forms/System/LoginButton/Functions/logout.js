@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-import cookies from 'react-cookies'
+import axios from 'axios';
 
 // ======================================================================================== [Import Material UI Libaray]  
 
@@ -10,10 +10,16 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Component] CSS
 
 
+async function logout(switchLoginStatus){
+    await axios.get('/logout')
+    .then((res)=>{
+        switchLoginStatus(false)
+    })
+    .catch((error)=>{
+        console.log(error.response)
 
+    })
 
-function setCookies(value){
-    cookies.save('site-lang',value,{path :'/'})
 }
 
-export default setCookies;
+export default logout;

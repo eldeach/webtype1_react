@@ -26,6 +26,14 @@
     border: #D3D3D3 solid 1px;
 }
 
+.datepicker-box .MuiInputLabel-root{
+    font-size: 14px;
+}
+
+.datepicker-box .MuiOutlinedInput-root{
+    font-size: 14px;
+}
+
 .button-box-close{
     width: 100%;
     display: block;

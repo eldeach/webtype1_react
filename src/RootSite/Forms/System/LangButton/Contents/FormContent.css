@@ -6,11 +6,24 @@
     flex-direction: column;
 }
 
-.sign-in-title{
+.lang-title{
     width: 100%;
     text-align: center;
     font-size: xx-large;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.icon-box{
+    text-align: center;
+}
+
+.description-box{
+    margin-bottom: 46px;
+    box-sizing: border-box;
+    font-size: small;
+    color:orange;
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 

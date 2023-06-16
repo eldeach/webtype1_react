@@ -1,6 +1,6 @@
 const formSize={
-    width: 200,
-    height:150,
+    width: 300,
+    height:300,
   }
 
   export default formSize;

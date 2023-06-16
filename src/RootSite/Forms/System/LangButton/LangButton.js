@@ -1,6 +1,5 @@
 // ======================================================================================== [Import Libaray]
 import * as React from 'react';
-import { useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { Paper } from '@mui/material';
@@ -9,13 +8,10 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 // ======================================================================================== [Import Component] js
-import GlobalFormik from '../../GlobalFormik/GlobalFormik';
+import GlobalFormik from '../../../GlobalFormik/GlobalFormik';
 // form
 import FormContent from './Contents/FormContent';
-import initialValues from './Contents/initialValues'
 import formSize from './Contents/formSize'
-import yupSchema from './YupSchema/yupSchema';
-import onSubmitFunc from './Functions/onSubmitFunc';
 
 // ======================================================================================== [Import Component] CSS
 
@@ -28,24 +24,21 @@ const style = {
   p: 2,
 };
 
-function LoginButton(){
-    const [open, setOpen] = useState(false);
+function LangButton(props){
+    const [open, setOpen] = React.useState(false);
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
-    
-    const [loginStatus, setLoginStatus] = useState(false);
-    const switchLoginStatus = (boolValue) => setLoginStatus(boolValue)
 
     return(
         <div>
-          <Button variant="outlined" color = "white" size="small" onClick={handleModalOpen}>{loginStatus ? "Logout" : "Login"}</Button>
+          <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose, switchLoginStatus}} formId="UserLogin" autoComplete="off"/>
+              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>
     )
 }
 
-export default LoginButton;
+export default LangButton;

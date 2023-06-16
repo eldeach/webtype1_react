@@ -7,8 +7,8 @@ import { AppBar, Box, Toolbar, Typography } from '@mui/material/';
 import LanguageIcon from '@mui/icons-material/Language';
 
 // ======================================================================================== [Import Component] js
-import LoginButton from '../Forms/LoginButton/LoginButton';
-import LangButton from '../Forms/LangButton/LangButton';
+import LoginButton from '../Forms/System/LoginButton/LoginButton';
+import LangButton from '../Forms/System/LangButton/LangButton';
 import configAppBars from '../Configure/AppBar/configAppBars';
 import MenuDie from '../AppBar/Menu/Die/MenuDie'
 
