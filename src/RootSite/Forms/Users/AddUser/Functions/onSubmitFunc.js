@@ -12,30 +12,19 @@ import cookies from 'react-cookies'
 
 
 async function onSubmitFunc(props){
+    const valuePayload = {
+        user_account: props.values.user_account,
+        user_pw:props.values.user_pw,
+        user_name:props.values.user_name,
+        user_nickname:props.values.user_nickname,
+        user_birthday:props.values.user_birthday,
+        user_email:props.values.user_email.filter((email) => email.email.trim() !== '').map((email) => ({ email: email.email, type: email.type, company: email.company, })),
+        user_phone:[],
+        user_position:[],
+        user_auth:[]
+    }
 
-    await axios.post('/local-login' ,props.values)
-    .then((res)=>{
-        console.log(res.data)
-
-        if (res.data.dr && res.data.msgCode === "msg1"){
-            props.formFunctions.switchLoginStatus(true)
-        }
-        else {
-            props.formFunctions.switchLoginStatus(false)
-        }
-        props.formFunctions.handleModalClose();
-    })
-    .catch((error)=>{
-        props.formFunctions.switchLoginStatus(false)
-        if (error.response.data.dr)
-        {
-            alert("Code : " + error.response.data.msgCode + "\nMessage : " + error.response.data.msg[cookies.load('site-lang')])
-        }
-        else{
-            alert("<unexpected error> \n " + "Code : " + error.response.data.msgCode + "\n Message : " + error.response.data.msg[cookies.load('site-lang')])
-        }
-
-    })
+    console.log(valuePayload)
 }
 
 export default onSubmitFunc;
