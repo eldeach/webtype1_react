@@ -1,7 +1,7 @@
-function emailClear(index, emails){
+function emailsClear(index, emails){
     const newEmails = [...emails];
     newEmails[index].email = '';
     return newEmails;
 }
 
-export default emailClear;
+export default emailsClear;

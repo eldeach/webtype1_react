@@ -6,8 +6,9 @@
 
 // ======================================================================================== [Import Component] js
 //sub form content
-import IdInfoBox from './SubContents/IdInfoBox';
+import IdInfoBox from './SubContents/IdInfoBox/IdInfoBox';
 import EmailBox from './SubContents/EmailBox/EmailBox';
+import PhoneBox from './SubContents/PhoneBox/PhoneBox';
 
 // ======================================================================================== [Import Component] CSS
 import './FormContent.css'
@@ -15,7 +16,7 @@ import './FormContent.css'
 const paperStyle = {
     width:500,
     p: 2,
-    m:2
+    mb:2
 };
 
 const textFieldStyle={
@@ -29,7 +30,8 @@ function FormContent(props){
     return(
         <div className='form-content'>
             <IdInfoBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-            <EmailBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>          
+            <EmailBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+            <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
         </div>
     )
 

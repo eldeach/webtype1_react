@@ -38,7 +38,7 @@ function RootMenu(props){
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div className='app-bar-menu-title'>{configAppBars[props.appBar].title}</div>
+            <div>{configAppBars[props.appBar].title}</div>
             <Divider />
             {props.listPackage()}
         </Box>

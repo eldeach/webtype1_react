@@ -1,4 +1,5 @@
 // ======================================================================================== [Import Libaray]
+import * as React from 'react';
 
 
 // ======================================================================================== [Import Material UI Libaray]  
@@ -9,17 +10,13 @@
 
 // ======================================================================================== [Import Component] CSS
 
-
-function emailChange(index, event, emails, handleEmails, addField, removeField ){
-    const newEmails = [...emails];
-    newEmails[index].email = event.target.value;
-    handleEmails(newEmails);
-    if (event.target.value.trim() !== ''){
-      addField();
-    }
-    else{
-      removeField(index)
-    }
+function SubTitle (props){
+    return(
+        <div style={{ display:'flex', flexDirection:'row', alignItems:'center', fontSize:'medium' }}>
+            {props.icon}
+            <div style={{marginTop:'4px', marginLeft:'2px'}}>{props.text}</div>
+        </div>
+    )
 }
 
-export default emailChange;
+export default SubTitle ;

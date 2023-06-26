@@ -7,79 +7,80 @@ import { Autocomplete, Button, IconButton, Paper, TextField } from '@mui/materia
 //icon
 import ClearIcon from '@mui/icons-material/Clear';
 import AddIcon from '@mui/icons-material/Add';
-import EmailIcon from '@mui/icons-material/Email';
+import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
-import emailCat from './Components/emailCat'
-import emailsClear from './Components/emailsClear';
-import emailChange from './Components/emailChange';
+import phoneCat from './Components/phoneCat'
+import phoneClear from './Components/phoneClear';
+import phoneChange from './Components/phoneChange';
 import purposeChange from './Components/purposeChange';
 import affiliationClear from './Components/affiliationClear';
 import affiliationChange from './Components/affiliationChange';
 
 // ======================================================================================== [Import Component] CSS
-import './EmailBox.css'
+import './PhoneBox.css'
 
 
-function EmailBox(props){
+function PhoneBox(props){
   const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
-  const initialEmailValue = { email: '', type: 'personal', company: '' }
+  const initialPhoneValue = { phone: '', type: 'personal', company: '' }
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   
-  const [emails, setEmails] = useState([]);
-  const handleEmails = (arr) => {setEmails(arr)}
+  const [phones, setPhones] = useState([]);
+  const handlePhones = (arr) => {setPhones(arr)}
 
   const addField = () => {
-    if (emails[emails.length-1].email.trim() !== ''){
-      const newEmails = [...emails, initialEmailValue];
-      handleEmails(newEmails);
+    if (phones[phones.length-1].phone.trim() !== ''){
+      const newPhones = [...phones, initialPhoneValue];
+      handlePhones(newPhones);
     }
   };
 
   const removeField = (index) => {
-    const oldEmailsArray = [...emails]; // 원본 배열 복사
-    const newEmailsArray = oldEmailsArray.filter((_, i) => i !== index); 
-    handleEmails(newEmailsArray)
+    const oldPhonesArray = [...phones]; // 원본 배열 복사
+    const newPhonesArray = oldPhonesArray.filter((_, i) => i !== index); 
+    handlePhones(newPhonesArray)
   };
 
   const handleFormValueChange = () =>{
-    formikObj.formSetFieldValue('user_email',emails)
+    formikObj.formSetFieldValue('user_phone',phones)
   }
 
   useEffect(()=>{
     handleFormValueChange();
     console.log(formikValues)
-  },[emails])
+  },[phones])
 
   return(
     <Paper sx={paperStyle} elevation={3}>
-      <SubTitle icon={<EmailIcon color='rootsite'/>} text={"E-Mail"}></SubTitle>
+      <SubTitle icon={<PhoneInTalkIcon color='rootsite'/>} text={"Phone Number"}></SubTitle>
       {
-        emails.length < 1 ? 
+        phones.length < 1 ? 
         <div className='contact-plus-button-box'>
-        <Button fullWidth variant='outlined' size='small' color='rootsite' onClick={()=>setEmails([initialEmailValue])}><AddIcon size='small'/></Button>
+        <Button fullWidth variant='outlined' size='small' color='rootsite' onClick={()=>setPhones([initialPhoneValue])}><AddIcon size='small'/></Button>
         </div>
         :<div></div>
       }
       
-      {emails.map((email, index) => (
+      {phones.map((phone, index) => (
         <div className='contact-field-box' key={index}>
           <TextField
           fullWidth
           variant="outlined"
-          type="email"
-          label={langCodeBook.roosite.form.users.AddUser.input.user_email.placeholder.emailField[cookies.load('site-lang')]}
-          value={email.email}
-          onChange={(event) => emailChange(index, event, emails, handleEmails, addField, removeField)}
+          type="text"
+          label={langCodeBook.roosite.form.users.AddUser.input.user_phone.placeholder.phoneField[cookies.load('site-lang')]}
+          value={phone.phone}
+          onChange={(event) => phoneChange(index, event, phones, handlePhones, addField, removeField)}
           onBlur={formikObj.formHandleBlur}
-          helperText={formikObj.formTouched.user_email ? formikObj.formErrers.user_email : ""}
-          error={formikObj.formTouched.user_email && Boolean(formikObj.formErrers.user_email)}
+          helperText={!phoneRegExp.test(phone.phone)?"번호 형식 확인":""}
+          error={!phoneRegExp.test(phone.phone)}
           size='small'
           margin="dense"
           InputProps={{
             endAdornment:(
-              <IconButton size='small' onClick={()=>setEmails(emailsClear(index, emails))}>
+              <IconButton size='small' onClick={()=>setPhones(phoneClear(index, phones))}>
                   <ClearIcon size='small'/>
               </IconButton>
             ),
@@ -89,29 +90,29 @@ function EmailBox(props){
           />
           <div className='contact-box-2'>
             <Autocomplete
-            options={emailCat}
+            options={phoneCat}
             getOptionLabel={(option) => option.label}
             size="small"
             sx={{width:260}}
-            value={emailCat.find((option) => option.value === email.type)}
-            onChange={(event, value) => purposeChange(index, event, value, emails, handleEmails)}
+            value={phoneCat.find((option) => option.value === phone.type)}
+            onChange={(event, value) => purposeChange(index, event, value, phones, handlePhones)}
             renderInput={(params) => <TextField {...params}
-            label={langCodeBook.roosite.form.users.AddUser.input.user_email.placeholder.purpose[cookies.load('site-lang')]}/>}
+            label={langCodeBook.roosite.form.users.AddUser.input.user_phone.placeholder.purpose[cookies.load('site-lang')]}/>}
             />
             <TextField
             fullWidth
             variant="outlined"
-            label={langCodeBook.roosite.form.users.AddUser.input.user_email.placeholder.affiliation[cookies.load('site-lang')]}
-            value={email.company}
-            onChange={(event) => affiliationChange(index, event, emails, handleEmails)}
+            label={langCodeBook.roosite.form.users.AddUser.input.user_phone.placeholder.affiliation[cookies.load('site-lang')]}
+            value={phone.company}
+            onChange={(event) => affiliationChange(index, event, phones, handlePhones)}
             onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_email ? formikObj.formErrers.user_email : ""}
-            error={formikObj.formTouched.user_email && Boolean(formikObj.formErrers.user_email)}
+            helperText={formikObj.formTouched.user_phone ? formikObj.formErrers.user_phone : ""}
+            error={formikObj.formTouched.user_phone && Boolean(formikObj.formErrers.user_phone)}
             size='small'
             margin="dense"
             InputProps={{
               endAdornment:(
-                  <IconButton size='small' onClick={()=>setEmails(affiliationClear(index, emails))}>
+                  <IconButton size='small' onClick={()=>setPhones(affiliationClear(index, phones))}>
                       <ClearIcon size='small'/>
                   </IconButton>
               ),
@@ -126,4 +127,4 @@ function EmailBox(props){
   )
 }
 
-export default EmailBox;
+export default PhoneBox;

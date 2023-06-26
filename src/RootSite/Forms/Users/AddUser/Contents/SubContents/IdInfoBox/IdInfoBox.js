@@ -14,10 +14,11 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 //icon
 import ClearIcon from '@mui/icons-material/Clear';
-
+import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import SubTitle from '../../../../../GlobalComponent/SubTitle'
 
 // ======================================================================================== [Import Component] CSS
 import './IdInfoBox.css'
@@ -27,6 +28,7 @@ function IdInfoBox(props){
 
     return(
         <Paper sx={props.paperStyle} elevation={3}>
+            <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
             <TextField
             required
             variant="outlined"

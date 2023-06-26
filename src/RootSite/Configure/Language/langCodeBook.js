@@ -133,6 +133,37 @@ const langCodeBook = {
                                     eng : "Other"
                                 },
                             }                          
+                        },
+                        user_phone:{
+                            placeholder :{
+                                phoneField:{
+                                    kor : "전화번호",
+                                    eng : "Phone Number"
+                                },
+                                purpose:{
+                                    kor : "용도",
+                                    eng : "Purpose"
+                                },
+                                affiliation:{
+                                    kor : "소속",
+                                    eng : "Affiliation"   
+                                }
+                            },
+                            catLabel:{
+                                personal:{
+                                    kor : "개인",
+                                    eng : "Personal"
+                                },company:{
+                                    kor : "회사",
+                                    eng : "Company"
+                                },work:{
+                                    kor : "직장",
+                                    eng : "Work"
+                                },other:{
+                                    kor : "기타",
+                                    eng : "Other"
+                                },
+                            }                          
                         }
                     },
                     subTitle:{

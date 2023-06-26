@@ -18,7 +18,7 @@ import MenuDie from '../AppBar/Menu/Die/MenuDie'
 function SiteAppBar(props){
     return(
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar color = {props.appBar} position="static">
+            <AppBar color = {props.appBar} position="fixed">
             <Toolbar variant="dense">
                 <MenuDie appBar={props.appBar} listPackage={configAppBars[props.appBar].listPackage}/>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

@@ -10,10 +10,10 @@
 // ======================================================================================== [Import Component] CSS
 
 
-function emailChange(index, event, emails, handleEmails, addField, removeField ){
-    const newEmails = [...emails];
-    newEmails[index].email = event.target.value;
-    handleEmails(newEmails);
+function phoneChange(index, event, phones, handlePhones, addField, removeField ){
+    const newPhones = [...phones];
+    newPhones[index].phone = event.target.value;
+    handlePhones(newPhones);
     if (event.target.value.trim() !== ''){
       addField();
     }
@@ -22,4 +22,4 @@ function emailChange(index, event, emails, handleEmails, addField, removeField )
     }
 }
 
-export default emailChange;
+export default phoneChange;
