@@ -3,6 +3,32 @@
     height: 100%;
     /* border: black solid; */
     display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.left-content{
+    height: 860px;
+    margin-left:60px;
+    padding:16px;
+    border-radius: 5px;
+    border: #D3D3D3 solid 1px;
+    box-sizing: border-box;
+    display : flex;
     align-items: center;
     flex-direction: column;
+    overflow-y:scroll;
+}
+
+.right-content{
+    height: 860px;
+    margin-right:60px;
+    padding:16px;
+    border-radius: 5px;
+    border: #D3D3D3 solid 1px;
+    box-sizing: border-box;
+    display : flex;
+    align-items: center;
+    flex-direction: column;
+    overflow-y:scroll;
 }

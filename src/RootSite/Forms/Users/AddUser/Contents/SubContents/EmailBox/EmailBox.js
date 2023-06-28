@@ -26,7 +26,8 @@ import './EmailBox.css'
 function EmailBox(props){
   const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
   const initialEmailValue = { email: '', type: 'personal', company: '' }
-  
+  const emailRegExp =/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/; 
+
   const [emails, setEmails] = useState([]);
   const handleEmails = (arr) => {setEmails(arr)}
 
@@ -73,8 +74,8 @@ function EmailBox(props){
           value={email.email}
           onChange={(event) => emailChange(index, event, emails, handleEmails, addField, removeField)}
           onBlur={formikObj.formHandleBlur}
-          helperText={formikObj.formTouched.user_email ? formikObj.formErrers.user_email : ""}
-          error={formikObj.formTouched.user_email && Boolean(formikObj.formErrers.user_email)}
+          helperText={!emailRegExp.test(email.email) ? langCodeBook.roosite.form.users.AddUser.input.user_email.yup.emailField[cookies.load('site-lang')]:""}
+          error={!emailRegExp.test(email.email)}
           size='small'
           margin="dense"
           InputProps={{

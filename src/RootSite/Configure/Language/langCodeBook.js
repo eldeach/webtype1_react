@@ -132,6 +132,12 @@ const langCodeBook = {
                                     kor : "기타",
                                     eng : "Other"
                                 },
+                            },
+                            yup:{
+                                emailField:{
+                                    kor : "E-Mail 형식은 (텍스트)@(텍스트).(텍스트) 형태이어야 합니다.",
+                                    eng : "The email format should be (text)@(text).(text)."
+                                },
                             }                          
                         },
                         user_phone:{
@@ -163,6 +169,28 @@ const langCodeBook = {
                                     kor : "기타",
                                     eng : "Other"
                                 },
+                            },
+                            yup:{
+                                phoneField:{
+                                    kor : "번호 형식은 (최소 2자리)-(최소 3자리)-(최소 4자리) 형태이어야 합니다.",
+                                    eng : "The format should be (at least 2 digits)-(at least 3 digits)-(at least 4 digits)."
+                                },
+                            }                           
+                        },
+                        user_position:{
+                            placeholder :{
+                                positionField:{
+                                    kor : "직책",
+                                    eng : "Position"
+                                },
+                                department:{
+                                    kor : "부서",
+                                    eng : "Department"   
+                                },
+                                company:{
+                                    kor : "회사",
+                                    eng : "Company"   
+                                }
                             }                          
                         }
                     },

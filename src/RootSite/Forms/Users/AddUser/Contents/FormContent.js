@@ -9,6 +9,8 @@
 import IdInfoBox from './SubContents/IdInfoBox/IdInfoBox';
 import EmailBox from './SubContents/EmailBox/EmailBox';
 import PhoneBox from './SubContents/PhoneBox/PhoneBox';
+import PositionBox from './SubContents/PositionBox/PositionBox';
+import AuthBox from './SubContents/AuthBox/AuthBox';
 
 // ======================================================================================== [Import Component] CSS
 import './FormContent.css'
@@ -29,9 +31,17 @@ function FormContent(props){
     // FormContent는 모든 formik 객체 (값, 내장함수, 리스너)가 GlobalFormik에서 전달해줌   
     return(
         <div className='form-content'>
-            <IdInfoBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-            <EmailBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-            <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+            <div className='left-content'>
+                <IdInfoBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <EmailBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+                <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+            </div>
+            <div className='right-content'>
+                <AuthBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+            </div>
+
+            
         </div>
     )
 

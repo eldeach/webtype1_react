@@ -26,7 +26,7 @@ import './PhoneBox.css'
 function PhoneBox(props){
   const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
   const initialPhoneValue = { phone: '', type: 'personal', company: '' }
-  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+  const phoneRegExp =/\d{2,}-\d{3,}-\d{4,}/; 
   
   const [phones, setPhones] = useState([]);
   const handlePhones = (arr) => {setPhones(arr)}
@@ -74,7 +74,7 @@ function PhoneBox(props){
           value={phone.phone}
           onChange={(event) => phoneChange(index, event, phones, handlePhones, addField, removeField)}
           onBlur={formikObj.formHandleBlur}
-          helperText={!phoneRegExp.test(phone.phone)?"번호 형식 확인":""}
+          helperText={!phoneRegExp.test(phone.phone)?langCodeBook.roosite.form.users.AddUser.input.user_phone.yup.phoneField[cookies.load('site-lang')]:""}
           error={!phoneRegExp.test(phone.phone)}
           size='small'
           margin="dense"
@@ -106,8 +106,6 @@ function PhoneBox(props){
             value={phone.company}
             onChange={(event) => affiliationChange(index, event, phones, handlePhones)}
             onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_phone ? formikObj.formErrers.user_phone : ""}
-            error={formikObj.formTouched.user_phone && Boolean(formikObj.formErrers.user_phone)}
             size='small'
             margin="dense"
             InputProps={{
