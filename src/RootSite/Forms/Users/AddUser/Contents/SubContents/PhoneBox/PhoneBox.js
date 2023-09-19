@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
 import phoneCat from './Components/phoneCat'
 import phoneClear from './Components/phoneClear';

@@ -7,7 +7,7 @@ import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 // ======================================================================================== [Import Component] js
 import ListItemDie from '../../Die/ListItemDie'
-import langCodeBook from '../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook';
 
 // ======================================================================================== [Import Component] CSS
 

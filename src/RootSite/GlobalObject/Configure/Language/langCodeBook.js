@@ -202,6 +202,14 @@ const langCodeBook = {
                         user_email : {
                             kor : "이메일",
                             eng : "E-Mail"  
+                        },
+                        user_phone : {
+                            kor : "전화번호",
+                            eng : "Phone Number"  
+                        },
+                        user_position : {
+                            kor : "직책",
+                            eng : "Position"  
                         }
                     }
                 }

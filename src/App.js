@@ -10,7 +10,7 @@ import { ThemeProvider } from '@mui/material/styles';
 // App Bar
 import SiteAppBar from './RootSite/AppBar/SiteAppBar'
 // Root Site Component
-import globalTheme from './RootSite/Themes/globalTheme';
+import globalTheme from './RootSite/GlobalObject/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
 // Root Site Forms
 import AddUserForm from './RootSite/Forms/Users/AddUser/AddUserForm';
@@ -51,11 +51,8 @@ function App() {
         <Route path='/adduser' element={<AddUserForm/>}/>
         <Route path='/manageuser' element={<ManageUserForm/>}/>
         
-
         <Route path='/cdms' element={<CdmsFrontPage/>}/>
-
         <Route path='/vmp' element={<VmpFrontPage/>}/>
-
         <Route path='/pqr' element={<PqrFrontPage/>}/>
       </Routes>
     </div>

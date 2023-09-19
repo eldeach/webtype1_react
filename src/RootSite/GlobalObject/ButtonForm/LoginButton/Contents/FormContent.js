@@ -5,7 +5,7 @@ import cookies from 'react-cookies'
 import { Button, TextField } from '@mui/material';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook';
 
 
 // ======================================================================================== [Import Component] CSS
@@ -20,7 +20,7 @@ function FormContent(props){
 
 
     return(
-        <div className="form-content">
+        <div className="form-content-1">
             <div className='button-box-close'>
                 <button className='button-close' onClick={()=>{formFunctions.handleModalClose()}}>X</button>
             </div>

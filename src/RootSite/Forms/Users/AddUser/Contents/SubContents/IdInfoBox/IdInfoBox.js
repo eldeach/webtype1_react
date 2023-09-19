@@ -17,7 +17,7 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
 
 // ======================================================================================== [Import Component] CSS

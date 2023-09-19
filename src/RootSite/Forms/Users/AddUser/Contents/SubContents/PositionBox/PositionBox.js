@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import BusinessIcon from '@mui/icons-material/Business';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
 import positionClear from './Components/positionClear';
 import positionChange from './Components/positionChange';

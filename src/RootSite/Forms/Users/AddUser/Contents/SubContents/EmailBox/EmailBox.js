@@ -10,7 +10,7 @@ import AddIcon from '@mui/icons-material/Add';
 import EmailIcon from '@mui/icons-material/Email';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
 import emailCat from './Components/emailCat'
 import emailsClear from './Components/emailsClear';

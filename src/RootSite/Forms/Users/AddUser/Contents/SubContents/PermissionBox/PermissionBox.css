@@ -1,0 +1,31 @@
+.permission-field-box{
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* display: flex; */
+    border: #D3D3D3 solid 1px;
+}
+
+.permission-box-1{
+    font-size: medium;
+    display:flex;
+    align-items: baseline;
+}
+
+.permission-box-2{
+    height: 48px;
+    padding: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    /* display: flex; */
+    border: #D3D3D3 solid 1px;
+    
+    display:block;
+    font-size: x-small;
+    overflow-y: scroll;
+ }

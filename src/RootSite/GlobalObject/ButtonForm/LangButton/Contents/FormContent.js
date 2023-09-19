@@ -29,7 +29,7 @@ function FormContent(props){
       }, []);
 
     return(
-        <div className="form-content">
+        <div className="form-content-lang-button">
             <div className='button-box-close'>
                 <button className='button-close' onClick={()=>{formFunctions.handleModalClose()}}>X</button>
             </div>

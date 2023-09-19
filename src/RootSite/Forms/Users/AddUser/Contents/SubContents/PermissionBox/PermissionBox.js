@@ -10,17 +10,18 @@ import AddIcon from '@mui/icons-material/Add';
 import KeyIcon from '@mui/icons-material/Key';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../Configure/Language/langCodeBook';
+import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import SubTitle from '../../../../../GlobalComponent/SubTitle'
 
 
 // ======================================================================================== [Import Component] CSS
-import './AuthBox.css'
+import './PermissionBox.css'
 
-function AuthBox(props){
+function PermissionBox(props){
     const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
     const [permissions, setPermissions] = useState([]);
     const [permissionList,setPermissionList] = useState([]);
+    const [permissionGroup,setPermissionGroup] = useState([]);
 
     const getPermissionList = [
         {permissionGroup:'root', permissionCode:'root1',permissionTtile:{kor:'샘플1', eng:'sample1'}, permissionDescription:{kor:'샘플1', eng:'sample1'}},
@@ -29,11 +30,15 @@ function AuthBox(props){
         {permissionGroup:'subSite', permissionCode:'subSite2',permissionTtile:{kor:'서브권한샘플2', eng:'subsample2'}, permissionDescription:{kor:'서브권한샘플2', eng:'subsample2'}}
     ]
 
+    const getPermissionGroup =[
+        'root', 'subSite'
+    ]
+
     const handlePermissions = (arr) => {setPermissions(arr)}
 
     useEffect(()=>{
+        setPermissionGroup([...getPermissionGroup])
         setPermissionList([...getPermissionList])
-
     },[permissions])
 
 
@@ -42,19 +47,26 @@ function AuthBox(props){
             <SubTitle icon={<KeyIcon color='rootsite'/>} text={"User Permissions"}></SubTitle>
             {
                 permissionList.map((permission, index)=>(
-                    <div className='contact-field-box' key={index}>
-                        <input type="checkbox" id="scales" name="scales"></input>
-                        <label for="scales">
-                            <div>{permission.permissionCode}</div>
-                            <div>{permission.permissionTtile[cookies.load('site-lang')]}</div>
+                    <div className='permission-field-box' key={index}>
+                        <div className='permission-box-1'>
+                            <input type="checkbox" id={`permission-checkbox-${index}`}></input>
+                            <label for={`permission-checkbox-${index}`}>
+                                Title : {permission.permissionTtile[cookies.load('site-lang')]}
+                            </label>
+                        </div>
+
+                        <label className='permission-box-2' for={`permission-checkbox-${index}`} >
+                            <div>Permission Code : {permission.permissionCode}</div>
+                            <div>Description</div>
                             <div>{permission.permissionDescription[cookies.load('site-lang')]}</div>
                         </label>
                     </div>
                 ))
             }
+
         </Paper>
     )
 
 }
 
-export default AuthBox;
+export default PermissionBox;

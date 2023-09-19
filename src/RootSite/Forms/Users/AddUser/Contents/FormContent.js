@@ -10,7 +10,7 @@ import IdInfoBox from './SubContents/IdInfoBox/IdInfoBox';
 import EmailBox from './SubContents/EmailBox/EmailBox';
 import PhoneBox from './SubContents/PhoneBox/PhoneBox';
 import PositionBox from './SubContents/PositionBox/PositionBox';
-import AuthBox from './SubContents/AuthBox/AuthBox';
+import PermissionBox from './SubContents/PermissionBox/PermissionBox';
 
 // ======================================================================================== [Import Component] CSS
 import './FormContent.css'
@@ -38,7 +38,7 @@ function FormContent(props){
                 <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
             </div>
             <div className='right-content'>
-                <AuthBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+                <PermissionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
             </div>
 
             
