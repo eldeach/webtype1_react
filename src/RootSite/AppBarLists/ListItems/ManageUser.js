@@ -3,19 +3,19 @@ import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
 //icon
-import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 
 // ======================================================================================== [Import Component] js
-import ListItemDie from '../../Die/ListItemDie'
-import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook';
+import ListItemFactory from '../../GlobalObject/Factory/AppBar/MenuFactory/ListItemFactory'
+import langCodeBook from '../../GlobalObject/Configure/Language/langCodeBook';
 
 // ======================================================================================== [Import Component] CSS
 
-function AuditTrail(){
+function ManageUser(){
 
     return(
-        <ListItemDie path={'/cdms'} iconComponent={<ContentPasteSearchIcon color='rootsite'/>} labelText={langCodeBook.roosite.menu.auditTrail.button.AuditTrail[cookies.load('site-lang')]} />
+        <ListItemFactory path={'/manageuser'} iconComponent={<ManageAccountsIcon color='rootsite'/>} labelText={langCodeBook.roosite.menu.users.button.ManageUser[cookies.load('site-lang')]} />
     )
 }
 
-export default AuditTrail;
+export default ManageUser;

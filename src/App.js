@@ -8,7 +8,9 @@ import { ThemeProvider } from '@mui/material/styles';
 
 // ======================================================================================== [Import Component] js
 // App Bar
-import SiteAppBar from './RootSite/AppBar/SiteAppBar'
+import AppBarFactory from './RootSite/GlobalObject/Factory/AppBar/AppBarFactory'
+//Config
+import configAppBars from './RootSite/GlobalObject/Configure/AppBar/configAppBars';
 // Root Site Component
 import globalTheme from './RootSite/GlobalObject/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
@@ -25,27 +27,26 @@ import './App.css';
 
 function App() {
   const location = useLocation();
-  let [appBar,setAppBar] = useState("rootsite");
+  let [appBarName,setAppBarName] = useState("rootsite");
 
   useEffect(() => {
     if(!cookies.load('site-lang')){
       cookies.save('site-lang','eng',{path :'/'})
     }
 
-    if(location.pathname.indexOf("/cdms")!==-1) setAppBar("cdms")
-    else if(location.pathname.indexOf("/vmp")!==-1) setAppBar("vmp")
-    else if(location.pathname.indexOf("/pqr")!==-1) setAppBar("pqr")
-    else setAppBar("rootsite")
+    Object.keys(configAppBars).map(function(element){
+      if(location.pathname === "/".concat(element)) setAppBarName(element)
+    })
+    if (location.pathname === "/") setAppBarName("rootsite")
   }, [location]);
 
   return (
     <ThemeProvider theme={globalTheme}>
     <div className="App">
 
-      <SiteAppBar appBar={appBar}/>
+      <AppBarFactory appBarName={appBarName}/>
       <div style={{height:'60px'}}/>
 
-      
       <Routes>
         <Route path='/' element={<FirstImpression/>}/>
         <Route path='/adduser' element={<AddUserForm/>}/>

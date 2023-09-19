@@ -11,7 +11,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
-import SubTitle from '../../../../../GlobalComponent/SubTitle'
+import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 import positionClear from './Components/positionClear';
 import positionChange from './Components/positionChange';
 
@@ -56,7 +56,7 @@ function PositionBox(props){
 
   return(
     <Paper sx={paperStyle} elevation={3}>
-      <SubTitle icon={<BusinessIcon color='rootsite'/>} text={"Position"}></SubTitle>
+      <SubTitleFactory icon={<BusinessIcon color='rootsite'/>} text={"Position"}></SubTitleFactory>
       {
         positions.length < 1 ? 
         <div className='contact-plus-button-box'>

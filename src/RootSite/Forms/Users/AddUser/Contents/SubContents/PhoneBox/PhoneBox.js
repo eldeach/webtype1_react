@@ -11,7 +11,7 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
-import SubTitle from '../../../../../GlobalComponent/SubTitle'
+import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 import phoneCat from './Components/phoneCat'
 import phoneClear from './Components/phoneClear';
 import phoneChange from './Components/phoneChange';
@@ -55,7 +55,7 @@ function PhoneBox(props){
 
   return(
     <Paper sx={paperStyle} elevation={3}>
-      <SubTitle icon={<PhoneInTalkIcon color='rootsite'/>} text={"Phone Number"}></SubTitle>
+      <SubTitleFactory icon={<PhoneInTalkIcon color='rootsite'/>} text={"Phone Number"}></SubTitleFactory>
       {
         phones.length < 1 ? 
         <div className='contact-plus-button-box'>

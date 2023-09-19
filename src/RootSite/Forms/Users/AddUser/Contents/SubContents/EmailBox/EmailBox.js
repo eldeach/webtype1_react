@@ -11,7 +11,7 @@ import EmailIcon from '@mui/icons-material/Email';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
-import SubTitle from '../../../../../GlobalComponent/SubTitle'
+import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 import emailCat from './Components/emailCat'
 import emailsClear from './Components/emailsClear';
 import emailChange from './Components/emailChange';
@@ -55,7 +55,7 @@ function EmailBox(props){
 
   return(
     <Paper sx={paperStyle} elevation={3}>
-      <SubTitle icon={<EmailIcon color='rootsite'/>} text={"E-Mail"}></SubTitle>
+      <SubTitleFactory icon={<EmailIcon color='rootsite'/>} text={"E-Mail"}></SubTitleFactory>
       {
         emails.length < 1 ? 
         <div className='contact-plus-button-box'>

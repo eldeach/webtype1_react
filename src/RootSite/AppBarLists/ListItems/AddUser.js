@@ -3,19 +3,19 @@ import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
 //icon
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 
 // ======================================================================================== [Import Component] js
-import ListItemDie from '../../Die/ListItemDie'
-import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook';
+import ListItemFactory from '../../GlobalObject/Factory/AppBar/MenuFactory/ListItemFactory'
+import langCodeBook from '../../GlobalObject/Configure/Language/langCodeBook';
 
 // ======================================================================================== [Import Component] CSS
 
-function ManageUser(){
+function AddUser(){
 
     return(
-        <ListItemDie path={'/manageuser'} iconComponent={<ManageAccountsIcon color='rootsite'/>} labelText={langCodeBook.roosite.menu.users.button.ManageUser[cookies.load('site-lang')]} />
+        <ListItemFactory path={'/adduser'} iconComponent={<PersonAddAlt1Icon color='rootsite'/>} labelText={langCodeBook.roosite.menu.users.button.AddUser[cookies.load('site-lang')]} />
     )
 }
 
-export default ManageUser;
+export default AddUser;

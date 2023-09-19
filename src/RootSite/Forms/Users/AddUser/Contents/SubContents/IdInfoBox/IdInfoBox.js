@@ -18,7 +18,7 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
-import SubTitle from '../../../../../GlobalComponent/SubTitle'
+import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 
 // ======================================================================================== [Import Component] CSS
 import './IdInfoBox.css'
@@ -28,7 +28,7 @@ function IdInfoBox(props){
 
     return(
         <Paper sx={props.paperStyle} elevation={3}>
-            <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
+            <SubTitleFactory icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitleFactory>
             <TextField
             required
             variant="outlined"

@@ -7,13 +7,13 @@ import { Divider, Box, IconButton, Drawer } from '@mui/material/';
 import MenuIcon from '@mui/icons-material/Menu';
 
 // ======================================================================================== [Import Component] js
-import configAppBars from '../../../GlobalObject/Configure/AppBar/configAppBars'
+import configAppBars from '../../../Configure/AppBar/configAppBars'
 
 // ======================================================================================== [Import Component] CSS
 
 
 
-function RootMenu(props){
+function MenuFactory(props){
 
     let [state, setState] = useState({
         top: false,
@@ -38,9 +38,9 @@ function RootMenu(props){
           onClick={toggleDrawer(anchor, false)}
           onKeyDown={toggleDrawer(anchor, false)}
         >
-            <div>{configAppBars[props.appBar].title}</div>
+            <div>{configAppBars[props.appBarName].title}</div>
             <Divider />
-            {props.listPackage()}
+            {configAppBars[props.appBarName].listPackage()}
         </Box>
     );
     return(
@@ -69,4 +69,4 @@ function RootMenu(props){
 
 }
 
-export default RootMenu;
+export default MenuFactory;

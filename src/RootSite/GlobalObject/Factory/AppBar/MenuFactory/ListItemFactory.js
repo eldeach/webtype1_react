@@ -9,7 +9,7 @@ import { ListItemButton, ListItemIcon, ListItemText, ListItem } from '@mui/mater
 
 // ======================================================================================== [Import Component] CSS
 
-function ListItemDie(props){
+function ListItemFactory(props){
     let navigate = useNavigate();
 
     return(
@@ -26,4 +26,4 @@ function ListItemDie(props){
     )
 }
 
-export default ListItemDie;
+export default ListItemFactory;

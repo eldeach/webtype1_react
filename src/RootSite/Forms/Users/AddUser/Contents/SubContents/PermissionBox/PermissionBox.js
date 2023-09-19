@@ -11,7 +11,7 @@ import KeyIcon from '@mui/icons-material/Key';
 
 // ======================================================================================== [Import Component] js
 import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
-import SubTitle from '../../../../../GlobalComponent/SubTitle'
+import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 
 
 // ======================================================================================== [Import Component] CSS
@@ -44,7 +44,7 @@ function PermissionBox(props){
 
     return(
         <Paper sx={paperStyle} elevation={3}>
-            <SubTitle icon={<KeyIcon color='rootsite'/>} text={"User Permissions"}></SubTitle>
+            <SubTitleFactory icon={<KeyIcon color='rootsite'/>} text={"User Permissions"}></SubTitleFactory>
             {
                 permissionList.map((permission, index)=>(
                     <div className='permission-field-box' key={index}>

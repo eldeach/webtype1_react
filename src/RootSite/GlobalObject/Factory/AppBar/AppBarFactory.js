@@ -7,10 +7,10 @@ import { AppBar, Box, Toolbar, Typography } from '@mui/material/';
 import LanguageIcon from '@mui/icons-material/Language';
 
 // ======================================================================================== [Import Component] js
-import LoginButton from '../GlobalObject/ButtonForm/LoginButton/LoginButton';
-import LangButton from '../GlobalObject/ButtonForm/LangButton/LangButton';
-import configAppBars from '../GlobalObject/Configure/AppBar/configAppBars';
-import MenuDie from '../AppBar/Menu/Die/MenuDie'
+import LoginButton from '../../ButtonForm/LoginButton/LoginButton';
+import LangButton from '../../ButtonForm/LangButton/LangButton';
+import configAppBars from '../../Configure/AppBar/configAppBars';
+import MenuFactory from './MenuFactory/MenuFactory'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -18,13 +18,13 @@ import MenuDie from '../AppBar/Menu/Die/MenuDie'
 function SiteAppBar(props){
     return(
         <Box sx={{ flexGrow: 1 }}>
-            <AppBar color = {props.appBar} position="fixed">
+            <AppBar color = {props.appBarName} position="fixed">
             <Toolbar variant="dense">
-                <MenuDie appBar={props.appBar} listPackage={configAppBars[props.appBar].listPackage}/>
+                <MenuFactory appBarName={props.appBarName}/>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                    {configAppBars[props.appBar].title}
+                    {configAppBars[props.appBarName].title}
                 </Typography>
-                <LangButton labelText={<LanguageIcon/>}/>
+                <LangButton/>
                 <LoginButton/> 
             </Toolbar>
             </AppBar>

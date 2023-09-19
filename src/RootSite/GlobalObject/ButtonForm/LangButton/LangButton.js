@@ -6,9 +6,11 @@ import { Paper } from '@mui/material';
 // Icon
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
+import LanguageIcon from '@mui/icons-material/Language';
+
 
 // ======================================================================================== [Import Component] js
-import GlobalFormik from '../../../GlobalObject/GlobalFormik/GlobalFormik';
+import FormikFactory from '../../Factory/FormikFactory';
 // form
 import FormContent from './Contents/FormContent';
 import formSize from './Contents/formSize'
@@ -24,17 +26,17 @@ const style = {
   p: 2,
 };
 
-function LangButton(props){
+function LangButton(){
     const [open, setOpen] = React.useState(false);
     const handleModalOpen = () => setOpen(true);
     const handleModalClose = () => setOpen(false);
 
     return(
         <div>
-          <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{props.labelText}</Button>
+          <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{<LanguageIcon/>}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <GlobalFormik sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
+              <FormikFactory sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>
