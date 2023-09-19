@@ -2,7 +2,9 @@
 import { Formik } from 'formik';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Box } from '@mui/material';
+import { Button, Box } from '@mui/material';
+import { useActionData } from 'react-router-dom';
+import { useEffect } from 'react';
 
 // ======================================================================================== [Import Component] js
 
@@ -11,10 +13,11 @@ import { Box } from '@mui/material';
 
 
 
-function GlobalFormik(props){
+function FormikFactory(props){
 
-    const { formContent, initialValues, yupSchema, formId, autoComplete, sx,
-        formFunctions // 이 중에 formFunctions만 FormContent component에 전달함
+    const { formBody,formFunctions, // 이 중에 formFunctions만 formBody component에 전달함
+        initialValues, yupSchema, formId, autoComplete, sx,
+        
     } = props;
 
     return(
@@ -23,9 +26,9 @@ function GlobalFormik(props){
         onSubmit={async (values, {resetForm, setFieldValue})=>{
             formFunctions.onSubmitFunc({
                 values:values, // Formik에서 정의된 모든 값 전달
-                formFunctions:formFunctions, // GlobalFormik 밖에서 정의한 함수 모두 전달, onSubmitFunc에서 모든 함수 사용할 수 있게함
-                formikObj:{ formSetFieldValue:setFieldValue, formReset:resetForm }} // Formik 내장 함수 중 필드들을 변경할 수 있는 함수는 모두 전달
-                ) 
+                formFunctions:formFunctions, // FormikFactory 밖에서 정의한 함수 모두 전달, onSubmitFunc에서 모든 함수 사용할 수 있게함
+                formikObj:{ formSetFieldValue:setFieldValue, formReset:resetForm }// Formik 내장 함수 중 필드들을 변경할 수 있는 함수는 모두 전달
+            }) 
         }}
         initialValues={initialValues}
         >
@@ -39,10 +42,10 @@ function GlobalFormik(props){
             sx={sx}
             >
             {
-                formContent({
-                    // GlobalFormik 객체 밖에서 전달 받은 함수 (GlobalFormik 사용하는 Component나 그 밖에서 정의되어야 함)
+                formBody({
+                    // FormikFactory 객체 밖에서 전달 받은 함수 (FormikFactory 사용하는 Component나 그 밖에서 정의되어야 함)
                     formFunctions:formFunctions,
-                    // formik 객체 (값, 내장함수, 리스너 FormContent에 전달)
+                    // formik 객체 (값, 내장함수, 리스너 formBody 전달)
                     formikValues: values,
                     formikObj:{
                         formHandleChange: handleChange,
@@ -61,4 +64,4 @@ function GlobalFormik(props){
     )
 }
 
-export default GlobalFormik
+export default FormikFactory;

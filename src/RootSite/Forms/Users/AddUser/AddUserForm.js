@@ -8,8 +8,7 @@ import * as React from 'react';
 // ======================================================================================== [Import Component] js
 import FormikFactory from '../../../GlobalObject/Factory/FormikFactory';
 // form
-import FormContent from './Contents/FormContent';
-// import initialValues from './Contents/initialValues'
+import FormBody from './Body/FormBody';
 import yupSchema from './YupSchema/yupSchema';
 import onSubmitFunc from './Functions/onSubmitFunc';
 
@@ -29,6 +28,7 @@ function AddUserForm(){
         user_name:'',
         user_nickname:'',
         user_birthday:null,
+        user_gender:'m',
         user_email:[],
         user_phone:[],
         user_position:[],
@@ -39,10 +39,10 @@ function AddUserForm(){
     return (
         <FormikFactory
         sx={formSize}
-        formContent={FormContent}
+        formBody={FormBody}
         initialValues={initialValues}
         yupSchema={yupSchema}
-        formFunctions={{onSubmitFunc}} //onSubmitFunc를 제외한 모든 함수들은 여기에 전달되면 onSubmitFunc로 다시 전달해줄 것임. (formik의 values도 모두 전달됨)
+        formFunctions={{onSubmitFunc}} 
         formId="AddUser"
         autoComplete="off"/>
     )
