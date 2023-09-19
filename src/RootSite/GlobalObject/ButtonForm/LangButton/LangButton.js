@@ -36,7 +36,7 @@ function LangButton(){
           <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{<LanguageIcon/>}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <FormikFactory sx={formSize} formContent={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
+              <FormikFactory sx={formSize} formBody={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

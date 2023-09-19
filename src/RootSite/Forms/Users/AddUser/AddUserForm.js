@@ -9,7 +9,7 @@ import * as React from 'react';
 import FormikFactory from '../../../GlobalObject/Factory/FormikFactory';
 // form
 import FormBody from './Body/FormBody';
-import yupSchema from './YupSchema/yupSchema';
+import yupSchema from './Body/yupSchema';
 import onSubmitFunc from './Functions/onSubmitFunc';
 
 // ======================================================================================== [Import Component] CSS
@@ -25,6 +25,7 @@ function AddUserForm(){
     const initialValues = {
         user_account: '',
         user_pw:'',
+        user_pw_confirm:'',
         user_name:'',
         user_nickname:'',
         user_birthday:null,

@@ -17,11 +17,12 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
+// import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
+import ppiLang from './ppiLang';
 import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
 
 // ======================================================================================== [Import Component] CSS
-import './IdInfoBox.css'
+import './PPI.css'
 
 function IdInfoBox(props){
     const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
@@ -29,6 +30,7 @@ function IdInfoBox(props){
     //
     let [userAccount,setUserAccount] = useState('')
     let [userPW,setUserPW] = useState('')
+    let [userPWConfirm,setUserPWConfirm] = useState('')
     let [userName,setUserName] = useState('')
     let [userNickname,setUserNickname] = useState('')
     let [userBirthday,setUserBirthday] = useState(null)
@@ -36,59 +38,56 @@ function IdInfoBox(props){
 
     const handleChange = (e) =>{
         if (e.target.name=="user_account") {
-            console.log(e.target.name)
             setUserAccount(e.target.value)
             // formikObj.formReset({ values: { user_account: e.target.value } })
             formikObj.formSetFieldValue('user_account',e.target.value)
-            console.log(e.target.name + " / " + formikValues.user_account)
         }
         else if(e.target.name=="user_pw"){
-            console.log(e.target.name)
             setUserPW(e.target.value)
             formikObj.formSetFieldValue('user_pw',e.target.value)
-            console.log(e.target.name + " / " + formikValues.user_pw)
+        }
+        else if(e.target.name=="user_pw_confirm"){
+            setUserPWConfirm(e.target.value)
+            formikObj.formSetFieldValue('user_pw_confirm',e.target.value)
         }
         else if(e.target.name=="user_name"){
-            console.log(e.target.name)
             setUserName(e.target.value)
             formikObj.formSetFieldValue('user_name',e.target.value)
-            console.log(e.target.name + " / " + formikValues.user_name)
         }
         else if(e.target.name=="user_nickname"){
-            console.log(e.target.name)
             setUserNickname(e.target.value)
             formikObj.formSetFieldValue('user_nickname',e.target.value)
-            console.log(e.target.name + " / " + formikValues.user_nickname)
         }
         else if(e.target.name=="user_birthday"){
-            console.log(e.target.name)
             setUserBirthday(e.target.value)
             formikObj.formSetFieldValue('user_birthday',e.target.value)
-            console.log(e.target.name + " / " + new Date(formikValues.user_birthday))
         }
         else if(e.target.name=="user_gender"){
             setUserGender(e.target.value)
             formikObj.formSetFieldValue('user_gender',e.target.value)
-            console.log(e.target.name + " / " + formikValues.user_gender)
         }
     }
 
     const handleClear = (targetName) =>{
         if (targetName=="user_account") {
             setUserAccount('')
-            formikObj.formReset({ values: { user_account: '' } })
+            formikObj.formSetFieldValue('user_account','')
         }
         else if(targetName=="user_pw"){
             setUserPW('')
-            formikObj.formReset({ values: { user_pw: '' } })
+            formikObj.formSetFieldValue('user_pw','')
+        }
+        else if(targetName=="user_pw_confirm"){
+            setUserPWConfirm('')
+            formikObj.formSetFieldValue('user_pw_confirm','')
         }
         else if(targetName=="user_name"){
             setUserName('')
-            formikObj.formReset({ values: { user_name: '' } })
+            formikObj.formSetFieldValue('user_name','')
         }
         else if(targetName=="user_nickname"){
             setUserNickname('')
-            formikObj.formReset({ values: { user_nickname: '' } })
+            formikObj.formSetFieldValue('user_nickname','')
         }
     }
     
@@ -101,7 +100,7 @@ function IdInfoBox(props){
             variant="outlined"
             id="user_account"
             name="user_account"
-            label={langCodeBook.roosite.form.users.AddUser.input.user_account.placeholder[cookies.load('site-lang')]}
+            label={ppiLang.input.user_account.placeholder[cookies.load('site-lang')]}
             value={userAccount}
             onChange={(e)=>handleChange(e)}
             onBlur={formikObj.formHandleBlur}
@@ -125,7 +124,7 @@ function IdInfoBox(props){
             variant="outlined"
             id="user_pw"
             name="user_pw"
-            label={langCodeBook.roosite.form.users.AddUser.input.user_pw.placeholder[cookies.load('site-lang')]}
+            label={ppiLang.input.user_pw.placeholder[cookies.load('site-lang')]}
             type="password"
             value={userPW}
             onChange={(e)=>handleChange(e)}
@@ -146,10 +145,35 @@ function IdInfoBox(props){
             InputLabelProps={{style: textFieldStyle}} // font size of input label
             />
             <TextField
+            required
+            variant="outlined"
+            id="user_pw_confirm"
+            name="user_pw_confirm"
+            label={ppiLang.input.user_pw_confirm.placeholder[cookies.load('site-lang')]}
+            type="password"
+            value={userPWConfirm}
+            onChange={(e)=>handleChange(e)}
+            onBlur={formikObj.formHandleBlur}
+            helperText={formikObj.formTouched.user_pw_confirm ? formikObj.formErrers.user_pw_confirm : ""}
+            error={formikObj.formTouched.user_pw_confirm && Boolean(formikObj.formErrers.user_pw_confirm)}
+            size='small'
+            margin="dense"
+            fullWidth
+            InputProps={{
+                endAdornment:(
+                    <IconButton size='small' onClick={()=>{handleClear("user_pw_confirm")}}>
+                        <ClearIcon size='small'/>
+                    </IconButton>
+                ),
+                style: textFieldStyle // font size of input text
+            }}
+            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            />
+            <TextField
             variant="outlined"
             id="user_name"
             name="user_name"
-            label={langCodeBook.roosite.form.users.AddUser.input.user_name.placeholder[cookies.load('site-lang')]}
+            label={ppiLang.input.user_name.placeholder[cookies.load('site-lang')]}
             value={userName}
             onChange={(e)=>handleChange(e)}
             onBlur={formikObj.formHandleBlur}
@@ -172,7 +196,7 @@ function IdInfoBox(props){
             variant="outlined"
             id="user_nickname"
             name="user_nickname"
-            label={langCodeBook.roosite.form.users.AddUser.input.user_nickname.placeholder[cookies.load('site-lang')]}
+            label={ppiLang.input.user_nickname.placeholder[cookies.load('site-lang')]}
             value={userNickname}
             onChange={(e)=>handleChange(e)}
             onBlur={formikObj.formHandleBlur}
@@ -191,13 +215,13 @@ function IdInfoBox(props){
             }}
             InputLabelProps={{style: textFieldStyle}} // font size of input label
             />
-            <div className='datepicker-box'>
+            <div className='ppi-datepicker-box'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                     id="user_birthday"
                     name="user_birthday"
                     slotProps={{ textField: { size: 'small', fullWidth: true, style: textFieldStyle }}}
-                    label={langCodeBook.roosite.form.users.AddUser.input.user_birthday.placeholder[cookies.load('site-lang')]}
+                    label={ppiLang.input.user_birthday.placeholder[cookies.load('site-lang')]}
                     format="YYYY-MM-DD"
                     mask={"____-__-__"}
                     value={userBirthday}
@@ -207,7 +231,7 @@ function IdInfoBox(props){
                     />
                 </LocalizationProvider>
             </div>
-            <div className='option-box '>
+            <div className='ppi-option-box'>
             <FormControl style={{ display: 'flex', flexDirection: 'row', alignItems:'center' }}>
                 <FormLabel id="user_gender" sx={{mr:1}}>Gender</FormLabel>
                 <RadioGroup

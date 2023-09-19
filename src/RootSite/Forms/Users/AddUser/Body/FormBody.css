@@ -1,4 +1,4 @@
-.form-content{
+.add-user-form{
     width: 100%;
     height: 100%;
     /* border: black solid; */
@@ -7,7 +7,7 @@
     justify-content: space-around;
 }
 
-.left-content{
+.add-user-left-subform{
     height: 860px;
     margin-left:60px;
     padding:16px;
@@ -20,7 +20,7 @@
     overflow-y:scroll;
 }
 
-.right-content{
+.add-user-right-subform{
     height: 860px;
     margin-right:60px;
     padding:16px;

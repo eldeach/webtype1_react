@@ -15,7 +15,7 @@ import { useEffect } from 'react';
 
 function FormikFactory(props){
 
-    const { formBody,formFunctions, // 이 중에 formFunctions만 formBody component에 전달함
+    const {formBody,formFunctions, // 이 중에 formFunctions만 formBody component에 전달함
         initialValues, yupSchema, formId, autoComplete, sx,
         
     } = props;

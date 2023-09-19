@@ -6,7 +6,8 @@ import cookies from 'react-cookies'
 
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook'
+// import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook'
+import ppiLang from './SubForm/PPI/ppiLang';
 
 // ======================================================================================== [Import Component] CSS
 
@@ -15,10 +16,13 @@ const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2
 const yupSchema = yup.object().shape({
 
   user_account: yup.string()
-  .required(langCodeBook.roosite.form.users.AddUser.input.user_account.yup[cookies.load('site-lang')]),
+  .required(ppiLang.input.user_account.yup[cookies.load('site-lang')]),
 
   user_pw: yup.string()
-  .required(langCodeBook.roosite.form.users.AddUser.input.user_pw.yup[cookies.load('site-lang')]),
+  .required(ppiLang.input.user_pw.yup[cookies.load('site-lang')]),
+
+  user_pw_confirm: yup.string()
+  .oneOf([yup.ref('user_pw'), null], ppiLang.input.user_pw_confirm.yup[cookies.load('site-lang')])
 
 });
 
