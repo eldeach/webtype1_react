@@ -26,8 +26,15 @@ const ppiLang={
                 eng : "Password Confirmation"
             },
             yup : {
-                kor : "비밀번호와 일치해야합니다.",
-                eng : "Password Confirmation must match the password."
+                match:{
+                    kor : "비밀번호와 일치해야합니다.",
+                    eng : "Password Confirmation must match the password."
+                },
+                required:{
+                    kor : "비밀번호 확인을 입력해주세요.",
+                    eng : "Please enter your password confirmation."
+                }
+
             }
         },
         user_name:{

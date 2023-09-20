@@ -10,7 +10,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 
 
 // ======================================================================================== [Import Component] js
-import FormikFactory from '../../Factory/FormikFactory';
+import FormikWrapper from '../../Factory/FormikWrapper';
 // form
 import FormContent from './Contents/FormContent';
 import formSize from './Contents/formSize'
@@ -36,7 +36,7 @@ function LangButton(){
           <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{<LanguageIcon/>}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-              <FormikFactory sx={formSize} formBody={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
+              <FormikWrapper sx={formSize} formBody={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

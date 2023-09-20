@@ -6,7 +6,7 @@ import * as React from 'react';
 
 
 // ======================================================================================== [Import Component] js
-import FormikFactory from '../../../GlobalObject/Factory/FormikFactory';
+import FormikWrapper from '../../../GlobalObject/Factory/FormikWrapper';
 // form
 import FormBody from './Body/FormBody';
 import yupSchema from './Body/yupSchema';
@@ -38,7 +38,7 @@ function AddUserForm(){
     
 
     return (
-        <FormikFactory
+        <FormikWrapper
         sx={formSize}
         formBody={FormBody}
         initialValues={initialValues}

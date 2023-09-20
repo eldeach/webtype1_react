@@ -20,7 +20,7 @@ async function onSubmitFunc(props){
         user_name:props.values.user_name,
         user_nickname:props.values.user_nickname,
         user_birthday:props.values.user_birthday,
-        user_email:props.values.user_email.filter((email) => email.email.trim() !== '').map((email) => ({ email: email.email, type: email.type, company: email.company, })),
+        user_email:props.values.user_email,
         user_phone:[],
         user_position:[],
         user_auth:[]

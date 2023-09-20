@@ -8,6 +8,7 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Component] js
 // import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook'
 import ppiLang from './SubForm/PPI/ppiLang';
+import emailLang from './SubForm/Email/emailLang'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -22,8 +23,13 @@ const yupSchema = yup.object().shape({
   .required(ppiLang.input.user_pw.yup[cookies.load('site-lang')]),
 
   user_pw_confirm: yup.string()
-  .oneOf([yup.ref('user_pw'), null], ppiLang.input.user_pw_confirm.yup[cookies.load('site-lang')])
+  .oneOf([yup.ref('user_pw'), null], ppiLang.input.user_pw_confirm.yup.match[cookies.load('site-lang')])
+  .required(ppiLang.input.user_pw_confirm.yup.required[cookies.load('site-lang')]),
 
+  // user_email: yup.object().shape({
+  //   email_address: yup.string()
+  //     .required(emailLang.input.email_address.yup[cookies.load('site-lang')]),
+  // }),
 });
 
   export default yupSchema;

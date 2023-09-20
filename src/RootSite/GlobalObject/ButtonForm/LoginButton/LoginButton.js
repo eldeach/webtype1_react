@@ -9,7 +9,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 
 // ======================================================================================== [Import Component] js
-import FormikFactory from '../../Factory/FormikFactory';
+import FormikWrapper from '../../Factory/FormikWrapper';
 // form
 import FormContent from './Contents/FormContent';
 import initialValues from './Contents/initialValues'
@@ -46,7 +46,7 @@ function LoginButton(){
           <Button variant="outlined" color = "white" size="small" onClick={()=>{loginStatus ? logout(switchLoginStatus) : handleModalOpen()}}>{loginStatus ? "Logout" : "Login"}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={paperStyle} elevation={3}>
-              <FormikFactory sx={formSize} formBody={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose, switchLoginStatus}} formId="UserLogin" autoComplete="off"/>
+              <FormikWrapper sx={formSize} formBody={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose, switchLoginStatus}} formId="UserLogin" autoComplete="off"/>
             </Paper>
           </Modal>  
         </div>

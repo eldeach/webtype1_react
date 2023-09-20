@@ -1,0 +1,42 @@
+const emailLang={
+    input :{
+        email_address : {
+            placeholder :{
+                kor : "이메일 주소",
+                eng : "Email Address"
+            },
+            yup : {
+                kor : "사용자 이메일을 입력해주세요.",
+                eng : "Please enter user email address."
+            }
+        },
+        email_usage : {
+            placeholder :{
+                kor : "이메일 용도",
+                eng : "Email Usage"
+            },
+            optionLabel:{
+                personal:{
+                    kor : "개인",
+                    eng : "Personal"
+                },
+                work:{
+                    kor : "업무",
+                    eng : "Work"
+                },
+                other:{
+                    kor : "기타",
+                    eng : "Other"
+                }
+            }
+        },
+        email_affiliation : {
+            placeholder :{
+                kor : "이메일 소속 (선택사항)",
+                eng : "Email Affiliation (Optional)"
+            },
+        },
+    },
+}
+
+module.exports = emailLang;

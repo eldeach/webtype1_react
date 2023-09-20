@@ -7,7 +7,7 @@
 // ======================================================================================== [Import Component] js
 //sub form content
 import PPI from './SubForm/PPI/PPI';
-import EmailBox from './SubForm/EmailBox/EmailBox';
+import Email from './SubForm/Email/Email';
 import PhoneBox from './SubForm/PhoneBox/PhoneBox';
 import PositionBox from './SubForm/PositionBox/PositionBox';
 import PermissionBox from './SubForm/PermissionBox/PermissionBox';
@@ -32,15 +32,13 @@ function FormBody(props){
         <div className='add-user-form'>
             <div className='add-user-left-subform'>
                 <PPI {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <EmailBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
-                <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                {/* <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+                <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>   */}
             </div>
             <div className='add-user-right-subform'>
-                <PermissionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
+                {/* <PermissionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>   */}
             </div>
-
-            
         </div>
     )
 

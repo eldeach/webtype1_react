@@ -1,0 +1,46 @@
+.one-email-item{
+    padding-top: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    border: #D3D3D3 solid 1px;
+}
+
+.item-fields{
+    flex-grow:1;
+
+    
+}
+
+.item-delete{
+    height: auto;
+    padding-left: 10px;
+    padding-top: 9px;
+    padding-bottom: 7px;
+    box-sizing: border-box;
+}
+
+.one-email-option-box{
+    margin-top: 5px;
+    margin-bottom: 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    border: #D3D3D3 solid 1px;
+}
+
+.one-email-option-box .MuiFormControlLabel-label{
+    font-size: 14px;
+}
+
+.one-email-option-box .MuiFormLabel-root{
+    font-size: 14px;
+}

@@ -19,7 +19,7 @@ import FingerprintIcon from '@mui/icons-material/Fingerprint';
 // ======================================================================================== [Import Component] js
 // import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import ppiLang from './ppiLang';
-import SubTitleFactory from '../../../../../../GlobalObject/Factory/SubTitleFactory'
+import SubTitle from '../../../../../../GlobalObject/Component/SubTitle'
 
 // ======================================================================================== [Import Component] CSS
 import './PPI.css'
@@ -34,12 +34,11 @@ function IdInfoBox(props){
     let [userName,setUserName] = useState('')
     let [userNickname,setUserNickname] = useState('')
     let [userBirthday,setUserBirthday] = useState(null)
-    let [userGender,setUserGender] = useState('')
+    let [userGender,setUserGender] = useState("male")
 
     const handleChange = (e) =>{
         if (e.target.name=="user_account") {
             setUserAccount(e.target.value)
-            // formikObj.formReset({ values: { user_account: e.target.value } })
             formikObj.formSetFieldValue('user_account',e.target.value)
         }
         else if(e.target.name=="user_pw"){
@@ -94,7 +93,7 @@ function IdInfoBox(props){
     return(
         <Paper sx={props.paperStyle} elevation={3}>
             <Button size="small" variant="contained" type="submit" form='AddUser'>Submit 테스트</Button>
-            <SubTitleFactory icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitleFactory>
+            <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
             <TextField
             required
             variant="outlined"
