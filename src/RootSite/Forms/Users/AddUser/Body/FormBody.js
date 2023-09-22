@@ -8,6 +8,7 @@
 //sub form content
 import PPI from './SubForm/PPI/PPI';
 import Email from './SubForm/Email/Email';
+import Phone from './SubForm/Phone/Phone';
 import PhoneBox from './SubForm/PhoneBox/PhoneBox';
 import PositionBox from './SubForm/PositionBox/PositionBox';
 import PermissionBox from './SubForm/PermissionBox/PermissionBox';
@@ -33,6 +34,7 @@ function FormBody(props){
             <div className='add-user-left-subform'>
                 <PPI {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
                 <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Phone {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
                 {/* <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
                 <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>   */}
             </div>

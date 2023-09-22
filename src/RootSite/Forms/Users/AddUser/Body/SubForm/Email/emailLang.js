@@ -6,8 +6,14 @@ const emailLang={
                 eng : "Email Address"
             },
             yup : {
-                kor : "사용자 이메일을 입력해주세요.",
-                eng : "Please enter user email address."
+                blank :{
+                    kor : "사용자 이메일을 입력해주세요.",
+                    eng : "Please enter user email address."
+                },
+                wrong_pattern:{
+                    kor : "올바른 형식의 이메일을 입력해주세요. (example@ex.com)",
+                    eng : "Please enter a valid email address. (example@ex.com)"
+                }
             }
         },
         email_usage : {

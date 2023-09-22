@@ -26,10 +26,6 @@ const yupSchema = yup.object().shape({
   .oneOf([yup.ref('user_pw'), null], ppiLang.input.user_pw_confirm.yup.match[cookies.load('site-lang')])
   .required(ppiLang.input.user_pw_confirm.yup.required[cookies.load('site-lang')]),
 
-  // user_email: yup.object().shape({
-  //   email_address: yup.string()
-  //     .required(emailLang.input.email_address.yup[cookies.load('site-lang')]),
-  // }),
 });
 
   export default yupSchema;

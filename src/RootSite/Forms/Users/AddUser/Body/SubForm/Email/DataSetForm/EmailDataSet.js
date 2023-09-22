@@ -1,12 +1,10 @@
 // ======================================================================================== [Import Libaray]
 import cookies from 'react-cookies'
 import { useEffect, useState } from 'react';
+import * as yup from 'yup';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Button, IconButton, Paper, Stack, TextField } from '@mui/material';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { Button, IconButton, TextField } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -19,22 +17,38 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 // ======================================================================================== [Import Component] js
 import emailLang from './../emailLang';
+import emailYupSchema from './emailYupSchema';
 
 // ======================================================================================== [Import Component] CSS
-import './OneEmail.css'
+import './EmailDataSet.css'
 
+// 데이터셋 Form
+function EmailDataSet(props){
 
-function OneEmail(props){
-    const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle, index, handleField } = props;
-
-    let [emailAddres,setEmailAddres] =useState('')
+    
+    // 상위 폼으로 부터 전달받는 객체 import
+    // 1. 부모 Form -> FormikWrapper -> Subform -> 데이터셋Form 으로 전달되는 객체 &
+    // 2. 부모 Form에서 전달해주는 paperStyle, textFieldStyle
+    // 3. 상위 Subform에서 전달해주는 dataSetHandler
+    const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle, index, dataSetHandler } = props;
+    
+    // 본 Subform에서 사용될 필드값 정의
+    let [emailAddress,setEmailAddress] =useState('')
     let [emailUsage,setEmailUsage] =useState('work')
     let [emailAffiliation,setEmailAffiliation] =useState('')
 
+    const [emailError, setEmailError] = useState('');
 
+    // input필드에서 값 변경 handler (상위 Subform 값 handler 작동 포함)
     const handleChange = (e) =>{
         if (e.target.name=="email_address") {
-            setEmailAddres(e.target.value)
+            setEmailAddress(e.target.value)
+            try {
+                emailYupSchema.validateSync(e.target.value);
+                setEmailError(''); // 유효성 검사 에러가 없을 경우 에러 상태를 초기화합니다.
+            } catch (error) {
+                setEmailError(error.message); // 유효성 검사 에러 메시지를 상태에 저장합니다.
+            }
         }
         else if (e.target.name=="email_usage") {
             setEmailUsage(e.target.value)
@@ -42,44 +56,50 @@ function OneEmail(props){
         else if (e.target.name=="email_affiliation") {
             setEmailAffiliation(e.target.value)
         }
-        handleField.handleChange(index,e)
+        dataSetHandler.handleChange(index,e)
     }
 
+    // input필드에서 값 삭제 handler (상위 Subform 값 handler 작동 포함)
     const handleClear = (targetName) =>{
         if (targetName=="email_address") {
-            setEmailAddres('')
+            setEmailAddress('')
         }
         else if (targetName=="email_affiliation") {
             setEmailAffiliation('')
         }
-        handleField.handleClear(index,targetName)
+        dataSetHandler.handleClear(index,targetName)
     }
 
+    // input필드에서 데이터셋 삭제 handler 실행
     const delBtn=()=>{
-        handleField.handleDelete(index)
+        dataSetHandler.handleDelete(index)
     }
 
     useEffect(()=>{
-        setEmailAddres(handleField.userEmail[index].email_address)
-        setEmailUsage(handleField.userEmail[index].email_usage)
-        setEmailAffiliation(handleField.userEmail[index].email_affiliation)
-    },[handleField.userEmail[index]])
+        // 데이터셋 단위로 핸들링 될 때 필드값 업데이트 
+        // 필드에 입력된 텍스트가 데이터셋에 맞춰 업데이트 안되는 것을 방지
+        setEmailAddress(dataSetHandler.userEmail[index].email_address)
+        setEmailUsage(dataSetHandler.userEmail[index].email_usage)
+        setEmailAffiliation(dataSetHandler.userEmail[index].email_affiliation)
+    },[dataSetHandler.userEmail[index]]) // 본 데이터셋 form 다루는 인덱스의 배열 요소 값이 업데이트 되는지 모니터링
+
+    
 
     return(
         <div className='one-email-item'>
             <div className='item-fields'>
             <TextField
-            id= "email_address"
-            name ="email_address"
+            id="email_address"
+            name = "email_address"
             fullWidth
             variant="outlined"
             type="email"
             label={emailLang.input.email_address.placeholder[cookies.load('site-lang')]}
-            value={emailAddres}
+            value={emailAddress}
             onChange={(e)=>handleChange(e)}
             onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.email_address ? formikObj.formErrers.email_address : ""}
-            error={formikObj.formTouched.email_address && Boolean(formikObj.formErrers.email_address)}
+            helperText={emailError}
+            error={Boolean(emailError)}
             size='small'
             margin="dense"
             InputProps={{
@@ -117,8 +137,6 @@ function OneEmail(props){
             value={emailAffiliation}
             onChange={(e)=>handleChange(e)}
             onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.email_affiliation ? formikObj.formErrers.email_affiliation : ""}
-            error={formikObj.formTouched.email_affiliation && Boolean(formikObj.formErrers.email_affiliation)}
             size='small'
             margin="dense"
             InputProps={{
@@ -140,4 +158,4 @@ function OneEmail(props){
 
 }
 
-export default OneEmail
+export default EmailDataSet

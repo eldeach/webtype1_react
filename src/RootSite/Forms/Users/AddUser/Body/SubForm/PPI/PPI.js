@@ -17,17 +17,21 @@ import ClearIcon from '@mui/icons-material/Clear';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 
 // ======================================================================================== [Import Component] js
-// import langCodeBook from '../../../../../../GlobalObject/Configure/Language/langCodeBook';
 import ppiLang from './ppiLang';
 import SubTitle from '../../../../../../GlobalObject/Component/SubTitle'
 
 // ======================================================================================== [Import Component] CSS
 import './PPI.css'
 
+// 필드단위 입력 SubForm
 function IdInfoBox(props){
+
+    // 상위 폼으로 부터 전달받는 객체 import
+    // 1. 부모 Form -> FormikWrapper -> 본 Subform으로 전달되는 객체
+    // 2. 부모 Form에서 전달해주는 paperStyle, textFieldStyle
     const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
 
-    //
+    // 본 Subform에서 사용될 필드값 정의 및 초기값 정의
     let [userAccount,setUserAccount] = useState('')
     let [userPW,setUserPW] = useState('')
     let [userPWConfirm,setUserPWConfirm] = useState('')
@@ -36,55 +40,57 @@ function IdInfoBox(props){
     let [userBirthday,setUserBirthday] = useState(null)
     let [userGender,setUserGender] = useState("male")
 
+    // input필드에서 값 변경 handler (Formik values 업데이트 포함)
     const handleChange = (e) =>{
-        if (e.target.name=="user_account") {
+        if (e.target.name==="user_account") {
             setUserAccount(e.target.value)
             formikObj.formSetFieldValue('user_account',e.target.value)
         }
-        else if(e.target.name=="user_pw"){
+        else if(e.target.name==="user_pw"){
             setUserPW(e.target.value)
             formikObj.formSetFieldValue('user_pw',e.target.value)
         }
-        else if(e.target.name=="user_pw_confirm"){
+        else if(e.target.name==="user_pw_confirm"){
             setUserPWConfirm(e.target.value)
             formikObj.formSetFieldValue('user_pw_confirm',e.target.value)
         }
-        else if(e.target.name=="user_name"){
+        else if(e.target.name==="user_name"){
             setUserName(e.target.value)
             formikObj.formSetFieldValue('user_name',e.target.value)
         }
-        else if(e.target.name=="user_nickname"){
+        else if(e.target.name==="user_nickname"){
             setUserNickname(e.target.value)
             formikObj.formSetFieldValue('user_nickname',e.target.value)
         }
-        else if(e.target.name=="user_birthday"){
+        else if(e.target.name==="user_birthday"){
             setUserBirthday(e.target.value)
             formikObj.formSetFieldValue('user_birthday',e.target.value)
         }
-        else if(e.target.name=="user_gender"){
+        else if(e.target.name==="user_gender"){
             setUserGender(e.target.value)
             formikObj.formSetFieldValue('user_gender',e.target.value)
         }
     }
 
+    // input필드에서 값 삭제 handler (Formik values 업데이트 포함)
     const handleClear = (targetName) =>{
-        if (targetName=="user_account") {
+        if (targetName==="user_account") {
             setUserAccount('')
             formikObj.formSetFieldValue('user_account','')
         }
-        else if(targetName=="user_pw"){
+        else if(targetName==="user_pw"){
             setUserPW('')
             formikObj.formSetFieldValue('user_pw','')
         }
-        else if(targetName=="user_pw_confirm"){
+        else if(targetName==="user_pw_confirm"){
             setUserPWConfirm('')
             formikObj.formSetFieldValue('user_pw_confirm','')
         }
-        else if(targetName=="user_name"){
+        else if(targetName==="user_name"){
             setUserName('')
             formikObj.formSetFieldValue('user_name','')
         }
-        else if(targetName=="user_nickname"){
+        else if(targetName==="user_nickname"){
             setUserNickname('')
             formikObj.formSetFieldValue('user_nickname','')
         }

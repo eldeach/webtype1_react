@@ -1,7 +1,6 @@
 // ======================================================================================== [Import Libaray]
 import * as React from 'react';
 
-
 // ======================================================================================== [Import Material UI Libaray]  
 
 
@@ -14,7 +13,7 @@ import onSubmitFunc from './Functions/onSubmitFunc';
 
 // ======================================================================================== [Import Component] CSS
 
-
+// 입력 Form
 function AddUserForm(){
 
     const formSize={
@@ -22,6 +21,7 @@ function AddUserForm(){
         height:'100%',
     }
 
+    // Form에서 사용될 변수, 초기값 선언
     const initialValues = {
         user_account: '',
         user_pw:'',
@@ -29,13 +29,12 @@ function AddUserForm(){
         user_name:'',
         user_nickname:'',
         user_birthday:null,
-        user_gender:'m',
+        user_gender:'male',
         user_email:[],
         user_phone:[],
         user_position:[],
         user_auth:[]
-    }
-    
+    } 
 
     return (
         <FormikWrapper
