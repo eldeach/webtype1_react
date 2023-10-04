@@ -28,7 +28,7 @@ const textFieldStyle={
 }
 
 function FormBody(props){
-    // props로 formFunctions, formikValues(formik의 value들), formikObj(formik 객체)를 받음
+    // props는 FormikWrapper 사용한 부모 폼과 Formik 객체들
     return(
         <div className='add-user-form'>
             <div className='add-user-left-subform'>

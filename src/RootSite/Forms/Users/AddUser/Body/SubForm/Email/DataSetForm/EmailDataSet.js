@@ -97,7 +97,7 @@ function EmailDataSet(props){
             label={emailLang.input.email_address.placeholder[cookies.load('site-lang')]}
             value={emailAddress}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
+            onBlur={formikObj.handleBlur}
             helperText={emailError}
             error={Boolean(emailError)}
             size='small'
@@ -136,7 +136,7 @@ function EmailDataSet(props){
             label={emailLang.input.email_affiliation.placeholder[cookies.load('site-lang')]}
             value={emailAffiliation}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
+            onBlur={formikObj.handleBlur}
             size='small'
             margin="dense"
             InputProps={{

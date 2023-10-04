@@ -85,9 +85,9 @@ function PhoneDataSet(props){
             label={phoneLang.input.phone_number.placeholder[cookies.load('site-lang')]}
             value={phoneNumber}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.phone_number ? formikObj.formErrers.phone_number : ""}
-            error={formikObj.formTouched.phone_number && Boolean(formikObj.formErrers.phone_number)}
+            onBlur={formikObj.handleBlur}
+            helperText={formikObj.touched.phone_number ? formikObj.errors.phone_number : ""}
+            error={formikObj.touched.phone_number && Boolean(formikObj.errors.phone_number)}
             size='small'
             margin="dense"
             InputProps={{
@@ -124,9 +124,9 @@ function PhoneDataSet(props){
             label={phoneLang.input.phone_affiliation.placeholder[cookies.load('site-lang')]}
             value={phoneAffiliation}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.phone_affiliation ? formikObj.formErrers.phone_affiliation : ""}
-            error={formikObj.formTouched.phone_affiliation && Boolean(formikObj.formErrers.phone_affiliation)}
+            onBlur={formikObj.handleBlur}
+            helperText={formikObj.touched.phone_affiliation ? formikObj.errors.phone_affiliation : ""}
+            error={formikObj.touched.phone_affiliation && Boolean(formikObj.errors.phone_affiliation)}
             size='small'
             margin="dense"
             InputProps={{

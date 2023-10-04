@@ -5,14 +5,13 @@ import cookies from 'react-cookies'
 import { Button, TextField } from '@mui/material';
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook';
-
+//config
+import loginButtonLang from '../loginButtonLang';
 
 // ======================================================================================== [Import Component] CSS
-import './FormContent.css'
+import './FormBody.css'
 
-function FormContent(props){
-    const { formFunctions, formikValues, formikObj } = props;
+function FormBody(props){
 
     const textFieldStyle={
         fontSize: 14
@@ -21,22 +20,18 @@ function FormContent(props){
 
     return(
         <div className="form-content-1">
-            <div className='button-box-close'>
-                <button className='button-close' onClick={()=>{formFunctions.handleModalClose()}}>X</button>
-            </div>
-            <div className='sign-in-title'>Sign in</div>
             <div className='input-box'>
                 <TextField
                 required
                 variant="outlined"
                 id="user_account"
                 name="user_account"
-                label={langCodeBook.roosite.form.system.login.input.user_account.placeholder[cookies.load('site-lang')]}
-                value={formikValues.user_account}
-                onChange={formikObj.formHandleChange}
-                onBlur={formikObj.formHandleBlur}
-                helperText={formikObj.formTouched.user_account ? formikObj.formErrers.user_account : ""}
-                error={formikObj.formTouched.user_account && Boolean(formikObj.formErrers.user_account)}
+                label={loginButtonLang.input.user_account.placeholder[cookies.load('site-lang')]}
+                value={props.formikObj.values.user_account}
+                onChange={props.formikObj.handleChange}
+                onBlur={props.formikObj.formHandleBlur}
+                helperText={props.formikObj.touched.user_account ? props.formikObj.errors.user_account : ""}
+                error={props.formikObj.touched.user_account && Boolean(props.formikObj.errors.user_account)}
                 size='small'
                 margin="dense"
                 fullWidth
@@ -48,13 +43,13 @@ function FormContent(props){
                 variant="outlined"
                 id="user_pw"
                 name="user_pw"
-                label={langCodeBook.roosite.form.system.login.input.user_pw.placeholder[cookies.load('site-lang')]}
+                label={loginButtonLang.input.user_pw.placeholder[cookies.load('site-lang')]}
                 type="password"
-                value={formikValues.user_pw}
-                onChange={formikObj.formHandleChange}
-                onBlur={formikObj.formHandleBlur}
-                helperText={formikObj.formTouched.user_pw ? formikObj.formErrers.user_pw : ""}
-                error={formikObj.formTouched.user_pw && Boolean(formikObj.formErrers.user_pw)}
+                value={props.formikObj.values.user_pw}
+                onChange={props.formikObj.handleChange}
+                onBlur={props.formikObj.formHandleBlur}
+                helperText={props.formikObj.touched.user_pw ? props.formikObj.errors.user_pw : ""}
+                error={props.formikObj.touched.user_pw && Boolean(props.formikObj.errors.user_pw)}
                 size='small'
                 margin="dense"
                 fullWidth
@@ -63,11 +58,11 @@ function FormContent(props){
                 />
             </div>
             <div className='button-box'>
-                <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">{langCodeBook.roosite.form.system.login.button.signIn[cookies.load('site-lang')]}</Button>
+                <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">{loginButtonLang.button.signIn[cookies.load('site-lang')]}</Button>
             </div>             
         </div>
     )
 
 }
 
-export default FormContent;
+export default FormBody;

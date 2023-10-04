@@ -13,46 +13,40 @@ import { Box } from '@mui/material';
 
 function FormikFactory(props){
 
-    const {formBody,formFunctions, // 이 중에 formFunctions만 formBody component에 전달함
-        initialValues, yupSchema, formId, autoComplete, sx,
-        
-    } = props;
-
     return(
         <Formik
-        validationSchema={yupSchema}
+        validationSchema={props.yupSchema}
         onSubmit={async (values, {resetForm, setFieldValue})=>{
-            formFunctions.onSubmitFunc({
-                values:values, // Formik에서 정의된 모든 값 전달
-                formFunctions:formFunctions, // FormikFactory 밖에서 정의한 함수 모두 전달, onSubmitFunc에서 모든 함수 사용할 수 있게함
-                formikObj:{ formSetFieldValue:setFieldValue, formReset:resetForm }// Formik 내장 함수 중 필드들을 변경할 수 있는 함수는 모두 전달
+            props.formFunctions.onSubmitFunc({
+                ...props,
+                values:values, // Submit 하기 위해 Formik 값 객체 전달
+                formikObj:{ setFieldValue:setFieldValue, formReset:resetForm }// Formik 내장 함수 중 필드들을 변경할 수 있는 함수는 모두 전달
             }) 
         }}
-        initialValues={initialValues}
+        initialValues={props.initialValues}
         >
-        {({ handleSubmit, handleChange, handleBlur, validateField, setFieldValue, resetForm, values, touched, isValid, errors})=>(
+        {({ handleSubmit, setFieldValue, resetForm, handleChange, handleBlur, values, touched, isValid, errors})=>(
             <Box 
-            id={formId}
+            id={props.formId}
             component="form"
             noValidate
             onSubmit={handleSubmit}
-            autoComplete={autoComplete}
-            sx={sx}
+            autoComplete={props.autoComplete}
+            sx={props.formSize}
             >
             {
-                formBody({
-                    // FormikFactory 객체 밖에서 전달 받은 함수 (FormikFactory 사용하는 Component나 그 밖에서 정의되어야 함)
-                    formFunctions:formFunctions,
-                    // formik 객체 (값, 내장함수, 리스너 formBody 전달)
-                    formikValues: values,
-                    formikObj:{
-                        formHandleChange: handleChange,
-                        formHandleBlur: handleBlur,
-                        formSetFieldValue:setFieldValue,
-                        formReset:resetForm,
-                        formTouched: touched,
-                        formErrers: errors
-                    }
+                props.formBody({
+                    ...props, // FormikWrapper 사용한 부모폼이 전달한 모든 props FormBody에 재전달
+                    formikObj:{ // Formik 객체 추가 전달
+                        setFieldValue:setFieldValue,
+                        resetForm:resetForm,
+                        handleChange: handleChange,
+                        handleBlur: handleBlur,
+                        values:values,
+                        touched: touched,
+                        isValid:isValid,
+                        errors: errors
+                    },
                 })
             }
             </Box>

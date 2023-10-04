@@ -17,12 +17,6 @@ import './Email.css'
 
 // 데이터셋 단위 입력 SubForm
 function Email(props){
-
-    // 상위 폼으로 부터 전달받는 객체 import
-    // 1. 부모 Form -> FormikWrapper -> 본 Subform으로 전달되는 객체
-    // 2. 부모 Form에서 전달해주는 paperStyle, textFieldStyle
-    const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
-
     // 본 Subform에서 사용될 필드값 정의
     let [userEmail,setUserEmail] = useState([]);
     // 데이터셋 초기값 정의 (데이터셋 단위로 배열에 관리해야하기 때문에 별도 정의)
@@ -64,8 +58,8 @@ function Email(props){
     useEffect(()=>{
         // 본 Subform 배열 변수 변경 감지 시 Formik의 values 업데이트
         // 배열 단위가 Formik의 values이면 handler에서 업데이트하는것으로 하면 중복코드가 발생되어 useEffect 활용함
-        formikObj.formSetFieldValue('user_email',[...userEmail])
-        console.log(formikValues.user_email)
+        props.formikObj.setFieldValue('user_email',[...userEmail])
+        console.log(props.formikObj.values.user_email)
     },[userEmail])
 
     return(

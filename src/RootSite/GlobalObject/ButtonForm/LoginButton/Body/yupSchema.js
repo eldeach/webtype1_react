@@ -6,7 +6,8 @@ import cookies from 'react-cookies'
 
 
 // ======================================================================================== [Import Component] js
-import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook'
+//config
+import loginButtonLang from '../loginButtonLang';
 
 // ======================================================================================== [Import Component] CSS
 
@@ -15,10 +16,10 @@ import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBo
   const yupSchema = yup.object().shape({
 
     user_account: yup.string()
-    .required(langCodeBook.roosite.form.system.login.input.user_account.yup[cookies.load('site-lang')]),
+    .required(loginButtonLang.input.user_account.yup[cookies.load('site-lang')]),
 
     user_pw: yup.string()
-    .required(langCodeBook.roosite.form.system.login.input.user_pw.yup[cookies.load('site-lang')])
+    .required(loginButtonLang.input.user_pw.yup[cookies.load('site-lang')])
   });
 
   export default yupSchema;

@@ -26,11 +26,6 @@ import './PPI.css'
 // 필드단위 입력 SubForm
 function IdInfoBox(props){
 
-    // 상위 폼으로 부터 전달받는 객체 import
-    // 1. 부모 Form -> FormikWrapper -> 본 Subform으로 전달되는 객체
-    // 2. 부모 Form에서 전달해주는 paperStyle, textFieldStyle
-    const { formFunctions, formikValues, formikObj, paperStyle, textFieldStyle } = props;
-
     // 본 Subform에서 사용될 필드값 정의 및 초기값 정의
     let [userAccount,setUserAccount] = useState('')
     let [userPW,setUserPW] = useState('')
@@ -44,31 +39,31 @@ function IdInfoBox(props){
     const handleChange = (e) =>{
         if (e.target.name==="user_account") {
             setUserAccount(e.target.value)
-            formikObj.formSetFieldValue('user_account',e.target.value)
+            props.formikObj.setFieldValue('user_account',e.target.value)
         }
         else if(e.target.name==="user_pw"){
             setUserPW(e.target.value)
-            formikObj.formSetFieldValue('user_pw',e.target.value)
+            props.formikObj.setFieldValue('user_pw',e.target.value)
         }
         else if(e.target.name==="user_pw_confirm"){
             setUserPWConfirm(e.target.value)
-            formikObj.formSetFieldValue('user_pw_confirm',e.target.value)
+            props.formikObj.setFieldValue('user_pw_confirm',e.target.value)
         }
         else if(e.target.name==="user_name"){
             setUserName(e.target.value)
-            formikObj.formSetFieldValue('user_name',e.target.value)
+            props.formikObj.setFieldValue('user_name',e.target.value)
         }
         else if(e.target.name==="user_nickname"){
             setUserNickname(e.target.value)
-            formikObj.formSetFieldValue('user_nickname',e.target.value)
+            props.formikObj.setFieldValue('user_nickname',e.target.value)
         }
         else if(e.target.name==="user_birthday"){
             setUserBirthday(e.target.value)
-            formikObj.formSetFieldValue('user_birthday',e.target.value)
+            props.formikObj.setFieldValue('user_birthday',e.target.value)
         }
         else if(e.target.name==="user_gender"){
             setUserGender(e.target.value)
-            formikObj.formSetFieldValue('user_gender',e.target.value)
+            props.formikObj.setFieldValue('user_gender',e.target.value)
         }
     }
 
@@ -76,29 +71,29 @@ function IdInfoBox(props){
     const handleClear = (targetName) =>{
         if (targetName==="user_account") {
             setUserAccount('')
-            formikObj.formSetFieldValue('user_account','')
+            props.formikObj.setFieldValue('user_account','')
         }
         else if(targetName==="user_pw"){
             setUserPW('')
-            formikObj.formSetFieldValue('user_pw','')
+            props.formikObj.setFieldValue('user_pw','')
         }
         else if(targetName==="user_pw_confirm"){
             setUserPWConfirm('')
-            formikObj.formSetFieldValue('user_pw_confirm','')
+            props.formikObj.setFieldValue('user_pw_confirm','')
         }
         else if(targetName==="user_name"){
             setUserName('')
-            formikObj.formSetFieldValue('user_name','')
+            props.formikObj.setFieldValue('user_name','')
         }
         else if(targetName==="user_nickname"){
             setUserNickname('')
-            formikObj.formSetFieldValue('user_nickname','')
+            props.formikObj.setFieldValue('user_nickname','')
         }
     }
     
     return(
         <Paper sx={props.paperStyle} elevation={3}>
-            <Button size="small" variant="contained" type="submit" form='AddUser'>Submit 테스트</Button>
+            <Button size="small" variant="contained" type="submit" form={props.formId} disabled={!props.formikObj.isValid}>Submit 테스트</Button>
             <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
             <TextField
             required
@@ -108,9 +103,9 @@ function IdInfoBox(props){
             label={ppiLang.input.user_account.placeholder[cookies.load('site-lang')]}
             value={userAccount}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_account ? formikObj.formErrers.user_account : ""}
-            error={formikObj.formTouched.user_account && Boolean(formikObj.formErrers.user_account)}
+            onBlur={props.formikObj.handleBlur}
+            helperText={props.formikObj.touched.user_account ? props.formikObj.errors.user_account : ""}
+            error={props.formikObj.touched.user_account && Boolean(props.formikObj.errors.user_account)}
             size='small'
             margin="dense"
             fullWidth
@@ -120,9 +115,9 @@ function IdInfoBox(props){
                         <ClearIcon size='small'/>
                     </IconButton>
                 ),
-                style: textFieldStyle // font size of input text
+                style: props.textFieldStyle // font size of input text
             }}
-            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            InputLabelProps={{style: props.textFieldStyle}} // font size of input label
             />
             <TextField
             required
@@ -133,9 +128,9 @@ function IdInfoBox(props){
             type="password"
             value={userPW}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_pw ? formikObj.formErrers.user_pw : ""}
-            error={formikObj.formTouched.user_pw && Boolean(formikObj.formErrers.user_pw)}
+            onBlur={props.formikObj.handleBlur}
+            helperText={props.formikObj.touched.user_pw ? props.formikObj.errors.user_pw : ""}
+            error={props.formikObj.touched.user_pw && Boolean(props.formikObj.errors.user_pw)}
             size='small'
             margin="dense"
             fullWidth
@@ -145,9 +140,9 @@ function IdInfoBox(props){
                         <ClearIcon size='small'/>
                     </IconButton>
                 ),
-                style: textFieldStyle // font size of input text
+                style: props.textFieldStyle // font size of input text
             }}
-            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            InputLabelProps={{style: props.textFieldStyle}} // font size of input label
             />
             <TextField
             required
@@ -158,9 +153,9 @@ function IdInfoBox(props){
             type="password"
             value={userPWConfirm}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_pw_confirm ? formikObj.formErrers.user_pw_confirm : ""}
-            error={formikObj.formTouched.user_pw_confirm && Boolean(formikObj.formErrers.user_pw_confirm)}
+            onBlur={props.formikObj.handleBlur}
+            helperText={props.formikObj.touched.user_pw_confirm ? props.formikObj.errors.user_pw_confirm : ""}
+            error={props.formikObj.touched.user_pw_confirm && Boolean(props.formikObj.errors.user_pw_confirm)}
             size='small'
             margin="dense"
             fullWidth
@@ -170,9 +165,9 @@ function IdInfoBox(props){
                         <ClearIcon size='small'/>
                     </IconButton>
                 ),
-                style: textFieldStyle // font size of input text
+                style: props.textFieldStyle // font size of input text
             }}
-            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            InputLabelProps={{style: props.textFieldStyle}} // font size of input label
             />
             <TextField
             variant="outlined"
@@ -181,9 +176,9 @@ function IdInfoBox(props){
             label={ppiLang.input.user_name.placeholder[cookies.load('site-lang')]}
             value={userName}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_name ? formikObj.formErrers.user_name : ""}
-            error={formikObj.formTouched.user_name && Boolean(formikObj.formErrers.user_name)}
+            onBlur={props.formikObj.handleBlur}
+            helperText={props.formikObj.touched.user_name ? props.formikObj.errors.user_name : ""}
+            error={props.formikObj.touched.user_name && Boolean(props.formikObj.errors.user_name)}
             size='small'
             margin="dense"
             fullWidth
@@ -193,9 +188,9 @@ function IdInfoBox(props){
                         <ClearIcon size='small'/>
                     </IconButton>
                 ),
-                style: textFieldStyle // font size of input text
+                style: props.textFieldStyle // font size of input text
             }}
-            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            InputLabelProps={{style: props.textFieldStyle}} // font size of input label
             />
             <TextField
             variant="outlined"
@@ -204,9 +199,9 @@ function IdInfoBox(props){
             label={ppiLang.input.user_nickname.placeholder[cookies.load('site-lang')]}
             value={userNickname}
             onChange={(e)=>handleChange(e)}
-            onBlur={formikObj.formHandleBlur}
-            helperText={formikObj.formTouched.user_nickname ? formikObj.formErrers.user_nickname : ""}
-            error={formikObj.formTouched.user_nickname && Boolean(formikObj.formErrers.user_nickname)}
+            onBlur={props.formikObj.handleBlur}
+            helperText={props.formikObj.touched.user_nickname ? props.formikObj.errors.user_nickname : ""}
+            error={props.formikObj.touched.user_nickname && Boolean(props.formikObj.errors.user_nickname)}
             size='small'
             margin="dense"
             fullWidth
@@ -216,16 +211,16 @@ function IdInfoBox(props){
                         <ClearIcon size='small'/>
                     </IconButton>
                 ),
-                style: textFieldStyle // font size of input text
+                style: props.textFieldStyle // font size of input text
             }}
-            InputLabelProps={{style: textFieldStyle}} // font size of input label
+            InputLabelProps={{style: props.textFieldStyle}} // font size of input label
             />
             <div className='ppi-datepicker-box'>
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                     <DatePicker
                     id="user_birthday"
                     name="user_birthday"
-                    slotProps={{ textField: { size: 'small', fullWidth: true, style: textFieldStyle }}}
+                    slotProps={{ textField: { size: 'small', fullWidth: true, style: props.textFieldStyle }}}
                     label={ppiLang.input.user_birthday.placeholder[cookies.load('site-lang')]}
                     format="YYYY-MM-DD"
                     mask={"____-__-__"}

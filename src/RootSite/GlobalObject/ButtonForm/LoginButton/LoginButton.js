@@ -1,56 +1,63 @@
 // ======================================================================================== [Import Libaray]
 import * as React from 'react';
-import { useEffect, useState } from 'react';
+import cookies from 'react-cookies'
+import { useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Paper } from '@mui/material';
-// Icon
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
+
+
 
 // ======================================================================================== [Import Component] js
-import FormikWrapper from '../../Factory/FormikWrapper';
+// ButtonPopup Wrapper
+import ButtonPopup from '../../Factory/ButtonPopup';
 // form
-import FormContent from './Contents/FormContent';
-import initialValues from './Contents/initialValues'
-import formSize from './Contents/formSize'
-import yupSchema from './YupSchema/yupSchema';
+import FormBody from './Body/FormBody';
+import yupSchema from './Body/yupSchema';
 import onSubmitFunc from './Functions/onSubmitFunc';
-import logout from './Functions/logout';
-
+//config
+import loginButtonLang from './loginButtonLang';
 // ======================================================================================== [Import Component] CSS
-
-const paperStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  boxShadow: 24,
-  p: 2,
-};
+const formSize={
+    width: 350,
+    height:240,
+  }
+  
+  const initialValues = {
+    user_account: '',
+    user_pw:''
+  }
+  
+  const paperStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    boxShadow: 24,
+    p: 2,
+  };
 
 function LoginButton(){
-    const [open, setOpen] = useState(false);
-    const handleModalOpen = () => setOpen(true);
-    const handleModalClose = () => setOpen(false);
-    
+
     const [loginStatus, setLoginStatus] = useState(false);
     const switchLoginStatus = (boolValue) => setLoginStatus(boolValue)
 
-    useEffect(() => {
-      logout(switchLoginStatus) // Login Button 렌더 시 로그인 상태 업데이트
-    }, []);
-
     return(
-        <div>
-          <Button variant="outlined" color = "white" size="small" onClick={()=>{loginStatus ? logout(switchLoginStatus) : handleModalOpen()}}>{loginStatus ? "Logout" : "Login"}</Button>
-          <Modal open={open} onClose={handleModalClose}>
-            <Paper sx={paperStyle} elevation={3}>
-              <FormikWrapper sx={formSize} formBody={FormContent} initialValues={initialValues} yupSchema={yupSchema} formFunctions={{onSubmitFunc, handleModalClose, switchLoginStatus}} formId="UserLogin" autoComplete="off"/>
-            </Paper>
-          </Modal>  
-        </div>
+        <ButtonPopup
+        buttonText={loginButtonLang.button.login[cookies.load('site-lang')]}
+        buttonVariant="outlined"
+        popupTitle="Sign in"
+        titleFontSize="xx-large"
+        formSize={formSize}
+        formBody={FormBody}
+        initialValues={initialValues}
+        yupSchema={yupSchema}
+        formFunctions={{onSubmitFunc, switchLoginStatus}}
+        formId="UserLogin"
+        autoComplete="off"
+        />
+
     )
 }
+
 
 export default LoginButton;

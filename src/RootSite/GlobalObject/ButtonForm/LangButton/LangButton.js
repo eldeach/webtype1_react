@@ -2,45 +2,49 @@
 import * as React from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Paper } from '@mui/material';
-// Icon
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
+
+//icon
 import LanguageIcon from '@mui/icons-material/Language';
 
-
 // ======================================================================================== [Import Component] js
-import FormikWrapper from '../../Factory/FormikWrapper';
+// ButtonPopup Wrapper
+import ButtonPopup from '../../Factory/ButtonPopup';
 // form
-import FormContent from './Contents/FormContent';
-import formSize from './Contents/formSize'
-
+import FormBody from './Body/FormBody';
 // ======================================================================================== [Import Component] CSS
-
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  boxShadow: 24,
-  p: 2,
-};
+const formSize={
+    width: 300,
+    height:200,
+  }
+  
+  const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    boxShadow: 24,
+    p: 2,
+  };
 
 function LangButton(){
-    const [open, setOpen] = React.useState(false);
-    const handleModalOpen = () => setOpen(true);
-    const handleModalClose = () => setOpen(false);
 
     return(
-        <div>
-          <Button variant="text" color = "white" size="small" onClick={handleModalOpen}>{<LanguageIcon/>}</Button>
-          <Modal open={open} onClose={handleModalClose}>
-            <Paper sx={style} elevation={3}>
-              <FormikWrapper sx={formSize} formBody={FormContent} initialValues={{}} yupSchema={{}} formFunctions={{handleModalClose}} formId="SelectLang" autoComplete="off"/>
-            </Paper>
-          </Modal>  
-        </div>
+        <ButtonPopup
+        buttonText={<LanguageIcon/>}
+        buttonVariant="text"
+        popupTitle="Sign in"
+        titleFontSize="xx-large"
+        formSize={formSize}
+        formBody={FormBody}
+        initialValues={{}}
+        yupSchema={{}}
+        formFunctions={{}}
+        formId="SelectLang"
+        autoComplete="off"
+        />
+
     )
 }
+
 
 export default LangButton;

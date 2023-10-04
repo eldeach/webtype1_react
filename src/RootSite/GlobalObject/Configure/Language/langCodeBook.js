@@ -24,56 +24,10 @@ const langCodeBook = {
             }
         },
         form :{
-            system:{
-                login :{
-                    input :{
-                        user_account : {
-                            placeholder :{
-                                kor : "사용자 계정",
-                                eng : "User Account"
-                            },
-                            yup :{
-                                kor : "계정을 입력해주세요.",
-                                eng : "Please enter your account."
-                            }
-                        },
-                        user_pw : {
-                            placeholder :{
-                                kor : "비밀번호",
-                                eng : "Password"
-                            },
-                            yup :{
-                                kor : "비밀번호를 입력해주세요.",
-                                eng : "Please enter your password."
-                            }
-                        }
-                    },
-                    button :{
-                        signIn : {
-                            kor : "로그인",
-                            eng : "Sign in"
-                        }
-                    }
-                },
-            },
             users :{
                 AddUser:{
                     input :{
                         user_email:{
-                            placeholder :{
-                                emailField:{
-                                    kor : "이메일",
-                                    eng : "E-mail"
-                                },
-                                purpose:{
-                                    kor : "용도",
-                                    eng : "Purpose"
-                                },
-                                affiliation:{
-                                    kor : "소속",
-                                    eng : "Affiliation"   
-                                }
-                            },
                             catLabel:{
                                 personal:{
                                     kor : "개인",
@@ -97,20 +51,6 @@ const langCodeBook = {
                             }                          
                         },
                         user_phone:{
-                            placeholder :{
-                                phoneField:{
-                                    kor : "전화번호",
-                                    eng : "Phone Number"
-                                },
-                                purpose:{
-                                    kor : "용도",
-                                    eng : "Purpose"
-                                },
-                                affiliation:{
-                                    kor : "소속",
-                                    eng : "Affiliation"   
-                                }
-                            },
                             catLabel:{
                                 personal:{
                                     kor : "개인",

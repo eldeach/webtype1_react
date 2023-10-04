@@ -38,7 +38,7 @@ function AddUserForm(){
 
     return (
         <FormikWrapper
-        sx={formSize}
+        formSize={formSize}
         formBody={FormBody}
         initialValues={initialValues}
         yupSchema={yupSchema}

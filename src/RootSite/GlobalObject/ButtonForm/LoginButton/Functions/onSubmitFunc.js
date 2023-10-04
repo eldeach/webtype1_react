@@ -28,9 +28,11 @@ async function onSubmitFunc(props){
         if (error.response.data.dr)
         {
             alert("Code : " + error.response.data.msgCode + "\nMessage : " + error.response.data.msg[cookies.load('site-lang')])
+            props.formFunctions.handleModalClose();
         }
         else{
             alert("<unexpected error> \n " + error.response.data)
+            props.formFunctions.handleModalClose();
         }
 
     })

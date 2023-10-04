@@ -8,15 +8,13 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 
 // ======================================================================================== [Import Component] js
-
+import langButtonLang from '../langButtonLang'
 
 // ======================================================================================== [Import Component] CSS
-import './FormContent.css'
+import './FormBody.css'
 
 
-function FormContent(props){
-
-    const { formFunctions, formikValues, formikObj } = props;
+function FormBody(props){
 
     let [siteLang,setSiteLang] = useState('');
     const handleLang = (event) => {
@@ -30,16 +28,12 @@ function FormContent(props){
 
     return(
         <div className="form-content-lang-button">
-            <div className='button-box-close'>
-                <button className='button-close' onClick={()=>{formFunctions.handleModalClose()}}>X</button>
-            </div>
-            <div className='lang-title'>Language</div>
             <div className='icon-box'>
                 <InfoIcon color = 'info' sx={{fontSize:40}}/>
             </div>
             <div className='description-box'>
-                {"*After setting the language, you need to refresh this website for the changes to take effect.\n\n"
-                + "*This website logs out the user upon refreshing."}
+                <p>{langButtonLang.text.p1[cookies.load('site-lang')]}</p>
+                <p>{langButtonLang.text.p2[cookies.load('site-lang')]}</p>
             </div>
             <FormControl className='input-box' sx={{ fontSize:12 }} size="small">
                 <InputLabel id="select-lang">Language</InputLabel>
@@ -59,4 +53,4 @@ function FormContent(props){
 
 }
 
-export default FormContent;
+export default FormBody;
