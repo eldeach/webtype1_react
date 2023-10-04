@@ -29,7 +29,7 @@ function FormBody(props){
                 label={loginButtonLang.input.user_account.placeholder[cookies.load('site-lang')]}
                 value={props.formikObj.values.user_account}
                 onChange={props.formikObj.handleChange}
-                onBlur={props.formikObj.formHandleBlur}
+                onBlur={props.formikObj.handleBlur}
                 helperText={props.formikObj.touched.user_account ? props.formikObj.errors.user_account : ""}
                 error={props.formikObj.touched.user_account && Boolean(props.formikObj.errors.user_account)}
                 size='small'
@@ -47,7 +47,7 @@ function FormBody(props){
                 type="password"
                 value={props.formikObj.values.user_pw}
                 onChange={props.formikObj.handleChange}
-                onBlur={props.formikObj.formHandleBlur}
+                onBlur={props.formikObj.handleBlur}
                 helperText={props.formikObj.touched.user_pw ? props.formikObj.errors.user_pw : ""}
                 error={props.formikObj.touched.user_pw && Boolean(props.formikObj.errors.user_pw)}
                 size='small'

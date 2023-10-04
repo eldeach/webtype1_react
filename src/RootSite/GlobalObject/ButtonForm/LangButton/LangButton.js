@@ -32,6 +32,8 @@ function LangButton(){
         <ButtonPopup
         buttonText={<LanguageIcon/>}
         buttonVariant="text"
+        buttonColor="white"
+        buttonSx={{}}
         popupTitle="Sign in"
         titleFontSize="xx-large"
         formSize={formSize}

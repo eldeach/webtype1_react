@@ -31,16 +31,14 @@ function FormBody(props){
     // props는 FormikWrapper 사용한 부모 폼과 Formik 객체들
     return(
         <div className='add-user-form'>
-            <div className='add-user-left-subform'>
                 <PPI {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
                 <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Phone {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                {/* <PhoneBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>  
-                <PositionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>   */}
-            </div>
-            <div className='add-user-right-subform'>
-                {/* <PermissionBox {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>   */}
-            </div>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
         </div>
     )
 

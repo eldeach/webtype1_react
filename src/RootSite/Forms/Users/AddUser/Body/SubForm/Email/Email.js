@@ -1,79 +1,107 @@
 // ======================================================================================== [Import Libaray]
+import cookies from 'react-cookies'
 import { useEffect, useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
-import { Button, Paper } from '@mui/material';
+import { Button, Paper, Chip } from '@mui/material';
 //icon
 import AddIcon from '@mui/icons-material/Add';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import EmailIcon from '@mui/icons-material/Email';
+import CategoryIcon from '@mui/icons-material/Category';
+import BusinessIcon from '@mui/icons-material/Business';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 // ======================================================================================== [Import Component] js
-import emailLang from './emailLang';
-import EmailDataSet from './DataSetForm/EmailDataSet';
+import ButtonPopup from '../../../../../../GlobalObject/Factory/ButtonPopup'
 import SubTitle from '../../../../../../GlobalObject/Component/SubTitle'
-
+import onSubmitFunc from './Functions/onSubmitFunc';
+import FormBody from './Body/FormBody'
+//config
+import yupSchema from './Body/yupSchema';
+import emailLang from './emailLang';
 // ======================================================================================== [Import Component] CSS
 import './Email.css'
 
-// 데이터셋 단위 입력 SubForm
 function Email(props){
+
     // 본 Subform에서 사용될 필드값 정의
-    let [userEmail,setUserEmail] = useState([]);
+    let [userEmails,setUserEmails] = useState([]);
     // 데이터셋 초기값 정의 (데이터셋 단위로 배열에 관리해야하기 때문에 별도 정의)
-    const initialEmailValue = { email_address: '', email_usage: 'personal', email_affiliation: '' }
-
-    // input필드에서 값 변경 handler
-    const handleChange=(index, e)=>{
-        let tempUserEmail = [...userEmail]
-        tempUserEmail[index][e.target.name] = e.target.value
-        setUserEmail(tempUserEmail)
+    const initialPopUplValues = {
+        email_address: '',
+        email_usage: 'personal',
+        email_affiliation: ''
     }
 
-    // input필드에서 값 삭제 handler
-    const handleClear=(index, fieldName)=>{
-        let tempUserEmail = [...userEmail]
-        tempUserEmail[index][fieldName] = ''
-        setUserEmail(tempUserEmail)
+    // Pop up form 사이즈
+    const popUpFormSize={
+        width: 400,
+        height:300,
+      }
+
+    // 데이터셋 추가 handler
+    const handleAdd = (newValue)=>{
+        let tempUserEmails = [...userEmails]
+        tempUserEmails.push(newValue)
+        setUserEmails(tempUserEmails)
+    }
+
+    // 데이터셋 삭제 handler
+    const handleDel = (index)=>{
+        const tempUserEmails = [...userEmails];
+        tempUserEmails.splice(index, 1);
+        setUserEmails(tempUserEmails)
     }
     
-    // input필드에서 데이터셋 추가 handler
-    const handleAdd = ()=>{
-        let tempUserEmail = [...userEmail]
-        tempUserEmail.push(initialEmailValue)
-        setUserEmail(tempUserEmail)
-    }
-    
-    // input필드에서 데이터셋 삭제 handler
-    const handleDelete = (index)=>{
-        console.log(index)
-        const tempUserEmail = [...userEmail];
-        tempUserEmail.splice(index, 1);
-        setUserEmail(tempUserEmail)
-    }
-
-    // 데이터셋 입력 하위 폼에 전달할 데이터 변수 및 handler object 선언
-    // 데이터셋을 다룰 하위폼 {데이터셋array}.map으로 생성할 때 전달되어야 함.
-    const dataSetHandler = {userEmail, handleChange, handleClear, handleAdd, handleDelete}
-
     useEffect(()=>{
-        // 본 Subform 배열 변수 변경 감지 시 Formik의 values 업데이트
-        // 배열 단위가 Formik의 values이면 handler에서 업데이트하는것으로 하면 중복코드가 발생되어 useEffect 활용함
-        props.formikObj.setFieldValue('user_email',[...userEmail])
-        console.log(props.formikObj.values.user_email)
-    },[userEmail])
+        props.formikObj.setFieldValue('user_email',[...userEmails])
+        console.log(props.formikObj.values.uesr_email)
+    },[userEmails]) // 데이터셋 userEmails 변경될 때마다 작동
+
 
     return(
         <Paper sx={props.paperStyle} elevation={3}>
-            <SubTitle icon={<EmailIcon color='rootsite'/>} text={"E-Mail"}></SubTitle>
-            
-            {/* 데이터셋 단위 하위 폼, 배열 개수 만큼 생성 */}
-            {userEmail.map((email, index) => (
-                <EmailDataSet {...props} index={index} dataSetHandler={dataSetHandler}/>
-            ))}
-
-            <Button fullWidth variant='outlined' size='small' color='rootsite' onClick={()=>handleAdd()}><AddIcon size='small'/></Button>
+            <div className='email-header'>
+                <SubTitle icon={<EmailIcon color='rootsite'/>} text={"E-Mail"}></SubTitle>
+                <div style={{flexGrow:1}}/>
+                <ButtonPopup
+                //Button Popup 고유 props 시작 --->
+                // button 스타일 및 text 정의
+                buttonVariant="contained"
+                buttonColor="rootsite"
+                buttonSx={{padding: 0}}
+                buttonText={<AddIcon size='small'/>}
+                // Popup 제목 스타일 정의
+                titleFontSize="x-large"
+                popupTitle={emailLang.text.popupTitle[cookies.load('site-lang')]}
+                //<--- Button Popup 고유 props 끝
+                formSize={popUpFormSize}
+                formBody={FormBody}
+                initialValues={initialPopUplValues}
+                yupSchema={yupSchema}
+                formFunctions={{onSubmitFunc, handleAdd}}
+                formId="AddEmailInfo"
+                autoComplete="off"
+                />
+            </div>
+            {
+                userEmails.map((email, index)=>( // 추가된 이메일 정보 출력 array iterator
+                    <div className='one-email-item'>
+                        <div className='delete-email-item'>
+                            <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error' onClick={()=>handleDel(index)}><DeleteForeverIcon/></Button>
+                        </div>
+                        <div className='one-email-info'>
+                            <Chip size="small" icon={<AlternateEmailIcon size="small"/>} color="rootsite" label={email.email_address}/>
+                            <div className='one-email-sub-info'>
+                                <Chip size="small" icon={<CategoryIcon size="small"/>} color="rootsite" variant="outlined" label={email.email_usage}/>
+                                <Chip size="small" sx={{width:'100%',ml:0.8}} icon={<BusinessIcon size="small"/>} color="rootsite" variant="outlined" label={email.email_affiliation}/>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
         </Paper>
-
     )
 }
 

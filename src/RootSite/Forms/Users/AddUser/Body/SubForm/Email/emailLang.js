@@ -43,6 +43,20 @@ const emailLang={
             },
         },
     },
+    button:{
+        subForm:{
+            signIn:{
+                kor:"추가",
+                eng:"ADD"
+            }
+        }
+    },
+    text:{
+        popupTitle:{
+            kor:"이메일 정보 추가",
+            eng:"Add E-Mail Information"
+        }
+    }
 }
 
 module.exports = emailLang;

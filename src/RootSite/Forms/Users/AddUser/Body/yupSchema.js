@@ -8,7 +8,6 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Component] js
 // import langCodeBook from '../../../../GlobalObject/Configure/Language/langCodeBook'
 import ppiLang from './SubForm/PPI/ppiLang';
-import emailLang from './SubForm/Email/emailLang'
 
 // ======================================================================================== [Import Component] CSS
 

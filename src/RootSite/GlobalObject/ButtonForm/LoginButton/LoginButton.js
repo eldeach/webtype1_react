@@ -45,6 +45,8 @@ function LoginButton(){
         <ButtonPopup
         buttonText={loginButtonLang.button.login[cookies.load('site-lang')]}
         buttonVariant="outlined"
+        buttonColor="white"
+        buttonSx={{}}
         popupTitle="Sign in"
         titleFontSize="xx-large"
         formSize={formSize}
