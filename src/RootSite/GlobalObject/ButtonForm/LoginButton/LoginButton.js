@@ -10,6 +10,7 @@ import { useState } from 'react';
 // ======================================================================================== [Import Component] js
 // ButtonPopup Wrapper
 import ButtonPopup from '../../Factory/ButtonPopup';
+//icon
 // form
 import FormBody from './Body/FormBody';
 import yupSchema from './Body/yupSchema';
@@ -17,10 +18,6 @@ import onSubmitFunc from './Functions/onSubmitFunc';
 //config
 import loginButtonLang from './loginButtonLang';
 // ======================================================================================== [Import Component] CSS
-const formSize={
-    width: 350,
-    height:240,
-  }
   
   const initialValues = {
     user_account: '',
@@ -43,13 +40,14 @@ function LoginButton(){
 
     return(
         <ButtonPopup
-        buttonText={loginButtonLang.button.login[cookies.load('site-lang')]}
+        buttonFullWidth={false}
         buttonVariant="outlined"
         buttonColor="white"
         buttonSx={{}}
-        popupTitle="Sign in"
+        buttonText={loginButtonLang.button.signIn[cookies.load('site-lang')]}
         titleFontSize="xx-large"
-        formSize={formSize}
+        popupTitle="Sign in"
+        formSize={{width: 350,height:240}}
         formBody={FormBody}
         initialValues={initialValues}
         yupSchema={yupSchema}

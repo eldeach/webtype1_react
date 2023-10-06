@@ -12,10 +12,6 @@ import ButtonPopup from '../../Factory/ButtonPopup';
 // form
 import FormBody from './Body/FormBody';
 // ======================================================================================== [Import Component] CSS
-const formSize={
-    width: 300,
-    height:200,
-  }
   
   const style = {
     position: 'absolute',
@@ -30,13 +26,14 @@ function LangButton(){
 
     return(
         <ButtonPopup
-        buttonText={<LanguageIcon/>}
+        buttonFullWidth={false}
         buttonVariant="text"
         buttonColor="white"
         buttonSx={{}}
-        popupTitle="Sign in"
+        buttonText={<LanguageIcon/>}
         titleFontSize="xx-large"
-        formSize={formSize}
+        popupTitle="Language"
+        formSize={{width: 300,height:200}}
         formBody={FormBody}
         initialValues={{}}
         yupSchema={{}}

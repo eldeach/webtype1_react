@@ -6,8 +6,14 @@ const phoneLang={
                 eng : "Phone Number"
             },
             yup : {
-                kor : "사용자 전화번호를 입력해주세요.",
-                eng : "Please enter user phone number."
+                wrong_pattern:{
+                    kor:"잘못된 값",
+                    eng:"Wrong value"
+                },
+                blank:{
+                    kor : "사용자 전화번호를 입력해주세요.",
+                    eng : "Please enter user phone number."
+                }
             }
         },
         phone_usage : {
@@ -37,6 +43,14 @@ const phoneLang={
             },
         },
     },
+    button:{
+        subForm:{
+            signIn:{
+                kor:"추가",
+                eng:"ADD"
+            }
+        }
+    }
 }
 
 module.exports = phoneLang;

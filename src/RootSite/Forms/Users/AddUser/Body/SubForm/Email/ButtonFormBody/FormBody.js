@@ -18,6 +18,7 @@ import emailLang from '../emailLang';
 
 // ======================================================================================== [Import Component] CSS
 import './FormBody.css'
+import { useState } from 'react';
 
 const paperStyle = {
     width:500,
@@ -30,7 +31,46 @@ const textFieldStyle={
     paddingRight:0
 }
 
+// 이 FormBody는 SubForm Email.js의 ButtonPopup의 것임
 function FormBody(props){
+
+    // 본 Subform에서 사용될 필드값 정의 및 초기값 정의
+    // formik 객체에 대한 의존성을 낮추려고 별도 정의
+    let[emailAddress,setEmailAddress] = useState('');
+    let[emailUsage,setEmailUsage] = useState('personal');
+    let[emailAffiliation,setEmailAffiliation] = useState('');
+
+    // input필드에서 값 변경 handler (Formik values 업데이트 포함)
+    const handleChange = (e) =>{
+        if (e.target.name==="email_address") {
+            setEmailAddress(e.target.value)
+            props.formikObj.setFieldValue('email_address',e.target.value)
+        }
+        else if(e.target.name==="email_usage"){
+            setEmailUsage(e.target.value)
+            props.formikObj.setFieldValue('email_usage',e.target.value)
+        }
+        else if(e.target.name==="email_affiliation"){
+            setEmailAffiliation(e.target.value)
+            props.formikObj.setFieldValue('email_affiliation',e.target.value)
+        }
+    }
+
+    // input필드에서 값 삭제 handler (Formik values 업데이트 포함)
+    const handleClear = (targetName) =>{
+        if (targetName==="email_address") {
+            setEmailAddress('')
+            props.formikObj.setFieldValue('email_address','')
+        }
+        else if(targetName==="email_usage"){
+            setEmailUsage('')
+            props.formikObj.setFieldValue('email_usage','')
+        }
+        else if(targetName==="email_affiliation"){
+            setEmailAffiliation('')
+            props.formikObj.setFieldValue('email_affiliation','')
+        }
+    }
 
     return(
         <div className="one-email-popup">
@@ -41,8 +81,8 @@ function FormBody(props){
                 id="email_address"
                 name="email_address"
                 label={emailLang.input.email_address.placeholder[cookies.load('site-lang')]}
-                value={props.formikObj.values.email_address}
-                onChange={props.formikObj.handleChange}
+                value={emailAddress}
+                onChange={(e)=>handleChange(e)}
                 onBlur={props.formikObj.handleBlur}
                 helperText={props.formikObj.touched.email_address ? props.formikObj.errors.email_address : ""}
                 error={props.formikObj.touched.email_address && Boolean(props.formikObj.errors.email_address)}
@@ -51,7 +91,7 @@ function FormBody(props){
                 fullWidth
                 InputProps={{
                     endAdornment:(
-                    <IconButton size='small' onClick={()=>{props.formikObj.setFieldValue('email_address','')}}>
+                    <IconButton size='small' onClick={()=>{handleClear("email_address")}}>
                         <ClearIcon size='small'/>
                     </IconButton>
                     ),
@@ -66,8 +106,8 @@ function FormBody(props){
                             row
                             defaultValue={props.initialValues.email_usage}
                             name="email_usage"
-                            value={props.formikObj.values.emailUsage}
-                            onChange={props.formikObj.handleChange}
+                            value={emailUsage}
+                            onChange={(e)=>handleChange(e)}
                             >
                                 <FormControlLabel value="personal" control={<Radio />} label={emailLang.input.email_usage.optionLabel.personal[cookies.load('site-lang')]} />
                                 <FormControlLabel value="work" control={<Radio />} label={emailLang.input.email_usage.optionLabel.work[cookies.load('site-lang')]}/>
@@ -81,8 +121,8 @@ function FormBody(props){
                 name="email_affiliation"
                 label={emailLang.input.email_affiliation.placeholder[cookies.load('site-lang')]}
                 type="text"
-                value={props.formikObj.values.email_affiliation}
-                onChange={props.formikObj.handleChange}
+                value={emailAffiliation}
+                onChange={(e)=>handleChange(e)}
                 onBlur={props.formikObj.handleBlur}
                 helperText={props.formikObj.touched.email_affiliation ? props.formikObj.errors.email_affiliation : ""}
                 error={props.formikObj.touched.email_affiliation && Boolean(props.formikObj.errors.email_affiliation)}
@@ -91,7 +131,7 @@ function FormBody(props){
                 fullWidth
                 InputProps={{
                     endAdornment:(
-                    <IconButton size='small' onClick={()=>{props.formikObj.setFieldValue('email_affiliation','')}}>
+                    <IconButton size='small' onClick={()=>{handleClear("email_affiliation")}}>
                         <ClearIcon size='small'/>
                     </IconButton>
                     ),

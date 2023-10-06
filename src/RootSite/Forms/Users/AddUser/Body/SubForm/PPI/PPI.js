@@ -1,6 +1,6 @@
 // ======================================================================================== [Import Libaray]
 import cookies from 'react-cookies'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { Button, IconButton, Paper, TextField } from '@mui/material';
@@ -27,6 +27,7 @@ import './PPI.css'
 function IdInfoBox(props){
 
     // 본 Subform에서 사용될 필드값 정의 및 초기값 정의
+    // formik 객체에 대한 의존성을 낮추려고 별도 정의
     let [userAccount,setUserAccount] = useState('')
     let [userPW,setUserPW] = useState('')
     let [userPWConfirm,setUserPWConfirm] = useState('')
@@ -93,7 +94,6 @@ function IdInfoBox(props){
     
     return(
         <Paper sx={props.paperStyle} elevation={3}>
-            <Button size="small" variant="contained" type="submit" form={props.formId} disabled={!props.formikObj.isValid}>Submit 테스트</Button>
             <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
             <TextField
             required

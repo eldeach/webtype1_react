@@ -1,4 +1,4 @@
-.form-content-1{
+.loginbutton-formbody{
     width: 100%;
     height: 100%;
     /* border: black solid; */
@@ -6,9 +6,10 @@
     flex-direction: column;
 }
 
-.input-box{
-    padding-top: 15px;
-    padding-bottom: 15px;
+.loginbutton-input-box{
+    margin-top: 12px;
+    padding-top: 12px;
+    padding-bottom: 14px;
     padding-left: 10px;
     padding-right: 10px;
     border-radius: 10px;
@@ -18,7 +19,7 @@
     border: #D3D3D3 solid 1px;
 }
 
-.button-box{
+.loginbutton-submit-button-box{
     flex-grow: 1;
     display: flex;
     align-items: flex-end;

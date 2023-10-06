@@ -2,16 +2,14 @@
 
 
 // ======================================================================================== [Import Material UI Libaray]  
-
+import { Button } from '@mui/material';
 
 // ======================================================================================== [Import Component] js
 //sub form content
 import PPI from './SubForm/PPI/PPI';
 import Email from './SubForm/Email/Email';
 import Phone from './SubForm/Phone/Phone';
-import PhoneBox from './SubForm/PhoneBox/PhoneBox';
-import PositionBox from './SubForm/PositionBox/PositionBox';
-import PermissionBox from './SubForm/PermissionBox/PermissionBox';
+import Position from './SubForm/Position/Position';
 
 // ======================================================================================== [Import Component] CSS
 import './FormBody.css'
@@ -33,12 +31,9 @@ function FormBody(props){
         <div className='add-user-form'>
                 <PPI {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
                 <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
-                <Email {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Phone {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Position {...props} paperStyle={paperStyle} textFieldStyle={textFieldStyle}/>
+                <Button sx={{width:500, mt:1, mb:10}} size="small" variant="contained" type="submit" form="AddUser">Submit</Button>
         </div>
     )
 

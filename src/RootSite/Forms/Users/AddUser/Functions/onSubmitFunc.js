@@ -21,9 +21,8 @@ async function onSubmitFunc(props){
         user_nickname:props.values.user_nickname,
         user_birthday:props.values.user_birthday,
         user_email:props.values.user_email,
-        user_phone:[],
-        user_position:[],
-        user_auth:[]
+        user_phone:props.values.user_phone,
+        user_position:props.values.user_position,
     }
 
     console.log(valuePayload)

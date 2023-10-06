@@ -50,12 +50,6 @@ const emailLang={
                 eng:"ADD"
             }
         }
-    },
-    text:{
-        popupTitle:{
-            kor:"이메일 정보 추가",
-            eng:"Add E-Mail Information"
-        }
     }
 }
 

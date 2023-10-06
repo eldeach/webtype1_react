@@ -1,5 +1,6 @@
 // ======================================================================================== [Import Libaray]
-
+import axios from 'axios';
+import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
 
@@ -10,16 +11,17 @@
 // ======================================================================================== [Import Component] CSS
 
 
-function phoneChange(index, event, phones, handlePhones, addField, removeField ){
-    const newPhones = [...phones];
-    newPhones[index].phone = event.target.value;
-    handlePhones(newPhones);
-    if (event.target.value.trim() !== ''){
-      addField();
-    }
-    else{
-      removeField(index)
-    }
+async function onSubmitFunc(props){
+    props.formFunctions.handleAdd(props.values)
+    props.formFunctions.handleModalClose()
 }
 
-export default phoneChange;
+export default onSubmitFunc;
+
+
+
+
+
+
+
+

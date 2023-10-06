@@ -19,8 +19,8 @@ function FormBody(props){
 
 
     return(
-        <div className="form-content-1">
-            <div className='input-box'>
+        <div className="loginbutton-formbody">
+            <div className='loginbutton-input-box'>
                 <TextField
                 required
                 variant="outlined"
@@ -57,7 +57,7 @@ function FormBody(props){
                 InputLabelProps={{style: textFieldStyle}} // font size of input label
                 />
             </div>
-            <div className='button-box'>
+            <div className='loginbutton-submit-button-box'>
                 <Button fullWidth variant="contained" size='small' type="submit" form="UserLogin">{loginButtonLang.button.signIn[cookies.load('site-lang')]}</Button>
             </div>             
         </div>

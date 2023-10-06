@@ -31,7 +31,7 @@ function ButtonPopup(props){
 
     return(
         <div>
-          <Button variant={props.buttonVariant} color = {props.buttonColor} sx={{...props.buttonSx}} size="small" onClick={handleModalOpen}>{props.buttonText}</Button>
+          <Button fullWidth={props.buttonFullWidth} variant={props.buttonVariant} color = {props.buttonColor} sx={{...props.buttonSx}} size="small" onClick={handleModalOpen}>{props.buttonText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
             <div className='button-box-close'>

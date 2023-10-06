@@ -44,7 +44,7 @@ function App() {
     <ThemeProvider theme={globalTheme}>
     <div className="App">
 
-      <AppBarFactory appBarName={appBarName}/>
+      <AppBarFactory appBarName={appBarName} pathName={location.pathname}/>
       <div style={{height:'60px'}}/>
 
       <Routes>
@@ -60,5 +60,7 @@ function App() {
     </ThemeProvider>
   );
 }
+
+
 
 export default App;

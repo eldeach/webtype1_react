@@ -27,15 +27,15 @@ function FormBody(props){
       }, []);
 
     return(
-        <div className="form-content-lang-button">
-            <div className='icon-box'>
-                <InfoIcon color = 'info' sx={{fontSize:40}}/>
+        <div className="langbutton-formbody">
+            <div className='langbutton-formbody-icon-box'>
+                <InfoIcon color = 'info' fontSize="medium"/>
             </div>
-            <div className='description-box'>
+            <div className='langbutton-formbody-description-box'>
                 <p>{langButtonLang.text.p1[cookies.load('site-lang')]}</p>
                 <p>{langButtonLang.text.p2[cookies.load('site-lang')]}</p>
             </div>
-            <FormControl className='input-box' sx={{ fontSize:12 }} size="small">
+            <FormControl sx={{ fontSize:12, width:"100%" }} size="small">
                 <InputLabel id="select-lang">Language</InputLabel>
                 <Select
                     labelId="select-lang"
@@ -47,7 +47,7 @@ function FormBody(props){
                     <MenuItem value={'kor'}>한국어</MenuItem>
                     <MenuItem value={'eng'}>English</MenuItem>
                 </Select>
-            </FormControl> 
+            </FormControl>
         </div>
     )
 
