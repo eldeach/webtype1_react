@@ -75,8 +75,10 @@ function FormBody(props){
                 id="job_position"
                 name="job_position"
                 label={positionLang.input.job_position.placeholder[cookies.load('site-lang')]}
-                value={jobPosition}
-                onChange={(e)=>handleChange(e)}
+                // value={jobPosition}
+                value={props.formikObj.values.job_position}
+                // onChange={(e)=>handleChange(e)}
+                onChange={props.formikObj.handleChange}
                 onBlur={props.formikObj.handleBlur}
                 helperText={props.formikObj.touched.job_position ? props.formikObj.errors.job_position : ""}
                 error={props.formikObj.touched.job_position && Boolean(props.formikObj.errors.job_position)}

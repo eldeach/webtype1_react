@@ -60,7 +60,8 @@ function Phone(props){
         <Paper sx={props.paperStyle} elevation={3}>
             <SubTitle icon={<WorkIcon color='rootsite'/>} text={"Job Position"}></SubTitle>
             { // 현재 폰s 배열 객체 정보 출력 iterator
-                userPositions.map((position, index)=>(
+                // userPositions.map((position, index)=>(
+                    props.formikObj.values.user_position.map((position, index)=>(
                 <div className='one-phone-item'>
                         <div className='one-phone-info'>
                             <Chip size="small" icon={<WorkOutlineIcon size="small"/>} color="rootsite" label={position.job_position}/>

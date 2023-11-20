@@ -34,10 +34,10 @@ function ButtonPopup(props){
           <Button fullWidth={props.buttonFullWidth} variant={props.buttonVariant} color = {props.buttonColor} sx={{...props.buttonSx}} size="small" onClick={handleModalOpen}>{props.buttonText}</Button>
           <Modal open={open} onClose={handleModalClose}>
             <Paper sx={style} elevation={3}>
-            <div className='button-box-close'>
-                <button className='button-close' onClick={()=>{handleModalClose()}}>X</button>
-            </div>
-            <div style={{fontSize:props.titleFontSize}} className='popup-title'>{props.popupTitle}</div>
+              <div className='button-box-close'>
+                  <button className='button-close' onClick={()=>{handleModalClose()}}>X</button>
+              </div>
+              <div style={{fontSize:props.titleFontSize}} className='popup-title'>{props.popupTitle}</div>
               <FormikWrapper
               formSize={props.formSize}
               formBody={props.formBody}

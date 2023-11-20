@@ -11,7 +11,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import AddIcCallIcon from '@mui/icons-material/AddIcCall';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 
 // ======================================================================================== [Import Component] js
 import ButtonPopup from '../../../../../../GlobalObject/Factory/ButtonPopup'
@@ -87,7 +87,12 @@ function Phone(props){
             buttonText={<AddIcon/>}
             // Popup 제목 스타일 정의
             titleFontSize="x-large"
-            popupTitle={<AddIcCallIcon color="rootsite" fontSize="large"/>}
+            popupTitle={
+                <div>
+                    <ContactPhoneIcon color="rootsite" fontSize="large"/>
+                    <AddCircleIcon color="rootsite" fontSize="small" sx={{ml:-0.6, mb:2.5}}/>
+                </div>
+            }
             //<--- Button Popup 고유 props 끝
             formSize={{width: 400, height:300}}
             formBody={FormBody}

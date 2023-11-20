@@ -91,7 +91,7 @@ function IdInfoBox(props){
             props.formikObj.setFieldValue('user_nickname','')
         }
     }
-    
+
     return(
         <Paper sx={props.paperStyle} elevation={3}>
             <SubTitle icon={<FingerprintIcon color='rootsite'/>} text={"Personal Identifiable Information (PII)"}></SubTitle>
@@ -101,8 +101,10 @@ function IdInfoBox(props){
             id="user_account"
             name="user_account"
             label={ppiLang.input.user_account.placeholder[cookies.load('site-lang')]}
-            value={userAccount}
-            onChange={(e)=>handleChange(e)}
+            // value={userAccount}
+            value={props.formikObj.values.user_account}
+            // onChange={(e)=>handleChange(e)}
+            onChange={props.formikObj.handleChange}
             onBlur={props.formikObj.handleBlur}
             helperText={props.formikObj.touched.user_account ? props.formikObj.errors.user_account : ""}
             error={props.formikObj.touched.user_account && Boolean(props.formikObj.errors.user_account)}

@@ -13,6 +13,7 @@ import Position from './SubForm/Position/Position';
 
 // ======================================================================================== [Import Component] CSS
 import './FormBody.css'
+import { useEffect } from 'react';
 
 const paperStyle = {
     width:500,
@@ -26,6 +27,13 @@ const textFieldStyle={
 }
 
 function FormBody(props){
+
+
+
+    useEffect(() => {
+        console.log(props)
+    },[])
+
     // props는 FormikWrapper 사용한 부모 폼과 Formik 객체들
     return(
         <div className='add-user-form'>

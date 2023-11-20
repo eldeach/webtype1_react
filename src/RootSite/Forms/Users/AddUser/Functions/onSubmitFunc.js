@@ -12,6 +12,8 @@ import cookies from 'react-cookies'
 
 
 async function onSubmitFunc(props){
+    console.log("AA")
+    console.log(props)
     
     const valuePayload = {
         user_account: props.values.user_account,
@@ -26,6 +28,8 @@ async function onSubmitFunc(props){
     }
 
     console.log(valuePayload)
+
+    props.formikObj.resetForm()
 }
 
 export default onSubmitFunc;

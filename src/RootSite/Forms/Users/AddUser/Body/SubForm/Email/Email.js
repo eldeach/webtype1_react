@@ -86,7 +86,12 @@ function Email(props){
             buttonText={<AddIcon/>}
             // Popup 제목 스타일 정의
             titleFontSize="x-large"
-            popupTitle={<AddCircleIcon color="rootsite" fontSize="large"/>}
+            popupTitle={
+                <div>
+                    <EmailIcon color="rootsite" fontSize="large"/>
+                    <AddCircleIcon color="rootsite" fontSize="small" sx={{ml:-1.5, mb:2.5}}/>
+                </div>
+            }
             //<--- Button Popup 고유 props 끝
             formSize={{width: 400, height:300}}
             formBody={FormBody}
