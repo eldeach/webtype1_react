@@ -35,7 +35,7 @@ import addUserLang from './addUserLang'
 import AddEmail from './ModalForm/AddEmail/AddEmail';
 import AddPhone from './ModalForm/AddPhone/AddPhone';
 import AddPosition from './ModalForm/AddPosition/AddPosition';
-import CodeIcon from '@mui/icons-material/Code';
+
 
 // ======================================================================================== [Import Component] CSS
 
@@ -56,13 +56,21 @@ function AddUser(){
             p: 2,
             mb:2
         },
-        popupPaper : {
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            boxShadow: 24,
-            p: 2,
+        popup : {
+            paper : {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                boxShadow: 24,
+                p: 2,
+            },
+            closeButtonRow : {
+                display:'flex', flexDirection:'row'
+            },
+            closeButton : {
+                border : 'red solid 1px', borderRadius:'4px', fontSize:'small', color:'red', background:'white', marginLeft:'auto'
+            },
         },
         inputTexstField : {
             fontSize: 14,
@@ -137,8 +145,8 @@ function AddUser(){
     const arrAddElement = function (arr, newElement) {
         let duplication = 0
         let tempArr = [...arr];
-        tempArr.map((oneItem, index)=>{
-            if(oneItem[Object.keys(oneItem)[0]] == newElement[Object.keys(newElement)[0]]){
+        tempArr.map((oneItem, index) => {
+            if(oneItem[Object.keys(oneItem)[0]] === newElement[Object.keys(newElement)[0]]){
                 duplication += 1;
             }
         })
@@ -307,7 +315,7 @@ function AddUser(){
                             }
                             <Button fullWidth variant="outlined" color = "rootsite" size="small" onClick={()=>setPopup(4)}>ADD</Button>
                             <Modal open={(popup === 4)} onClose={handleModalClose}>
-                                <Paper sx={style.popupPaper} elevation={3}>
+                                <Paper sx={style.popup.paper} elevation={3}>
                                 <div className='button-box-close'>
                                     <button className='button-close' onClick={handleModalClose}>X</button>
                                 </div>
@@ -509,10 +517,8 @@ function AddUser(){
                             }
                             <Button fullWidth variant="outlined" color = "rootsite" size="small" onClick={()=>setPopup(1)}>ADD</Button>
                             <Modal open={(popup === 1)} onClose={handleModalClose}>
-                                <Paper sx={style.popupPaper} elevation={3}>
-                                <div className='button-box-close'>
-                                    <button className='button-close' onClick={handleModalClose}>X</button>
-                                </div>
+                                <Paper sx={style.popup.paper} elevation={3}>
+                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
                                     <AddEmail
                                     addElement = {function (newElement) {
                                         formikProps.setFieldValue('user_email', arrAddElement(formikProps.values.user_email, newElement))
@@ -544,10 +550,8 @@ function AddUser(){
                             }
                             <Button fullWidth variant="outlined" color = "rootsite" size="small" onClick={()=>setPopup(2)}>ADD</Button>
                             <Modal open={(popup === 2)} onClose={handleModalClose}>
-                                <Paper sx={style.popupPaper} elevation={3}>
-                                <div className='button-box-close'>
-                                    <button className='button-close' onClick={handleModalClose}>X</button>
-                                </div>
+                                <Paper sx={style.popup.paper} elevation={3}>
+                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
                                     <AddPhone
                                     addElement = {function (newElement) {
                                         formikProps.setFieldValue('user_phone', arrAddElement(formikProps.values.user_phone, newElement))
@@ -579,10 +583,8 @@ function AddUser(){
                             }
                             <Button fullWidth variant="outlined" color = "rootsite" size="small" onClick={()=>setPopup(3)}>ADD</Button>
                             <Modal open={(popup === 3)} onClose={handleModalClose}>
-                                <Paper sx={style.popupPaper} elevation={3}>
-                                <div className='button-box-close'>
-                                    <button className='button-close' onClick={handleModalClose}>X</button>
-                                </div>
+                                <Paper sx={style.popup.paper} elevation={3}>
+                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
                                     <AddPosition
                                     addElement = {function (newElement) {
                                         formikProps.setFieldValue('user_position', arrAddElement(formikProps.values.user_position, newElement))

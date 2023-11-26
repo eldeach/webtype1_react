@@ -2,3 +2,48 @@ div {
     font-family: sans-serif;
 }
 
+.popup-close-button-box {
+    width: 100%;
+    display: block;
+    text-align: end;
+    box-sizing: border-box;
+}
+
+.popup-close-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    border: solid 0.5px;
+    border-color: #D62600 ;
+    background-color: transparent;
+    color:#D62600;
+    transition: all 0.1s;
+    transition-timing-function: cubic-bezier(1, -0.08, 0.95, 0.95);
+    
+}
+
+.popup-close-button:hover {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    border: solid 0.5px;
+    border-color: red ;
+    background-color: transparent;
+    color:red;
+    transition:none;
+    
+}
+
+.popup-close-button:active {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 3px;
+    border: solid 0.5px;
+    border-color: #D62600 ;
+    background-color: transparent;
+    color:#D62600;
+    
+}

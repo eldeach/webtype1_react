@@ -15,7 +15,7 @@ import configAppBars from './RootSite/GlobalObject/Configure/AppBar/configAppBar
 import globalTheme from './RootSite/GlobalObject/Themes/globalTheme';
 import FirstImpression from './RootSite/FirstImpression/FirstImpression'
 // Root Site Forms
-import AddUserForm from './RootSite/Forms/Users/AddUser/AddUserForm';
+import AddUser from './RootSite/Forms/Users/AddUser/AddUser';
 import ManageUserForm from './RootSite/Forms/Users/ManageUser/ManageUserForm';
 // Child Site Component
 import CdmsFrontPage from './ChildSite/CDMS/FrontPage/CdmsFrontPage'
@@ -49,7 +49,7 @@ function App() {
 
       <Routes>
         <Route path='/' element={<FirstImpression/>}/>
-        <Route path='/adduser' element={<AddUserForm/>}/>
+        <Route path='/adduser' element={<AddUser/>}/>
         <Route path='/manageuser' element={<ManageUserForm/>}/>
         
         <Route path='/cdms' element={<CdmsFrontPage/>}/>

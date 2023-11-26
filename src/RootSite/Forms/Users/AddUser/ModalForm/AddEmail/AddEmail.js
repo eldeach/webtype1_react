@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 import * as yup from 'yup';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, Chip, IconButton, Modal, Paper, Typography, TextField } from '@mui/material';
+import { Button, IconButton, Typography, TextField } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -32,11 +32,6 @@ function AddEmail(props){
             text : {
                 marginTop:'4px', marginLeft:'2px'
             }
-        },
-        paper : {
-            width:500,
-            p: 2,
-            mb:2
         },
         inputTexstField : {
             fontSize: 14,
@@ -150,7 +145,7 @@ function AddEmail(props){
                     }}
                     InputLabelProps={{style: style.inputTexstField}} // font size of input label
                     />
-                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addEmail">ADD</Button>
+                    <Button sx={{mt:1}} fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addEmail">ADD</Button>
                 </form>
             )}
         </Formik>

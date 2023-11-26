@@ -4,7 +4,7 @@ import cookies from 'react-cookies'
 import * as yup from 'yup';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, Chip, IconButton, Modal, Paper, Typography, TextField } from '@mui/material';
+import { Button, IconButton, Typography, TextField } from '@mui/material';
 //icon
 import ClearIcon from '@mui/icons-material/Clear';
 import WorkIcon from '@mui/icons-material/Work';
@@ -26,11 +26,6 @@ function AddPosition(props){
             text : {
                 marginTop:'4px', marginLeft:'2px'
             }
-        },
-        paper : {
-            width:500,
-            p: 2,
-            mb:2
         },
         inputTexstField : {
             fontSize: 14,
@@ -141,7 +136,7 @@ function AddPosition(props){
                     }}
                     InputLabelProps={{style: style.inputTexstField}} // font size of input label
                     />
-                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addPosition">ADD</Button>
+                    <Button sx={{mt:1}} fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addPosition">ADD</Button>
                 </form>
             )}
         </Formik>
