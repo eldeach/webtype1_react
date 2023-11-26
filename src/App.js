@@ -5,7 +5,10 @@ import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { ThemeProvider } from '@mui/material/styles';
-
+import { AppBar, Box, Button, Toolbar, Typography, Divider, IconButton, Drawer } from '@mui/material/';
+//icon
+import MenuIcon from '@mui/icons-material/Menu';
+import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 // ======================================================================================== [Import Component] js
 import LoginButton from './RootSite/Forms/ButtonLogin/LoginButton';
 import LangButton from './RootSite/Forms/ButtonLang/LangButton';
@@ -29,7 +32,15 @@ import './App.css';
 
 function App() {
   const location = useLocation();
+
+  const [openMenu, setOpenMenu] = useState(0);
+  const handleMenuClose = () => setOpenMenu(0);
+
+  const [pageTitle, setPageTitle] = useState('')
+  const handlePageTitle = (titleText) => setPageTitle(titleText)
+  
   let [appBarName, setAppBarName] = useState("rootsite");
+
 
   useEffect(() => {
     if (!cookies.load('site-lang')) {
@@ -49,32 +60,29 @@ function App() {
         <Box sx={{ flexGrow: 1 }}>
           <AppBar color="rootsite" position="fixed">
             <Toolbar variant="dense">
-              <IconButton
-                size="large"
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                sx={{ mr: 2 }}
-              >
+              <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }} onClick={()=>setOpenMenu(1)}>
                 <MenuIcon />
               </IconButton>
-              <Typography variant="h6" component="div">
-                {configAppBars[props.appBarName].title}
-              </Typography>
+              <div style={{fontSize:'18px'}}>{pageTitle}</div>
               <Box sx={{ flexGrow: 1 }}>
 
               </Box>
+              <Button variant="outlined" color = "white" size="small">{"CDMS"}</Button>
               <LangButton />
               <LoginButton />
             </Toolbar>
           </AppBar>
         </Box>
-        {/* <AppBarFactory appBarName={appBarName} pathName={location.pathname}/> */}
+        <Drawer anchor={'left'} open={(openMenu === 1)} onClose={handleMenuClose}>
+          <Box sx={{ width: 250}} role="presentation" onClick={handleMenuClose} onKeyDown={handleMenuClose}>
+            
+          </Box>
+        </Drawer>
         <div style={{ height: '60px' }} />
 
         <Routes>
-          <Route path='/' element={<FirstImpression />} />
-          <Route path='/adduser' element={<AddUser />} />
+          <Route path='/' element={<FirstImpression handlePageTitle={handlePageTitle}/>} />
+          <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle}/>} />
           <Route path='/manageuser' element={<ManageUserForm />} />
 
           <Route path='/cdms' element={<CdmsFrontPage />} />

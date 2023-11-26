@@ -5,6 +5,10 @@ const langConfig = {
             eng : "This item has already been added."
         }
     },
+    formTitle : {
+        kor : "사용자 추가",
+        eng : "Add user"
+    },
     ppiPaper : {
         inputField : {
             user_account : {

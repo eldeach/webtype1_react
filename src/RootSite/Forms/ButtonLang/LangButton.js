@@ -3,7 +3,7 @@ import cookies from 'react-cookies'
 import { useEffect, useState } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, Modal, Paper, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Button, IconButton, Modal, Paper, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 //icon
 import LanguageIcon from '@mui/icons-material/Language';
 import InfoIcon from '@mui/icons-material/Info';
@@ -76,7 +76,7 @@ function LangButton (){
 
     return (
         <div>
-            <Button variant="text" color = "white" size="small" onClick={()=>setPopup(1)}>{<LanguageIcon/>}</Button>
+            <IconButton size="large" edge="end" color="inherit" sx={{ mr: 1 }} onClick={()=>setPopup(1)}><LanguageIcon/></IconButton>
             <Modal open={(popup === 1)} onClose={handleModalClose}>
                 <Paper id='langPaper' sx={style.popupPaper} elevation={3}>
                     <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>

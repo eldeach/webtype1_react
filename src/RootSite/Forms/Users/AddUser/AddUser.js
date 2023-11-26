@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Formik } from 'formik';
 import cookies from 'react-cookies'
 import * as yup from 'yup';
@@ -40,7 +40,7 @@ import AddPosition from './ModalForm/AddPosition/AddPosition';
 // ======================================================================================== [Import Component] CSS
 
 
-function AddUser(){
+function AddUser(props){
 
     const style = {
         subtitle:{
@@ -184,6 +184,10 @@ function AddUser(){
     
         actions.resetForm()
     }
+
+    useEffect(()=>{
+        props.handlePageTitle(addUserLang.formTitle[cookies.load('site-lang')])
+    },[])
 
 
     return(

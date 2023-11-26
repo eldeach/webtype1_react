@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-
+import { useEffect } from 'react';
 
 // ======================================================================================== [Import Material UI Libaray]  
 //icon
@@ -13,7 +13,13 @@ import cardContent from './WebProductCard/cardContent';
 import './FirstImpression.css';
 
 
-function FirstImpression(){
+function FirstImpression(props){
+
+    useEffect(()=>{
+        props.handlePageTitle("First Impression")
+    },[])
+
+
     return(
         <div className='first-impression'>
             <div className='first-impression-tob-box'></div>
