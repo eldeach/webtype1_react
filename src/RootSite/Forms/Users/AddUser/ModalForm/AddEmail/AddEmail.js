@@ -53,7 +53,7 @@ function AddEmail(props){
 
     const initialValues = {
         email_address: '',
-        email_usage: 'personal',
+        email_usage: 'PERSONAL',
         email_affiliation: ''
     }
 
@@ -62,18 +62,14 @@ function AddEmail(props){
         validationSchema={yupSchema}
         initialValues={initialValues}
         onSubmit={(values)=>{
-            // props.addFunction (values)
-            // props.handleModalClose()
-            let result = props.addFunction (values)
-            if (result == 'done') props.handleModalClose()
-            else alert ("A")
+            props.addElement (values)
         }}
         >
             {formikProps => (
                 <form
                 noValidate
                 style={{width: '400px', display:'flex', flexDirection:'column', alignItems:'center'}}
-                id = "AddEmail"
+                id = "addEmail"
                 autoComplete='off'
                 onSubmit={formikProps.handleSubmit}
                 >
@@ -115,17 +111,17 @@ function AddEmail(props){
                             onChange={formikProps.handleChange}
                             >
                                 <FormControlLabel
-                                value="personal"
+                                value="PERSONAL"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addEmailLang.inputField.email_usage.optionLabel.personal[cookies.load('site-lang')]}</Typography>}
                                 />
                                 <FormControlLabel
-                                value="work"
+                                value="WORK"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addEmailLang.inputField.email_usage.optionLabel.work[cookies.load('site-lang')]}</Typography>}
                                 />
                                 <FormControlLabel
-                                value="other"
+                                value="OTHER"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addEmailLang.inputField.email_usage.optionLabel.other[cookies.load('site-lang')]}</Typography>}
                                 />
@@ -154,7 +150,7 @@ function AddEmail(props){
                     }}
                     InputLabelProps={{style: style.inputTexstField}} // font size of input label
                     />
-                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="AddEmail">ADD</Button>
+                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addEmail">ADD</Button>
                 </form>
             )}
         </Formik>

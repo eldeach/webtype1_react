@@ -7,6 +7,10 @@ const loginButtonLang={
         signIn:{
             kor:"로그인",
             eng:"Sign in"
+        },
+        signOut:{
+            kor:"로그아웃",
+            eng:"Sign Out"
         }
 
     },

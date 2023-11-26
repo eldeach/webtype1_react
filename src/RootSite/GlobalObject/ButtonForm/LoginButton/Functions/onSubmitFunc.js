@@ -15,26 +15,33 @@ async function onSubmitFunc(props){
 
     await axios.post('/local-login' ,props.values)
     .then((res)=>{
-        if (res.data.dr && res.data.msgCode === "msg1"){
+        console.log(res)
+        console.log(res.status)
+        console.log(res.data)
+        if (res.status === 200){
             props.formFunctions.switchLoginStatus(true)
         }
         else {
             props.formFunctions.switchLoginStatus(false)
         }
-        props.formFunctions.handleModalClose();
     })
     .catch((error)=>{
+        console.log(error)
+        console.log(error.response.status)
+        console.log(error.response.data)
         props.formFunctions.switchLoginStatus(false)
         if (error.response.data.dr)
         {
             alert("Code : " + error.response.data.msgCode + "\nMessage : " + error.response.data.msg[cookies.load('site-lang')])
-            props.formFunctions.handleModalClose();
         }
         else{
             alert("<unexpected error> \n " + error.response.data)
-            props.formFunctions.handleModalClose();
+            
         }
 
+    })
+    .finally(()=>{
+        props.formFunctions.handleModalClose();
     })
 }
 

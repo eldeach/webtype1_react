@@ -21,7 +21,7 @@ import addPhoneLang from './addPhoneLang.js'
 // ======================================================================================== [Import Component] CSS
 
 
-function AddEmail(props){
+function AddPhone(props){
 
     const style = {
         subtitle:{
@@ -52,7 +52,7 @@ function AddEmail(props){
 
     const initialValues = {
         phone_number: '',
-        phone_usage: 'personal',
+        phone_usage: 'PERSONAL',
         phone_affiliation: ''
     }
 
@@ -61,16 +61,14 @@ function AddEmail(props){
         validationSchema={yupSchema}
         initialValues={initialValues}
         onSubmit={(values)=>{
-            let result = props.addFunction (values)
-            if (result == 'done') props.handleModalClose()
-            else alert ("A")
+            props.addElement (values)
         }}
         >
             {formikProps => (
                 <form
                 noValidate
                 style={{width: '400px', display:'flex', flexDirection:'column', alignItems:'center'}}
-                id = "AddPhone"
+                id = "addPhone"
                 autoComplete='off'
                 onSubmit={formikProps.handleSubmit}
                 >
@@ -112,17 +110,17 @@ function AddEmail(props){
                             onChange={formikProps.handleChange}
                             >
                                 <FormControlLabel
-                                value="personal"
+                                value="PERSONAL"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addPhoneLang.inputField.phone_usage.optionLabel.personal[cookies.load('site-lang')]}</Typography>}
                                 />
                                 <FormControlLabel
-                                value="work"
+                                value="WORK"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addPhoneLang.inputField.phone_usage.optionLabel.work[cookies.load('site-lang')]}</Typography>}
                                 />
                                 <FormControlLabel
-                                value="other"
+                                value="OTHER"
                                 control={<Radio />}
                                 label={<Typography sx={{fontSize:14}}>{addPhoneLang.inputField.phone_usage.optionLabel.other[cookies.load('site-lang')]}</Typography>}
                                 />
@@ -151,7 +149,7 @@ function AddEmail(props){
                     }}
                     InputLabelProps={{style: style.inputTexstField}} // font size of input label
                     />
-                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="AddPhone">ADD</Button>
+                    <Button fullWidth variant="contained" color = "rootsite" size="small" type="submit" form="addPhone">ADD</Button>
                 </form>
             )}
         </Formik>
@@ -159,4 +157,4 @@ function AddEmail(props){
 
 }
 
-export default AddEmail;
+export default AddPhone;
