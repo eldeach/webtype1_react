@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-import { Routes, Route, useLocation  } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import cookies from 'react-cookies'
 
@@ -7,6 +7,8 @@ import cookies from 'react-cookies'
 import { ThemeProvider } from '@mui/material/styles';
 
 // ======================================================================================== [Import Component] js
+import LoginButton from './RootSite/Forms/ButtonLogin/LoginButton';
+import LangButton from './RootSite/Forms/ButtonLang/LangButton';
 // App Bar
 import AppBarFactory from './RootSite/GlobalObject/Factory/AppBar/AppBarFactory'
 //Config
@@ -27,36 +29,59 @@ import './App.css';
 
 function App() {
   const location = useLocation();
-  let [appBarName,setAppBarName] = useState("rootsite");
+  let [appBarName, setAppBarName] = useState("rootsite");
 
   useEffect(() => {
-    if(!cookies.load('site-lang')){
-      cookies.save('site-lang','eng',{path :'/'})
+    if (!cookies.load('site-lang')) {
+      cookies.save('site-lang', 'eng', { path: '/' })
     }
 
-    Object.keys(configAppBars).map(function(element){
-      if(location.pathname === "/".concat(element)) setAppBarName(element)
+    Object.keys(configAppBars).map(function (element) {
+      if (location.pathname === "/".concat(element)) setAppBarName(element)
     })
     if (location.pathname === "/") setAppBarName("rootsite")
   }, [location]);
 
   return (
     <ThemeProvider theme={globalTheme}>
-    <div className="App">
+      <div className="App">
 
-      <AppBarFactory appBarName={appBarName} pathName={location.pathname}/>
-      <div style={{height:'60px'}}/>
+        <Box sx={{ flexGrow: 1 }}>
+          <AppBar color="rootsite" position="fixed">
+            <Toolbar variant="dense">
+              <IconButton
+                size="large"
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                sx={{ mr: 2 }}
+              >
+                <MenuIcon />
+              </IconButton>
+              <Typography variant="h6" component="div">
+                {configAppBars[props.appBarName].title}
+              </Typography>
+              <Box sx={{ flexGrow: 1 }}>
 
-      <Routes>
-        <Route path='/' element={<FirstImpression/>}/>
-        <Route path='/adduser' element={<AddUser/>}/>
-        <Route path='/manageuser' element={<ManageUserForm/>}/>
-        
-        <Route path='/cdms' element={<CdmsFrontPage/>}/>
-        <Route path='/vmp' element={<VmpFrontPage/>}/>
-        <Route path='/pqr' element={<PqrFrontPage/>}/>
-      </Routes>
-    </div>
+              </Box>
+              <LangButton />
+              <LoginButton />
+            </Toolbar>
+          </AppBar>
+        </Box>
+        {/* <AppBarFactory appBarName={appBarName} pathName={location.pathname}/> */}
+        <div style={{ height: '60px' }} />
+
+        <Routes>
+          <Route path='/' element={<FirstImpression />} />
+          <Route path='/adduser' element={<AddUser />} />
+          <Route path='/manageuser' element={<ManageUserForm />} />
+
+          <Route path='/cdms' element={<CdmsFrontPage />} />
+          <Route path='/vmp' element={<VmpFrontPage />} />
+          <Route path='/pqr' element={<PqrFrontPage />} />
+        </Routes>
+      </div>
     </ThemeProvider>
   );
 }
