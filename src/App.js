@@ -5,89 +5,81 @@ import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]  
 import { ThemeProvider } from '@mui/material/styles';
-import { AppBar, Box, Button, Toolbar, Typography, Divider, IconButton, Drawer } from '@mui/material/';
+import { AppBar, Box, Toolbar, IconButton, Drawer } from '@mui/material/';
 //icon
 import MenuIcon from '@mui/icons-material/Menu';
-import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
+
 // ======================================================================================== [Import Component] js
-import LoginButton from './RootSite/Forms/ButtonLogin/LoginButton';
-import LangButton from './RootSite/Forms/ButtonLang/LangButton';
-// App Bar
-import AppBarFactory from './RootSite/GlobalObject/Factory/AppBar/AppBarFactory'
-//Config
-import configAppBars from './RootSite/GlobalObject/Configure/AppBar/configAppBars';
-// Root Site Component
-import globalTheme from './RootSite/GlobalObject/Themes/globalTheme';
-import FirstImpression from './RootSite/FirstImpression/FirstImpression'
-// Root Site Forms
-import AddUser from './RootSite/Forms/Users/AddUser/AddUser';
-import ManageUserForm from './RootSite/Forms/Users/ManageUser/ManageUserForm';
-// Child Site Component
-import CdmsFrontPage from './ChildSite/CDMS/FrontPage/CdmsFrontPage'
-import VmpFrontPage from './ChildSite/VMP/FrontPage/VmpFrontPage'
-import PqrFrontPage from './ChildSite/PQR/FrontPage/PqrFrontPage'
+import LoginButton from './System/Forms/ButtonLogin/LoginButton';
+import LangButton from './System/Forms/ButtonLang/LangButton';
+
+// System Component
+import GoSystemButton from './System/Forms/ButtonGoSystem/GoSystemButton';
+import menuConfig from './System/SystemMenu/menuConfig';
+import systemThemes from './System/systemThemes';
+// System Redirect page
+import NoAuthPage from './System/RedirectPage/NoAuthPage/NoAuthPage';
+import SessionExpired from './System/RedirectPage/SessionExpired/SessionExpired';
+
+// Sys 1 Pages
+import AddUser from './MotherSite/Forms/Users/AddUser/AddUser';
 
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
 function App() {
+
   const location = useLocation();
 
-  const [openMenu, setOpenMenu] = useState(0);
-  const handleMenuClose = () => setOpenMenu(0);
+  const [openMenu, setOpenMenu] = useState(false);
+  const handleMenuClose = () => setOpenMenu(false);
 
   const [pageTitle, setPageTitle] = useState('')
   const handlePageTitle = (titleText) => setPageTitle(titleText)
-  
-  let [appBarName, setAppBarName] = useState("rootsite");
 
+  const [systemCode, setSystemCode] = useState('sys1')
+  const handleSystemCode = (codeValue) => setSystemCode(codeValue)
 
   useEffect(() => {
     if (!cookies.load('site-lang')) {
       cookies.save('site-lang', 'eng', { path: '/' })
     }
-
-    Object.keys(configAppBars).map(function (element) {
-      if (location.pathname === "/".concat(element)) setAppBarName(element)
-    })
-    if (location.pathname === "/") setAppBarName("rootsite")
-  }, [location]);
+  },[][location]);
 
   return (
-    <ThemeProvider theme={globalTheme}>
+    <ThemeProvider theme={systemThemes}>
       <div className="App">
 
         <Box sx={{ flexGrow: 1 }}>
-          <AppBar color="rootsite" position="fixed">
+          <AppBar color={systemCode} position="fixed">
             <Toolbar variant="dense">
-              <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }} onClick={()=>setOpenMenu(1)}>
+              <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }} onClick={()=>setOpenMenu(true)}>
                 <MenuIcon />
               </IconButton>
               <div style={{fontSize:'18px'}}>{pageTitle}</div>
               <Box sx={{ flexGrow: 1 }}>
 
               </Box>
-              <Button variant="outlined" color = "white" size="small">{"CDMS"}</Button>
+              <div style={{fontSize:'18px', marginRight:'20px', fontWeight:'bolder'}}>{menuConfig[systemCode].name}</div>
+              <GoSystemButton handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>
               <LangButton />
               <LoginButton />
             </Toolbar>
           </AppBar>
         </Box>
-        <Drawer anchor={'left'} open={(openMenu === 1)} onClose={handleMenuClose}>
+        <Drawer anchor={'left'} open={(openMenu)} onClose={handleMenuClose}>
           <Box sx={{ width: 250}} role="presentation" onClick={handleMenuClose} onKeyDown={handleMenuClose}>
-            
+            {menuConfig[systemCode].menu()}
           </Box>
         </Drawer>
         <div style={{ height: '60px' }} />
 
         <Routes>
-          <Route path='/' element={<FirstImpression handlePageTitle={handlePageTitle}/>} />
-          <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle}/>} />
-          <Route path='/manageuser' element={<ManageUserForm />} />
+          <Route path='/' element={<div/>} />
+          <Route path='/noauth' element={<NoAuthPage/>} />
+          <Route path='/sessionexpired' element={<SessionExpired/>} />
 
-          <Route path='/cdms' element={<CdmsFrontPage />} />
-          <Route path='/vmp' element={<VmpFrontPage />} />
-          <Route path='/pqr' element={<PqrFrontPage />} />
+          <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
         </Routes>
       </div>
     </ThemeProvider>
