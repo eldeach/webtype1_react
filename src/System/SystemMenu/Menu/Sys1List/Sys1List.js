@@ -24,6 +24,8 @@ function Sys1List() {
       <Divider />
       <List>
         <ListItemNavPath navPath={'/adduser'} icon={<PersonAddIcon color = 'sys1'/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
+        <ListItemNavPath navPath={'/dndtest'} icon={<PersonAddIcon color = 'sys1'/>} text={ "DnD Test" }/>
+        <ListItemNavPath navPath={'/tbtest'} icon={<PersonAddIcon color = 'sys1'/>} text={ "Table Test" }/>
       </List>
     </div>
   )

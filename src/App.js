@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import cookies from 'react-cookies'
 
@@ -23,69 +23,67 @@ import SessionExpired from './System/RedirectPage/SessionExpired/SessionExpired'
 
 // Sys 1 Pages
 import AddUser from './MotherSite/Forms/Users/AddUser/AddUser';
+import DnDTest from './MotherSite/Forms/Test/DnDTest';
 
 // ======================================================================================== [Import Component] CSS
 import './App.css';
 
 function App() {
 
-  const location = useLocation();
+    const [openMenu, setOpenMenu] = useState(false);
+    const handleMenuClose = () => setOpenMenu(false);
 
-  const [openMenu, setOpenMenu] = useState(false);
-  const handleMenuClose = () => setOpenMenu(false);
+    const [pageTitle, setPageTitle] = useState('')
+    const handlePageTitle = (titleText) => setPageTitle(titleText)
 
-  const [pageTitle, setPageTitle] = useState('')
-  const handlePageTitle = (titleText) => setPageTitle(titleText)
+    const [systemCode, setSystemCode] = useState('sys1')
+    const handleSystemCode = (codeValue) => setSystemCode(codeValue)
 
-  const [systemCode, setSystemCode] = useState('sys1')
-  const handleSystemCode = (codeValue) => setSystemCode(codeValue)
+    useEffect(() => {
+        if (!cookies.load('site-lang')) {
+            cookies.save('site-lang', 'eng', { path: '/' })
+        }
+    },[]);
 
-  useEffect(() => {
-    if (!cookies.load('site-lang')) {
-      cookies.save('site-lang', 'eng', { path: '/' })
-    }
-  },[][location]);
+    return (
+        <ThemeProvider theme={systemThemes}>
+            <div className="App">
+                <Box sx={{ flexGrow: 1 }}>
+                    <AppBar color={systemCode} position="fixed">
+                        <Toolbar variant="dense">
+                            <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }} onClick={()=>setOpenMenu(true)}>
+                                <MenuIcon />
+                            </IconButton>
+                            <div style={{fontSize:'18px'}}>{pageTitle}</div>
+                            <Box sx={{ flexGrow: 1 }}>
 
-  return (
-    <ThemeProvider theme={systemThemes}>
-      <div className="App">
+                            </Box>
+                            <div style={{fontSize:'18px', marginRight:'20px', fontWeight:'bolder'}}>{menuConfig[systemCode].name}</div>
+                            <GoSystemButton handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>
+                            <LangButton />
+                            <LoginButton />
+                        </Toolbar>
+                    </AppBar>
+                </Box>
+                <Drawer anchor={'left'} open={(openMenu)} onClose={handleMenuClose}>
+                    <Box sx={{ width: 250}} role="presentation" onClick={handleMenuClose} onKeyDown={handleMenuClose}>
+                        {menuConfig[systemCode].menu()}
+                    </Box>
+                </Drawer>
+                <div style={{ height: '60px' }} />
 
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar color={systemCode} position="fixed">
-            <Toolbar variant="dense">
-              <IconButton size="large" edge="start" color="inherit" sx={{ mr: 2 }} onClick={()=>setOpenMenu(true)}>
-                <MenuIcon />
-              </IconButton>
-              <div style={{fontSize:'18px'}}>{pageTitle}</div>
-              <Box sx={{ flexGrow: 1 }}>
+                <Routes>
+                    <Route path='/' element={<div/>} />
+                    <Route path='/noauth' element={<NoAuthPage/>} />
+                    <Route path='/sessionexpired' element={<SessionExpired/>} />
 
-              </Box>
-              <div style={{fontSize:'18px', marginRight:'20px', fontWeight:'bolder'}}>{menuConfig[systemCode].name}</div>
-              <GoSystemButton handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>
-              <LangButton />
-              <LoginButton />
-            </Toolbar>
-          </AppBar>
-        </Box>
-        <Drawer anchor={'left'} open={(openMenu)} onClose={handleMenuClose}>
-          <Box sx={{ width: 250}} role="presentation" onClick={handleMenuClose} onKeyDown={handleMenuClose}>
-            {menuConfig[systemCode].menu()}
-          </Box>
-        </Drawer>
-        <div style={{ height: '60px' }} />
-
-        <Routes>
-          <Route path='/' element={<div/>} />
-          <Route path='/noauth' element={<NoAuthPage/>} />
-          <Route path='/sessionexpired' element={<SessionExpired/>} />
-
-          <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
-        </Routes>
-      </div>
+                    <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
+                    {/* <Route path='/dndtest' element={<DnDTest />} /> */}
+                    <Route path='/tbtest'element = { <div>test</div> }/>
+                </Routes>
+            </div>
     </ThemeProvider>
   );
 }
-
-
 
 export default App;

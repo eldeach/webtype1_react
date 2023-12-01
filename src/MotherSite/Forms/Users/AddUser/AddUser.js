@@ -5,7 +5,7 @@ import cookies from 'react-cookies'
 import * as yup from 'yup';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, Chip, IconButton, Modal, Paper, TextField, Typography } from '@mui/material';
+import { Button, Chip, IconButton, Paper, TextField, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
@@ -15,6 +15,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 //icon
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import ClearIcon from '@mui/icons-material/Clear';
 import FingerprintIcon from '@mui/icons-material/Fingerprint';
 import EmailIcon from '@mui/icons-material/Email';
@@ -23,18 +25,15 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import CategoryIcon from '@mui/icons-material/Category';
 import BusinessIcon from '@mui/icons-material/Business';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import PeopleIcon from '@mui/icons-material/People';
 import WorkIcon from '@mui/icons-material/Work';
-import DrawIcon from '@mui/icons-material/Draw';
-import BadgeIcon from '@mui/icons-material/Badge';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import NumbersIcon from '@mui/icons-material/Numbers';
+import Diversity3Icon from '@mui/icons-material/Diversity3';
 // ======================================================================================== [Import Component] js
 import addUserLang from './addUserLang'
 // Popup Form
-import AddEmail from './ModalForm/AddEmail/AddEmail';
-import AddPhone from './ModalForm/AddPhone/AddPhone';
-import AddPosition from './ModalForm/AddPosition/AddPosition';
+import ApprovalLine from '../../../../System/Forms/ApprovalLine/ApprovalLine';
+import AddEmailButton from './ModalForm/ButtonAddEmail/AddEmailButton';
+import AddPhoneButton from './ModalForm/ButtonAddPhone/AddPhoneButton';
+import AddPositionButton from './ModalForm/ButtonAddPosition/AddPositionButton';
 
 
 // ======================================================================================== [Import Component] CSS
@@ -55,22 +54,6 @@ function AddUser(props){
             width:500,
             p: 2,
             mb:2
-        },
-        popup : {
-            paper : {
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                boxShadow: 24,
-                p: 2,
-            },
-            closeButtonRow : {
-                display:'flex', flexDirection:'row'
-            },
-            closeButton : {
-                border : 'red solid 1px', borderRadius:'4px', fontSize:'small', color:'red', background:'white', marginLeft:'auto'
-            },
         },
         inputTexstField : {
             fontSize: 14,
@@ -121,12 +104,12 @@ function AddUser(props){
         .required(addUserLang.ppiPaper.inputField.user_pw_confirm.valMsg.required[cookies.load('site-lang')]),
     });
 
+
+    // [{approvalOrder:2, approvalType:'Approval', user_account:'2220182', user_name : '박윤배 (Park Jun Bae)', job_position : "기술이전 파트 파트장 (Technical Transfer Part Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'},
+    // {approvalOrder:2, approvalType:'Approval', user_account:'2230182', user_name : '신준수 (Shin Jun SOO)', job_position : "팀장 (Team Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'}],
+    // [{approvalOrder:2, approvalType:'Approval', user_account:'2130176', user_name : '이돈형 (LEE DON HYEONG)', job_position : "팀장 (Team Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'}]
     const initialValues = {
-        approval_payload :[
-            [{approvalOrder:2, approvalType:'Approval', user_account:'2220182', user_name : '박윤배 (Park Jun Bae)', job_team:'오송제제기술팀 (Osong Technical Operation Team)'},
-            {approvalOrder:2, approvalType:'Approval', user_account:'2230182', user_name : '신준수 (Shin Jun SOO)', job_team:'오송제제기술팀 (Osong Technical Operation Team)'}],
-            [{approvalOrder:2, approvalType:'Final Approval', user_account:'2130176', user_name : '이돈형 (LEE DON HYEONG)', job_team:'오송제제기술팀 (Osong Technical Operation Team)'}]
-        ],
+        approval_payload :[[]],
         user_account: '',
         user_pw:'',
         user_pw_confirm:'',
@@ -139,27 +122,23 @@ function AddUser(props){
         user_position:[],
     }
 
-    const [popup,setPopup] = useState(0);
-    const handleModalClose = () => setPopup(0);
-
-    const arrAddElement = function (arr, newElement) {
-        let duplication = 0
-        let tempArr = [...arr];
-        tempArr.map((oneItem, index) => {
-            if(oneItem[Object.keys(oneItem)[0]] === newElement[Object.keys(newElement)[0]]){
-                duplication += 1;
-            }
-        })
-        if (duplication === 0){
-            tempArr.push(newElement);
-            handleModalClose()
+    const [userPwAsterisk,setUserPwAsterisk] = useState("password");
+    const toggleserPwAsterisk = () => {
+        if ( userPwAsterisk === "password" ) {
+            setUserPwAsterisk( "text" )
+        } else {
+            setUserPwAsterisk( "password" )
         }
-        else {
-            alert(addUserLang.alertMsg.duplicated[cookies.load('site-lang')])
-        }
-        return tempArr;
-    };
+    }
 
+    const [userPwConfirmAsterisk,setUserPwConfirmAsterisk] = useState("password");
+    const toggleserPwConfirmAsterisk = () => {
+        if ( userPwConfirmAsterisk === "password" ) {
+            setUserPwConfirmAsterisk( "text" )
+        } else {
+            setUserPwConfirmAsterisk( "password" )
+        }
+    }
     const arrDelElement = function (arr, index) {
         let tempArr = [...arr];
         tempArr.splice(index, 1);
@@ -169,7 +148,8 @@ function AddUser(props){
     const onSubmitFunc = async function (values, actions){
         
         const valuePayload = {
-            user_account:  values.user_account,
+            approval_payload : values.approval_payload,
+            user_account : values.user_account,
             user_pw : values.user_pw,
             user_pw_confirm : values.user_pw_confirm,
             user_name : values.user_name,
@@ -212,124 +192,10 @@ function AddUser(props){
                     <div
                     style={{display:'flex', flexDirection:'column', marginLeft:'auto', boxSizing:'border-box'}}
                     >
-                        <Paper id='approvalPaper' sx={style.paper} elevation={3}>
-                            <div style={style.subtitle.box}>
-                                <PeopleIcon color='sys1'/>
-                                <div style={style.subtitle.text}>Reviewer Selection</div>
-                            </div>
-                            { // 현재 폰 배열 객체 정보 출력 iterator
-                                formikProps.values.approval_payload.map((oneElement, elementIndex)=>(
-                                    <div>
-                                        <Chip
-                                        size="small"
-                                        icon={<NumbersIcon size="small"/>}
-                                        color='sys1'
-                                        sx={{
-                                            width:140,
-                                            mt:1,
-                                            justifyContent:'flex-start'
-                                        }}
-                                        label={"Approval Step ".concat(String(elementIndex+1))}
-                                        />
-                                        {
-                                            oneElement.map((oneItem,index)=>(
-                                                <div style={style.arrItem.oneItem}>
-                                                    <div style={{width:'150px'}}>
-                                                        <Chip
-                                                        size="small"
-                                                        icon={<DrawIcon size="small"/>}
-                                                        color='sys1'
-                                                        sx={{
-                                                            width:150,
-                                                            mt:0.4,
-                                                            mb:0.4,
-                                                        }}
-                                                        label={oneItem.approvalType}
-                                                        />
-                                                        <Chip
-                                                        size="small"
-                                                        icon={<AccountCircleIcon size="small"/>}
-                                                        color='sys1'
-                                                        variant="outlined"
-                                                        sx={{
-                                                            width: 150,
-                                                            p:0.3,
-                                                            height: 'auto',
-                                                            '& .MuiChip-label': {
-                                                            display: 'block',
-                                                            whiteSpace: 'normal',
-                                                            wordWrap:'break-word'
-                                                            },
-                                                        }}
-                                                        label={oneItem.user_account}
-                                                        />
-                                                    </div>
-                                                    <Chip
-                                                    size="small"
-                                                    icon={<BadgeIcon size="small"/>}
-                                                    color='sys1'
-                                                    variant="outlined"
-                                                    sx={{
-                                                        width: 130,
-                                                        ml:0.4,
-                                                        mr:0.4,
-                                                        p:0.3,
-                                                        height: 'auto',
-                                                        '& .MuiChip-label': {
-                                                        display: 'block',
-                                                        whiteSpace: 'normal',
-                                                        wordWrap:'break-word'
-                                                        },
-                                                    }}
-                                                    label={oneItem.user_name}
-                                                    />
-                                                    <Chip
-                                                    size="small"
-                                                    icon={<WorkIcon size="small"/>}
-                                                    color='sys1'
-                                                    variant="outlined"
-                                                    sx={{
-                                                        width: 120,
-                                                        p:0.3,
-                                                        height: 'auto',
-                                                        '& .MuiChip-label': {
-                                                        display: 'block',
-                                                        whiteSpace: 'normal',
-                                                        wordWrap:'break-word'
-                                                        },
-                                                    }}
-                                                    label={oneItem.job_team}
-                                                    />
-                                                    <div style={style.arrItem.delItem}>
-                                                        <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error'
-                                                        onClick={()=>{
-                                                            let tempArr = [...formikProps.values.approval_payload];
-                                                            let elementArr = arrDelElement(oneElement, index)
-                                                            if (elementArr.length === 0){
-                                                                tempArr.splice(elementIndex, 1);
-                                                            }
-                                                            else {
-                                                                tempArr.splice(elementIndex, 1, elementArr);
-                                                            }
-                                                            formikProps.setFieldValue('approval_payload',tempArr)
-                                                        }}><DeleteForeverIcon/></Button>
-                                                    </div>
-                                                </div>
-                                            ))
-                                        }
-                                    </div>
-                                ))
-                            }
-                            <Button fullWidth variant="outlined" color = 'sys1' size="small" onClick={()=>setPopup(4)}>ADD</Button>
-                            <Modal open={(popup === 4)} onClose={handleModalClose}>
-                                <Paper sx={style.popup.paper} elevation={3}>
-                                <div className='button-box-close'>
-                                    <button className='button-close' onClick={handleModalClose}>X</button>
-                                </div>
-                                    
-                                </Paper>
-                            </Modal>
-                        </Paper>
+                        <ApprovalLine
+                        inheritedArr = { formikProps.values.approval_payload }
+                        updateValue = { function ( newValue ) { formikProps.setFieldValue( 'approval_payload', newValue )}}
+                        />
                     </div>
                     <div
                     style={{marginLeft:'20px', marginRight:'auto', marginBottom:'20px' ,display:'flex', flexDirection:'column', boxSizing:'border-box'}}
@@ -368,7 +234,7 @@ function AddUser(props){
                             variant="outlined"
                             id="user_pw"
                             name="user_pw"
-                            type="password"
+                            type={userPwAsterisk}
                             label={addUserLang.ppiPaper.inputField.user_pw.placeholder[cookies.load('site-lang')]}
                             value={formikProps.values.user_pw}
                             onChange={formikProps.handleChange}
@@ -380,9 +246,16 @@ function AddUser(props){
                             fullWidth
                             InputProps={{
                                 endAdornment:(
-                                    <IconButton size='small' onClick={()=>{formikProps.setFieldValue('user_pw','')}}>
-                                        <ClearIcon size='small'/>
-                                    </IconButton>
+                                    <div style ={{display : 'flex', flexDirection : 'row'}}>
+                                        <IconButton size='small' edge="end" onClick={()=>{formikProps.setFieldValue('user_pw','')}}>
+                                            <ClearIcon size='small'/>
+                                        </IconButton>
+                                        <IconButton size='small' onClick={()=>{toggleserPwAsterisk()}}>
+                                            {
+                                                userPwAsterisk === "password" ? <VisibilityIcon size='small'/> : <VisibilityOffIcon size='small'/>
+                                            }
+                                        </IconButton>
+                                    </div>
                                 ),
                                 style: style.inputTexstField // font size of input text
                             }}
@@ -393,7 +266,7 @@ function AddUser(props){
                             variant="outlined"
                             id="user_pw_confirm"
                             name="user_pw_confirm"
-                            type="password"
+                            type={userPwConfirmAsterisk}
                             label={addUserLang.ppiPaper.inputField.user_pw_confirm.placeholder[cookies.load('site-lang')]}
                             value={formikProps.values.user_pw_confirm}
                             onChange={formikProps.handleChange}
@@ -405,9 +278,16 @@ function AddUser(props){
                             fullWidth
                             InputProps={{
                                 endAdornment:(
-                                    <IconButton size='small' onClick={()=>{formikProps.setFieldValue('user_pw_confirm','')}}>
-                                        <ClearIcon size='small'/>
-                                    </IconButton>
+                                    <div style ={{display : 'flex', flexDirection : 'row'}}>
+                                        <IconButton size='small' edge="end" onClick={()=>{formikProps.setFieldValue('user_pw_confirm','')}}>
+                                            <ClearIcon size='small'/>
+                                        </IconButton>
+                                        <IconButton size='small' onClick={()=>{toggleserPwConfirmAsterisk()}}>
+                                            {
+                                                userPwConfirmAsterisk === "password" ? <VisibilityIcon size='small'/> : <VisibilityOffIcon size='small'/>
+                                            }
+                                        </IconButton>
+                                    </div>
                                 ),
                                 style: style.inputTexstField // font size of input text
                             }}
@@ -522,17 +402,10 @@ function AddUser(props){
                                     </div>
                                 ))
                             }
-                            <Button fullWidth variant="outlined" color = 'sys1' size="small" onClick={()=>setPopup(1)}>ADD</Button>
-                            <Modal open={(popup === 1)} onClose={handleModalClose}>
-                                <Paper sx={style.popup.paper} elevation={3}>
-                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
-                                    <AddEmail
-                                    addElement = {function (newElement) {
-                                        formikProps.setFieldValue('user_email', arrAddElement(formikProps.values.user_email, newElement))
-                                    }}
-                                    />
-                                </Paper>
-                            </Modal>
+                            <AddEmailButton
+                            inheritedArr = { formikProps.values.user_email }
+                            updateValue = { function ( newValue ) { formikProps.setFieldValue( 'user_email', newValue )}}
+                            />
                         </Paper>
                         <Paper id='phonePaper' sx={style.paper} elevation={3}>
                             <div style={style.subtitle.box}>
@@ -555,17 +428,10 @@ function AddUser(props){
                                     </div>
                                 ))
                             }
-                            <Button fullWidth variant="outlined" color = 'sys1' size="small" onClick={()=>setPopup(2)}>ADD</Button>
-                            <Modal open={(popup === 2)} onClose={handleModalClose}>
-                                <Paper sx={style.popup.paper} elevation={3}>
-                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
-                                    <AddPhone
-                                    addElement = {function (newElement) {
-                                        formikProps.setFieldValue('user_phone', arrAddElement(formikProps.values.user_phone, newElement))
-                                    }}
-                                    />
-                                </Paper>
-                            </Modal>
+                            <AddPhoneButton
+                            inheritedArr = { formikProps.values.user_phone }
+                            updateValue = { function ( newValue ) { formikProps.setFieldValue( 'user_phone', newValue )}}
+                            />
                         </Paper>
                         <Paper id='positionPaper' sx={style.paper} elevation={3}>
                             <div style={style.subtitle.box}>
@@ -578,7 +444,7 @@ function AddUser(props){
                                         <div style={style.arrItem.itemInfo}>
                                             <Chip size="small" icon={<WorkIcon size="small"/>} color='sys1' label={oneItem.job_position}/>
                                             <div style={style.arrItem.subInfo}>
-                                                <Chip size="small" icon={<CategoryIcon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_team}/>
+                                                <Chip size="small" icon={<Diversity3Icon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_team}/>
                                                 <Chip size="small" sx={{width:'100%',ml:0.8}} icon={<BusinessIcon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_company}/>
                                             </div>
                                         </div>
@@ -588,17 +454,10 @@ function AddUser(props){
                                     </div>
                                 ))
                             }
-                            <Button fullWidth variant="outlined" color = 'sys1' size="small" onClick={()=>setPopup(3)}>ADD</Button>
-                            <Modal open={(popup === 3)} onClose={handleModalClose}>
-                                <Paper sx={style.popup.paper} elevation={3}>
-                                    <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
-                                    <AddPosition
-                                    addElement = {function (newElement) {
-                                        formikProps.setFieldValue('user_position', arrAddElement(formikProps.values.user_position, newElement))
-                                    }}
-                                    />
-                                </Paper>
-                            </Modal>
+                            <AddPositionButton
+                            inheritedArr = { formikProps.values.user_position }
+                            updateValue = { function ( newValue ) { formikProps.setFieldValue( 'user_position', newValue )}}
+                            />
                         </Paper>
                         <Button sx={style.submitButton} variant="contained" color = 'sys1' size="small" type='submit' form='addUser'>Submit</Button>
                     </div>

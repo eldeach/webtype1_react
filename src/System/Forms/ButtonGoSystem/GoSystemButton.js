@@ -83,10 +83,11 @@ function GoSystemButton (props) {
                             if (!systemThemes.palette[one]) disableButton = true
                             return (
                                 <Button
-                                disabled={disableButton}
+                                key = { index }
+                                disabled={ disableButton }
                                 variant="contained"
-                                sx={{width:70, height:70, ml:1, mr:1, mb:1}}
-                                color = {one}
+                                sx={{ width:70, height:70, ml:1, mr:1, mb:1 }}
+                                color = { one }
                                 size="small"
                                 onClick={() => {
                                     handleSystemCode(one)
