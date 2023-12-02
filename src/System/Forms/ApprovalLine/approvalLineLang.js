@@ -16,6 +16,12 @@ const langConfig = {
                 eng : "Add Approval Step"
             },
         },
+        switch : {
+            immediateEffective : {
+                kor : "검토 없이 즉시 시행합니다. (선택된 결재라인이 있다면 무시됩니다.)",
+                eng : "Implement immediately without review. (If there is a designated approval line, it will be ignored.)"
+            }
+        }
     }
 }
 

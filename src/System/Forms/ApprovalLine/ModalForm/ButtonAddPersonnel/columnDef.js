@@ -1,12 +1,11 @@
 // ======================================================================================== [Import Libaray]
-import { getCoreRowModel, createColumnHelper, useReactTable, flexRender, getFilteredRowModel, getFacetedUniqueValues, getSortedRowModel } from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, IconButton, Chip, Paper } from '@mui/material';
 //icon
 
 // ======================================================================================== [Import Component] js
-import IndeterminateCheckbox from '../../../../Components/TableType1/IndeterminateCheckbox'
+import IndeterminateCheckbox from '../../../../Components/TableType1/TableComponents/IndeterminateCheckbox'
     
 const columnHelper = createColumnHelper();
 const columnDef = [  // TanStack Table은 컬럼 사이즈가 20이 최소

@@ -6,6 +6,7 @@ import { Divider, List } from '@mui/material/';
 //icon
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 
 // ======================================================================================== [Import Component] js
 import ListItemNavPath from '../ListItemWrapper/ListItemNavPath';
@@ -23,8 +24,8 @@ function Sys1List() {
       </List>
       <Divider />
       <List>
-        <ListItemNavPath navPath={'/adduser'} icon={<PersonAddIcon color = 'sys1'/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
-        <ListItemNavPath navPath={'/dndtest'} icon={<PersonAddIcon color = 'sys1'/>} text={ "DnD Test" }/>
+        <ListItemNavPath navPath={'/adduser'} icon={<PersonAddIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
+        <ListItemNavPath navPath={'/userlist'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.viewUser[cookies.load('site-lang')] }/>
         <ListItemNavPath navPath={'/tbtest'} icon={<PersonAddIcon color = 'sys1'/>} text={ "Table Test" }/>
       </List>
     </div>

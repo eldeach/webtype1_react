@@ -4,6 +4,11 @@ import { Formik } from 'formik';
 import cookies from 'react-cookies'
 import * as yup from 'yup';
 
+import axios from 'axios';
+
+import moment from 'moment';
+import 'moment/locale/ko';	//대한민국
+
 // ======================================================================================== [Import Material UI Libaray]
 import { Button, Chip, IconButton, Paper, TextField, Typography } from '@mui/material';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -34,6 +39,8 @@ import ApprovalLine from '../../../../System/Forms/ApprovalLine/ApprovalLine';
 import AddEmailButton from './ModalForm/ButtonAddEmail/AddEmailButton';
 import AddPhoneButton from './ModalForm/ButtonAddPhone/AddPhoneButton';
 import AddPositionButton from './ModalForm/ButtonAddPosition/AddPositionButton';
+// objArrHandler
+import objArrDelBlankArr from '../../../../System/Components/ObjArrHandler/objArrDelBlankArr'
 
 
 // ======================================================================================== [Import Component] CSS
@@ -104,10 +111,6 @@ function AddUser(props){
         .required(addUserLang.ppiPaper.inputField.user_pw_confirm.valMsg.required[cookies.load('site-lang')]),
     });
 
-
-    // [{approvalOrder:2, approvalType:'Approval', user_account:'2220182', user_name : '박윤배 (Park Jun Bae)', job_position : "기술이전 파트 파트장 (Technical Transfer Part Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'},
-    // {approvalOrder:2, approvalType:'Approval', user_account:'2230182', user_name : '신준수 (Shin Jun SOO)', job_position : "팀장 (Team Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'}],
-    // [{approvalOrder:2, approvalType:'Approval', user_account:'2130176', user_name : '이돈형 (LEE DON HYEONG)', job_position : "팀장 (Team Leader)", job_team:'오송제제기술팀 (Osong Technical Operation Team)'}]
     const initialValues = {
         approval_payload :[[]],
         user_account: '',
@@ -139,30 +142,59 @@ function AddUser(props){
             setUserPwConfirmAsterisk( "password" )
         }
     }
+
     const arrDelElement = function (arr, index) {
         let tempArr = [...arr];
         tempArr.splice(index, 1);
         return tempArr;
     };
 
+    const [ immediateEffective, setImmediateEffective ] = useState(false);
+
     const onSubmitFunc = async function (values, actions){
-        
-        const valuePayload = {
-            approval_payload : values.approval_payload,
-            user_account : values.user_account,
-            user_pw : values.user_pw,
-            user_pw_confirm : values.user_pw_confirm,
-            user_name : values.user_name,
-            user_nickname : values.user_nickname,
-            user_birthday : values.user_birthday,
-            user_email : values.user_email,
-            user_phone : values.user_phone,
-            user_position : values.user_position,
+
+        if ( immediateEffective ) {
+            actions.setFieldValue('approval_payload', [[]])
+        } else {
+            actions.setFieldValue('approval_payload', objArrDelBlankArr( values.approval_payload ))
         }
+
+
+        if ( !immediateEffective && values.approval_payload.length===1 && values.approval_payload[0].length === 0) {
+            alert ("결재라인!")
+        } else {          
+            const valuePayload = {
+                immediate_effective : immediateEffective,
+                approval_payload : values.approval_payload,
+                user_account : values.user_account,
+                user_pw : values.user_pw,
+                user_pw_confirm : values.user_pw_confirm,
+                user_name : values.user_name,
+                user_nickname : values.user_nickname,
+                user_birthday : moment(new Date(values.user_birthday)).format('YYYY-MM-DD'),
+                user_gender : values.user_gender,
+                user_email : values.user_email,
+                user_phone : values.user_phone,
+                user_position : values.user_position,
+            }
     
-        console.log(valuePayload)
+            let rs = await axios.post('/addaccount', valuePayload)
+            .then(( res ) => {
+               return res
+            })
+            .catch( (error) => {
+                return error.response
+            })
     
-        actions.resetForm()
+            if (rs.status === 200) {
+                actions.resetForm()
+            } else if ( rs.status === 452 ) {
+                alert (rs.data[cookies.load('site-lang')])
+            } else if ( rs.status === 512 ) {
+                alert (rs.data[cookies.load('site-lang')])
+            }
+            console.log(rs)
+        }
     }
 
     const { handlePageTitle, handleSystemCode } = props
@@ -181,7 +213,7 @@ function AddUser(props){
             await onSubmitFunc(values, actions)
         }}
         >
-            {formikProps => (
+            { formikProps => (
                 <form
                 noValidate
                 style={{width:'100%', hegith:'100%', display:'flex', flexDirection:'row'}}
@@ -195,6 +227,8 @@ function AddUser(props){
                         <ApprovalLine
                         inheritedArr = { formikProps.values.approval_payload }
                         updateValue = { function ( newValue ) { formikProps.setFieldValue( 'approval_payload', newValue )}}
+                        immediateEffective = { immediateEffective }
+                        setImmediateEffective = { setImmediateEffective }
                         />
                     </div>
                     <div

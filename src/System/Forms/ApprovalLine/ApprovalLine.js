@@ -3,7 +3,7 @@ import { useState } from 'react';
 import cookies from 'react-cookies'
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, IconButton, Chip, Paper } from '@mui/material';
+import { Button, IconButton, Chip, Switch, FormControlLabel, Paper, Typography } from '@mui/material';
 //icon
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import WorkIcon from '@mui/icons-material/Work';
@@ -70,12 +70,13 @@ function ApprovalLine (props) {
     const arrDelElement = function (arr, index) {
         let tempArr = [...arr];
         tempArr.splice(index, 1);
+   
         return tempArr;
     };
 
     const arrAddEmptyArr = function ( arr ){
         let tempArr = [...arr]
-        tempArr.splice(1, 0, [])
+        tempArr.splice(( tempArr.length - 1 ), 0, [])
         return tempArr
     }
 
@@ -84,7 +85,7 @@ function ApprovalLine (props) {
             <div style={style.subtitle.box}>
                 <DrawIcon color='sys1'/>
                 <div style={style.subtitle.text}>Approval Line</div>
-                <Button size="small" variant='contained' sx={{ ml:'auto' }} color='sys1' onClick={()=> props.updateValue(arrAddEmptyArr( props.inheritedArr ))}>
+                <Button disabled = { props.immediateEffective } size="small" variant='contained' sx={{ ml:'auto' }} color='sys1' onClick={()=> props.updateValue(arrAddEmptyArr( props.inheritedArr ))}>
                     {
                         approvalLineLang.approvalPaper.button.addPersonnel[cookies.load('site-lang')]
                     }
@@ -110,13 +111,19 @@ function ApprovalLine (props) {
                             />
                             {
                                 elementIndex === ( props.inheritedArr.length - 1 ) ? <div/> :
-                                <IconButton edge = 'end' color='error' onClick={()=> props.updateValue(arrDelElement(props.inheritedArr, elementIndex)) }><DeleteForeverIcon/></IconButton>
+                                <IconButton
+                                disabled = { props.immediateEffective }
+                                edge = 'end'
+                                color = 'error'
+                                onClick={()=> props.updateValue(arrDelElement(props.inheritedArr, elementIndex)) }>
+                                    <DeleteForeverIcon/>
+                                </IconButton>
                             }
                         </div>
                         {
                             oneElement.map((oneItem,index) => {
                                 if ( elementIndex === ( props.inheritedArr.length - 1 ) ) {
-                                    oneItem.approvalType = 'Final Approval'
+                                    oneItem.approvalType = 'FINAL_APPROVAL'
                                 } // 마지막 스텝은 approval type을 강제로 Final Approval (최종승인)으로 값 지정
                                 return (
                                     <div style={style.arrItem.oneItem}>
@@ -129,7 +136,12 @@ function ApprovalLine (props) {
                                                 width:150,
                                                 mb:0.4,
                                             }}
-                                            label={ oneItem.approvalType }
+                                            label={{
+                                                APPROVAL : 'Approval',
+                                                AGREEMENT : 'Agreement',
+                                                RECIEVE : 'Recieve',
+                                                FINAL_APPROVAL : 'Final Approval'
+                                            }[oneItem.approvalType]}
                                             />
                                             <Chip
                                             size="small"
@@ -203,7 +215,12 @@ function ApprovalLine (props) {
                                         label={oneItem.job_team}
                                         />
                                         <div style={style.arrItem.delItem}>
-                                            <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error'
+                                            <Button
+                                            disabled = { props.immediateEffective }
+                                            size="small"
+                                            variant='contained'
+                                            sx={{p: 0, height:'100%'}}
+                                            color='error'
                                             onClick={()=>{
                                                 let tempArr = [...props.inheritedArr];
                                                 let elementArr = arrDelElement(oneElement, index)
@@ -212,6 +229,9 @@ function ApprovalLine (props) {
                                                 }
                                                 else {
                                                     tempArr.splice(elementIndex, 1, elementArr);
+                                                }
+                                                if (tempArr.length === 0) {
+                                                    tempArr.push([])
                                                 }
                                                 props.updateValue ( tempArr )
                                             }}><DeleteForeverIcon/></Button>
@@ -223,8 +243,16 @@ function ApprovalLine (props) {
                 ))
             }
             <AddPersonnelButton
+            disabled = { props.immediateEffective }
             inheritedArr = { props.inheritedArr }
             updateValue = { props.updateValue }/>
+            <FormControlLabel
+            control={ <Switch checked={ props.immediateEffective } onChange={ ( e ) => props.setImmediateEffective( e.target.checked ) } name="setImmediate_effective" /> }
+            label={
+                <Typography size="small" sx = {{ fontSize : '10px', color : (props.immediateEffective ? 'red' : 'black') }}> { approvalLineLang.approvalPaper.switch.immediateEffective[cookies.load('site-lang')] } </Typography>
+                
+            }
+            />
         </Paper>
     )
 

@@ -1,5 +1,6 @@
 // ======================================================================================== [Import Libaray]
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Formik } from 'formik';
 import axios from 'axios';
 import cookies from 'react-cookies'
@@ -17,7 +18,7 @@ import SessionTimer from './Component/SessionTimer'
 // ======================================================================================== [Import Component] CSS
 
 function LoginButton(){
-
+    
     const style = {
         subtitle:{
             box : {
@@ -90,7 +91,7 @@ function LoginButton(){
             }
         })
         .catch((error) => {
-            if (error.response.status === 401){
+            if (error.response.status === 452){
                 console.log(error.response.data)
             }
             else {
@@ -104,9 +105,15 @@ function LoginButton(){
         })
     }
 
+
+    const navigate = useNavigate();
+
     const logoutFunc = async function () {
         await axios.get("/local-logout")
-        .then((res) => loginStatusExpired())
+        .then((res) => {
+            loginStatusExpired()
+            navigate('/sessionexpired')
+        })
         .catch((err) => console.log(err))
     }
 
@@ -124,7 +131,7 @@ function LoginButton(){
             }
         })
         .catch((error) => {
-            if (error.response.status === 401){
+            if (error.response.status === 452){
                 console.log(error.response.data)
             }
             else {

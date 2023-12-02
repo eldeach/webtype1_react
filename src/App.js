@@ -23,6 +23,7 @@ import SessionExpired from './System/RedirectPage/SessionExpired/SessionExpired'
 
 // Sys 1 Pages
 import AddUser from './MotherSite/Forms/Users/AddUser/AddUser';
+import UserCardList from './MotherSite/Forms/Users/ViewUser/CardList/UserCardList';
 import DnDTest from './MotherSite/Forms/Test/DnDTest';
 
 // ======================================================================================== [Import Component] CSS
@@ -77,9 +78,9 @@ function App() {
                     <Route path='/noauth' element={<NoAuthPage/>} />
                     <Route path='/sessionexpired' element={<SessionExpired/>} />
 
-                    <Route path='/adduser' element={<AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
+                    <Route path='/adduser' element={ <AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
+                    <Route path='/userlist'element = { <UserCardList handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     {/* <Route path='/dndtest' element={<DnDTest />} /> */}
-                    <Route path='/tbtest'element = { <div>test</div> }/>
                 </Routes>
             </div>
     </ThemeProvider>

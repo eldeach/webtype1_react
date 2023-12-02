@@ -6,6 +6,10 @@ const sys1ListLang = {
     addUser : {
         kor : "사용자 추가",
         eng : "Add user"
+    },
+    viewUser : {
+        kor : "사용자 목록",
+        eng : "User List"
     }
 }
 

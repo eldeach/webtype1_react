@@ -1,8 +1,9 @@
 // ======================================================================================== [Import Libaray]
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Formik } from 'formik';
 import cookies from 'react-cookies'
 import * as yup from 'yup';
+import axios from 'axios';
 
 // ======================================================================================== [Import Material UI Libaray]
 import { Button, Modal, Paper, InputLabel, MenuItem, Select, Typography } from '@mui/material';
@@ -13,13 +14,15 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 //icon
 import PeopleIcon from '@mui/icons-material/People';
-import InfoIcon from '@mui/icons-material/Info';
 
 // ======================================================================================== [Import Component] js
 import addPersonnelButtonLang from './addPersonnelButtonLang'
-import columnDef from './columnDef'
-import TableType1 from '../../../../Components/TableType1/TableType1'
-import axios from 'axios';
+// objArrHandler
+import objArrAddElement from '../../../../Components/ObjArrHandler/objArrAddElement/objArrAddElement'
+// Table
+import TableType1 from '../../../../Components/TableType1/TableType1' // System Component
+import columnDef from './columnDef' // this form's columnDef
+
 
 // ======================================================================================== [Import Component] CSS
 
@@ -70,125 +73,148 @@ function AddPersonnelButton (props){
 
     const yupSchema = yup.object().shape({
 
-      });
+    });
 
     const initialValues = {
         approval_type : 'APPROVAL'
     }
 
-    const [popup,setPopup] = useState(0);
-    const handleModalClose = () => setPopup(0);
-
+    
+    // 테이블 데이터 얻기
     const [tableData,setTableData] = useState([])
     const getApprovaluserlist = async function () {
-        let rs = await axios.get('/approvaluserlist')
-        .then((res) => {
+        let rs = await axios.get('/getapprovaluserlist')
+        .then(( res ) => {
             return res.data
         })
-        setTableData(rs)
-        console.log(rs)
-        console.log(rs[0])
+        setTableData( rs )
     }
 
+    // 팝업 핸들러
+    const [popup,setPopup] = useState(0);
+    const handleModalOpen = () => {
+        getApprovaluserlist() // popup 열렸을 때만 axios.get & setTableData 실행
+        setPopup(1);
+    }
+    const handleModalClose = () => setPopup(0);
+
+
+    // 테이블이 데이터를 넣어줄 state, <TableType1>에 setTableSelected props로 바인딩함
     const [tableSelected,setTableSelected] = useState([]);
-    const handlePullOutSelected = function (newArr) {
-        setTableSelected(newArr)
-    }
 
-    useEffect(() => {
-        getApprovaluserlist()
 
-    }, []);
+    // 부모 FORM으로 받은 state랑 value 값 업데이트, 밑에 <Button>에 onClick에 바인딩함
+    const arrAddPersonnel = function ( approval_type, oneElement, elementIndex ) {
+        let tempArr = [...props.inheritedArr];
+        let tempElementArr = [...oneElement]
+
+        tableSelected.map(( oneRow, index ) => {
+            oneRow.approvalType = approval_type
+            tempElementArr = objArrAddElement( tempElementArr, oneRow, "user_account" )
+        })
+
+        tempArr.splice( elementIndex, 1, tempElementArr )
+        props.updateValue( tempArr )
+    };
 
     return (
         <Formik
         validationSchema={yupSchema}
         initialValues={initialValues}
         onSubmit={(values, actions)=>{
-            console.log(tableSelected)
+
         }}
         >
             { formikProps => (
                 <div>
-                    <Button fullWidth variant="outlined" color = 'sys1' size="small" sx={{ mt : 1 }} onClick={()=>setPopup(1)}>ADD</Button>
+                    <Button fullWidth disabled = { props.disabled } variant="outlined" color = 'sys1' size="small" sx={{ mt : 1 }} onClick={()=> handleModalOpen() }>ADD</Button>
                     <Modal open={( popup === 1 )} onClose={ handleModalClose }>
-                                        <form
-                            noValidate
-                            id = "addpersonnel"
-                            autoComplete='off'
-                            onSubmit={formikProps.handleSubmit}
-                            >
-                        <Paper id='langPaper' sx={ style.popupPaper } elevation={3}>
-                            <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
-                            <div style={ style.pageTitle.box }>
-                                <PeopleIcon color='sys1' sx = {{ fontSize : 'xx-large' }}/>
-                                <div style={style.pageTitle.text}>{addPersonnelButtonLang.pageTitle[cookies.load('site-lang')]}</div>
-                            </div>
-                            <FormControl style={{ border:'#D3D3D3 solid 1px', borderRadius:'5px', marginLeft : '5px', marginRight : '5px', marginTop:'5px', marginBottom:'2px', paddingLeft:'10px', width:'100%', boxSizing:'border-box', display: 'flex', flexDirection: 'row', alignItems:'center' }}>
-                                <FormLabel
-                                id="approval_type"
-                                sx={{ mr:1 }}
-                                >
-                                    {<Typography sx={{fontSize:14, width : '35px'}}>Type</Typography>}
-                                </FormLabel>
-                                <RadioGroup
-                                row
-                                name="approval_type"
-                                value={ formikProps.values.approval_type }
-                                onChange={ formikProps.handleChange }
-                                sx={{ width : '580px', justifyContent:'center' }}
-                                >
-                                    <FormControlLabel
-                                    value="APPROVAL"
-                                    control={<Radio />}
-                                    label={<Typography sx={{fontSize:14}}>Approval</Typography>}
-                                    />
-                                    <FormControlLabel
-                                    value="AGREEMENT"
-                                    control={<Radio />}
-                                    label={<Typography sx={{fontSize:14}}>Agreement</Typography>}
-                                    />
-                                    <FormControlLabel
-                                    value="RECIEVE"
-                                    control={<Radio />}
-                                    label={<Typography sx={{fontSize:14}}>Recieve</Typography>}
-                                    />     
-                                    <FormControlLabel
-                                    value="FINALAPPROVAL"
-                                    control={<Radio />}
-                                    label={<Typography sx={{fontSize:14}}>Final Approval</Typography>}
-                                    />  
-                                </RadioGroup>
-                            </FormControl>
-                            <TableType1
-                            tableData = { tableData }
-                            tableColumnsDef = { columnDef }
-                            divStyle={{ marginLeft : '5px', marginTop : '10px', divMaxWidth : '600px', divMaxHeight : '600px', overflow : 'auto'}}
-                            tableStyle = {{ }}
-                            headerStyle = {{ fontSize : '12px' }}
-                            rowStyle = {{ fontSize : '12px' }} // 일괄 모든 row에 스타일 적용, columnDef의 cell 렌더가 우선순위가 높음
-                            footerOn = { false }
-                            handlePullOutSelected = { handlePullOutSelected }
-                            />
-                            <div style ={ style.approvalStepBox }>
-                            {
-                                (props.inheritedArr.length === 0) ? <Button variant="outlined" color = 'sys1' size="small" sx = {{ m : 0.5 }} form='addpersonnel' type='submit'>{ "Final Approval Step" }</Button>
-
-                                : (
-                                    props.inheritedArr.map( (oneElement, elementIndex) => (
-                                        <Button variant="outlined" color = 'sys1' size="small" sx = {{ m : 0.5 }} form='addpersonnel' type='submit'> {
-                                            elementIndex === (props.inheritedArr.length - 1) ?
-                                            "Final Approval Step" :
-                                            "Approval Step ".concat(String(elementIndex+1))
-                                        } </Button>
-                                    ))
-                                )
-                            }
-                            </div>
-                        </Paper>
+                        <form
+                        noValidate
+                        id = "addpersonnel"
+                        autoComplete='off'
+                        onSubmit={formikProps.handleSubmit}
+                        >
+                            <Paper id='langPaper' sx={ style.popupPaper } elevation={3}>
+                                <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
+                                <div style={ style.pageTitle.box }>
+                                    <PeopleIcon color='sys1' sx = {{ fontSize : 'xx-large' }}/>
+                                    <div style={style.pageTitle.text}>{addPersonnelButtonLang.pageTitle[cookies.load('site-lang')]}</div>
+                                </div>
+                                <FormControl style={{ border:'#D3D3D3 solid 1px', borderRadius:'5px', marginLeft : '5px', marginRight : '5px', marginTop:'5px', marginBottom:'2px', paddingLeft:'10px', width:'100%', boxSizing:'border-box', display: 'flex', flexDirection: 'row', alignItems:'center' }}>
+                                    <FormLabel
+                                    id="approval_type"
+                                    sx={{ mr:1 }}
+                                    >
+                                        {<Typography sx={{fontSize:14, width : '35px'}}>Type</Typography>}
+                                    </FormLabel>
+                                    <RadioGroup
+                                    row
+                                    name="approval_type"
+                                    value={ formikProps.values.approval_type }
+                                    onChange={ formikProps.handleChange }
+                                    sx={{ width : '580px', justifyContent:'center' }}
+                                    >
+                                        <FormControlLabel
+                                        value="APPROVAL"
+                                        control={<Radio />}
+                                        label={<Typography sx={{fontSize:14}}>Approval</Typography>}
+                                        />
+                                        <FormControlLabel
+                                        value="AGREEMENT"
+                                        control={<Radio />}
+                                        label={<Typography sx={{fontSize:14}}>Agreement</Typography>}
+                                        />
+                                        <FormControlLabel
+                                        value="RECIEVE"
+                                        control={<Radio />}
+                                        label={<Typography sx={{fontSize:14}}>Recieve</Typography>}
+                                        />     
+                                        <FormControlLabel
+                                        value="FINAL_APPROVAL"
+                                        control={<Radio />}
+                                        label={<Typography sx={{fontSize:14}}>Final Approval</Typography>}
+                                        />  
+                                    </RadioGroup>
+                                </FormControl>
+                                <TableType1
+                                tableData = { tableData }
+                                columnsDef = { columnDef }
+                                divStyle={{ marginLeft : '5px', marginTop : '10px', divMaxWidth : '600px', divMaxHeight : '600px', overflow : 'auto'}}
+                                tableStyle = {{ }}
+                                headerStyle = {{ fontSize : '12px' }}
+                                rowStyle = {{ fontSize : '12px' }} // 일괄 모든 row에 스타일 적용, columnDef의 cell 렌더가 우선순위가 높음
+                                footerOn = { false }
+                                setTableSelected = { setTableSelected }
+                                />
+                                <div style ={ style.approvalStepBox }>
+                                {
+                                    (
+                                        props.inheritedArr.map(( oneElement, elementIndex ) => (
+                                            <Button
+                                            variant="outlined"
+                                            color = 'sys1'
+                                            size="small"
+                                            sx = {{ m : 0.5 }}
+                                            onClick={() => {
+                                                arrAddPersonnel( formikProps.values.approval_type, oneElement, elementIndex )
+                                                handleModalClose()
+                                            }}
+                                            >
+                                                {
+                                                    elementIndex === (props.inheritedArr.length - 1) ?
+                                                    "Final Approval Step" :
+                                                    "Approval Step ".concat(String(elementIndex+1))
+                                                }
+                                            </Button>
+                                        ))
+                                    )
+                                }
+                                </div>
+                            </Paper>
                         </form>
                     </Modal>
-                    </div>
+                </div>
             )}  
         </Formik>
     )
