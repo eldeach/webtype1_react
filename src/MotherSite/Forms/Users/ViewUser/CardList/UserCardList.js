@@ -69,7 +69,16 @@ function UserCardList (props) {
     let [filteredData, setFilteredData] = useState([]);
 
     const getUserList = async function () {
-        let rs = await axios.get('/getuserlist')
+        let rs =  await axios({
+            method : 'get',
+            url : '/getuserlist',
+            params : {
+                approval_status : `${props.approvalStatus}`,
+            },
+            headers : {
+              'Content-Type':'application/json'
+            }
+        })
         .then(( res ) => {
             return res.data;
         })
@@ -136,7 +145,7 @@ function UserCardList (props) {
             <div style={{display : 'flex', justifyContent:'center', flexWrap:'wrap'}}>
                 {
                     filteredData.map((oneItem, cardIndex) => (
-                        <UserCard oneItem={oneItem} cardIndex={cardIndex}/>
+                        <UserCard oneItem={oneItem} cardIndex={cardIndex} handlePageTitle = {handlePageTitle} handleSystemCode = {handleSystemCode} />
                     ))
                 }
             </div>

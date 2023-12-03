@@ -78,8 +78,32 @@ function App() {
                     <Route path='/noauth' element={<NoAuthPage/>} />
                     <Route path='/sessionexpired' element={<SessionExpired/>} />
 
-                    <Route path='/adduser' element={ <AddUser handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/>} />
-                    <Route path='/userlist'element = { <UserCardList handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/adduser' element={
+                        <AddUser
+                        addType = 'NEW'
+                        initialValues = {{
+                            approval_payload :[[]],
+                            user_account: '',
+                            user_pw:'',
+                            user_pw_confirm:'',
+                            user_name:'',
+                            user_nickname:'',
+                            user_birthday:null,
+                            user_gender:'MALE',
+                            user_email:[],
+                            user_phone:[],
+                            user_position:[],
+                        }}
+                        handlePageTitle={handlePageTitle}
+                        handleSystemCode={handleSystemCode}/>
+                    }/>
+                    <Route path='/userlist'element = { <UserCardList approvalStatus = {'APPROVED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_inprogress'element = { <UserCardList approvalStatus = {'UNDER_APPROVAL'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_void'element = { <UserCardList approvalStatus = {'VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_undervoid'element = { <UserCardList approvalStatus = {'UNDER_VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_rejected'element = { <UserCardList approvalStatus = {'REJECTED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_prepared'element = { <UserCardList approvalStatus = {'PREPARED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_widthdrawn'element = { <UserCardList approvalStatus = {'WITHDRAWN'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     {/* <Route path='/dndtest' element={<DnDTest />} /> */}
                 </Routes>
             </div>

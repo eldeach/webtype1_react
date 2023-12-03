@@ -50,8 +50,25 @@ const globalTheme = createTheme({
     white :{
       main : '#fff',
     },
+    accepted : {
+      main : '#76ff03',
+      contrastText : '#fff',
+    },
+    inProgress : {
+      main : '#00bcd4',
+      contrastText : '#fff',
+    },
+    prepared : {
+      main : '#1e88e5',
+      contrastText : '#fff',
+    },
+    withdrawn : {
+      main : '#3e2723',
+      contrastText : '#fff',
+    },
     denied : {
       main : '#e53e3e',
+      contrastText : '#fff',
     }
   },
 });

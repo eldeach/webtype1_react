@@ -55,6 +55,12 @@ const langConfig = {
                 placeholder :{
                     kor : "사용자명",
                     eng : "User Name"
+                },
+                valMsg : {
+                    required : {
+                        kor : "사용자명을 입력해주세요.",
+                        eng : "Please enter user name."
+                    }
                 }       
             },
             user_nickname : {

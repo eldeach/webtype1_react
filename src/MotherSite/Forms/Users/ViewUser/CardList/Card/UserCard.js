@@ -1,22 +1,25 @@
 // ======================================================================================== [Import Libaray]
+import { useState } from 'react';
 
+import dayjs from 'dayjs';
+import moment from 'moment';
+import 'moment/locale/ko';	//대한민국
 
 // ======================================================================================== [Import Material UI Libaray]
-import { IconButton, Chip, Paper } from '@mui/material';
+import { Button, Modal, IconButton, Chip, Paper } from '@mui/material';
 //icon
 import WorkIcon from '@mui/icons-material/Work';
 import BadgeIcon from '@mui/icons-material/Badge';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 // ======================================================================================== [Import Component] js
-
+import DetailedBigCard from './DetailBigCard/DetailedBigCard';
+import AddUser from '../../../AddUser/AddUser'
 
 // ======================================================================================== [Import Component] CSS
-// import './UserCard.css'
 
 function UserCard(props) {
     const style = {
-
         cardPaper : {
             width:300,
             height:200,
@@ -24,7 +27,21 @@ function UserCard(props) {
             m:2,
             overflow:'hidden'
         },
+        detailedBigCardPaper : {
+            width:'90vw',
+            height:'90vh',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            boxShadow: 24,
+            p: 2,
+            overflowY:'auto'
+        },
     }
+
+    const [popup,setPopup] = useState(0);
+    const handleModalClose = () => setPopup(0);
 
     return (
         <Paper id={`cardPaper${props.cardIndex}`} sx={style.cardPaper} elevation={3}>
@@ -93,15 +110,48 @@ function UserCard(props) {
                     </div>
                 </div>
                 <div style = {{ width : '296px', display : 'flex', flexDirection : 'row' }}>
+                    <div>
+                        {
+                            props.oneItem.approval_status == 'APPROVED' ? <div>
+                                <Button
+                                variant="contained"
+                                color = 'sys1'
+                                size="small"
+                                onClick={()=>setPopup(1)}
+                                >
+                                    개정
+                                </Button>
+                                <Modal open={(popup === 1)} onClose={handleModalClose}>
+                                    <Paper id={`cardPaper${props.cardIndex}`} sx={style.detailedBigCardPaper} elevation={3}>
+                                        <AddUser
+                                        addType = 'REVISE'
+                                        initialValues = {{
+                                            approval_payload : [[]],
+                                            user_account : props.oneItem.user_account,
+                                            user_pw : '',
+                                            user_pw_confirm : '',
+                                            user_name : props.oneItem.user_name,
+                                            user_nickname : props.oneItem.user_nickname,
+                                            user_birthday : dayjs(props.oneItem.user_birthday),
+                                            user_gender : props.oneItem.user_gender,
+                                            user_email : JSON.parse(props.oneItem.user_email),
+                                            user_phone : JSON.parse(props.oneItem.user_phone),
+                                            user_position : JSON.parse(props.oneItem.user_position),
+                                        }}
+                                        handleModalClose = { handleModalClose }
+                                        handlePageTitle = {props.handlePageTitle}
+                                        handleSystemCode = {props.handleSystemCode}
+                                        />
+                                    </Paper>
+                                </Modal>
+                                <Button>폐기</Button>
+                            </div>
+                            : props.oneItem.approval_status == 'PREPARED' ? <Button>회수</Button>
+                            : <div/>
+                        }
+                    </div>
                     <div style= {{ flexGrow : 1 }} />
-                    <IconButton
-                    size = "small"
-                    edge = "end"
-                    color = 'sys1'
-                    sx = {{  m : 0, p : 0 }}
-                    >
-                        <ZoomInIcon/>
-                    </IconButton>
+                    <DetailedBigCard oneItem = { props.oneItem } cardIndex = { props.cardIndex }/>
                 </div>
             </div>
         </Paper>

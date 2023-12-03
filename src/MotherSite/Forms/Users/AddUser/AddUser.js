@@ -109,21 +109,25 @@ function AddUser(props){
         user_pw_confirm: yup.string()
         .oneOf([yup.ref('user_pw'), null], addUserLang.ppiPaper.inputField.user_pw_confirm.valMsg.match[cookies.load('site-lang')])
         .required(addUserLang.ppiPaper.inputField.user_pw_confirm.valMsg.required[cookies.load('site-lang')]),
+
+        user_name: yup.string()
+        .required(addUserLang.ppiPaper.inputField.user_name.valMsg.required[cookies.load('site-lang')]),
     });
 
-    const initialValues = {
-        approval_payload :[[]],
-        user_account: '',
-        user_pw:'',
-        user_pw_confirm:'',
-        user_name:'',
-        user_nickname:'',
-        user_birthday:null,
-        user_gender:'MALE',
-        user_email:[],
-        user_phone:[],
-        user_position:[],
-    }
+    // 제정/개정에서 같이 쓰기 위해 initialValues는 외부에서 props로 전달함
+    // const initialValues = {
+    //     approval_payload :[[]],
+    //     user_account: '',
+    //     user_pw:'',
+    //     user_pw_confirm:'',
+    //     user_name:'',
+    //     user_nickname:'',
+    //     user_birthday:null,
+    //     user_gender:'MALE',
+    //     user_email:[],
+    //     user_phone:[],
+    //     user_position:[],
+    // }
 
     const [userPwAsterisk,setUserPwAsterisk] = useState("password");
     const toggleserPwAsterisk = () => {
@@ -164,6 +168,7 @@ function AddUser(props){
             alert ("결재라인!")
         } else {          
             const valuePayload = {
+                add_type : props.addType,
                 immediate_effective : immediateEffective,
                 approval_payload : values.approval_payload,
                 user_account : values.user_account,
@@ -194,6 +199,7 @@ function AddUser(props){
                 alert (rs.data[cookies.load('site-lang')])
             }
             console.log(rs)
+            if (props.handleModalClose) props.handleModalClose() // 부모가 modal이면 닫아주기
         }
     }
 
@@ -208,7 +214,7 @@ function AddUser(props){
     return(
         <Formik
         validationSchema={yupSchema}
-        initialValues={initialValues}
+        initialValues={props.initialValues}
         onSubmit={async (values, actions)=>{
             await onSubmitFunc(values, actions)
         }}
@@ -328,6 +334,7 @@ function AddUser(props){
                             InputLabelProps={{style: style.inputTexstField}} // font size of input label
                             />
                             <TextField
+                            required
                             variant="outlined"
                             id="user_name"
                             name="user_name"
