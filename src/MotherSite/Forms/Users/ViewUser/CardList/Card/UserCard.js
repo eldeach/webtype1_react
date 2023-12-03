@@ -139,8 +139,6 @@ function UserCard(props) {
                                             user_position : JSON.parse(props.oneItem.user_position),
                                         }}
                                         handleModalClose = { handleModalClose }
-                                        handlePageTitle = {props.handlePageTitle}
-                                        handleSystemCode = {props.handleSystemCode}
                                         />
                                     </Paper>
                                 </Modal>

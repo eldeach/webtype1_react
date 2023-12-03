@@ -21,10 +21,11 @@ import systemThemes from './System/systemThemes';
 import NoAuthPage from './System/RedirectPage/NoAuthPage/NoAuthPage';
 import SessionExpired from './System/RedirectPage/SessionExpired/SessionExpired';
 
-// Sys 1 Pages
+// Sys 1 Forms
+import MyReview from './MotherSite/Forms/MyReview/MyReview'
 import AddUser from './MotherSite/Forms/Users/AddUser/AddUser';
-import UserCardList from './MotherSite/Forms/Users/ViewUser/CardList/UserCardList';
-import DnDTest from './MotherSite/Forms/Test/DnDTest';
+import ViewUser from './MotherSite/Forms/Users/ViewUser/ViewUser';
+
 
 // ======================================================================================== [Import Component] CSS
 import './App.css';
@@ -78,6 +79,7 @@ function App() {
                     <Route path='/noauth' element={<NoAuthPage/>} />
                     <Route path='/sessionexpired' element={<SessionExpired/>} />
 
+                    <Route path='/myreview' element={<MyReview handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode } />} />
                     <Route path='/adduser' element={
                         <AddUser
                         addType = 'NEW'
@@ -97,13 +99,13 @@ function App() {
                         handlePageTitle={handlePageTitle}
                         handleSystemCode={handleSystemCode}/>
                     }/>
-                    <Route path='/userlist'element = { <UserCardList approvalStatus = {'APPROVED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_inprogress'element = { <UserCardList approvalStatus = {['UNDER_APPROVAL','PREPARED']} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_void'element = { <UserCardList approvalStatus = {'VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_undervoid'element = { <UserCardList approvalStatus = {'UNDER_VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_rejected'element = { <UserCardList approvalStatus = {'REJECTED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_prepared'element = { <UserCardList approvalStatus = {'PREPARED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_widthdrawn'element = { <UserCardList approvalStatus = {'WITHDRAWN'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist'element = { <ViewUser approvalStatus = {'APPROVED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_inprogress'element = { <ViewUser approvalStatus = {['UNDER_APPROVAL','PREPARED']} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_void'element = { <ViewUser approvalStatus = {'VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_undervoid'element = { <ViewUser approvalStatus = {'UNDER_VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_rejected'element = { <ViewUser approvalStatus = {'REJECTED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_prepared'element = { <ViewUser approvalStatus = {'PREPARED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_widthdrawn'element = { <ViewUser approvalStatus = {'WITHDRAWN'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     {/* <Route path='/dndtest' element={<DnDTest />} /> */}
                 </Routes>
             </div>

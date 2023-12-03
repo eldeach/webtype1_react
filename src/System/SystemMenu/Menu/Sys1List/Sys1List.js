@@ -4,6 +4,7 @@ import cookies from 'react-cookies'
 // ======================================================================================== [Import Material UI Libaray]  
 import { Divider, List } from '@mui/material/';
 //icon
+import DrawIcon from '@mui/icons-material/Draw';
 import ChangeCircleIcon from '@mui/icons-material/ChangeCircle';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import RecentActorsIcon from '@mui/icons-material/RecentActors';
@@ -21,6 +22,10 @@ function Sys1List() {
     <div>
       <List>
         <ListItemNavPath navPath={'/'} icon={<ChangeCircleIcon color = 'sys1'/>} text={ sys1ListLang.returnFirstPage[cookies.load('site-lang')] }/>
+      </List>
+      <Divider />
+      <List>
+        <ListItemNavPath navPath={'/myreview'} icon={<DrawIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
       </List>
       <Divider />
       <List>

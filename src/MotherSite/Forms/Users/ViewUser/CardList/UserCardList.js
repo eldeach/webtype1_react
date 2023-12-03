@@ -65,12 +65,11 @@ function UserCardList (props) {
         }
     }
 
-    let [listData,setListData] = useState([]);
     let [filteredData, setFilteredData] = useState([]);
 
+    const [listData, setListData] = useState([]);
+
     const getUserList = async function () {
-        console.log(props.approvalStatus)
-        console.log(Array.isArray(props.approvalStatus))
         let approval_status = ''
         if (Array.isArray(props.approvalStatus)) {
             approval_status = props.approvalStatus
@@ -94,7 +93,6 @@ function UserCardList (props) {
         .catch( (error) => {
             return error.response;
         })
-
         setListData(rs)
         setFilteredData(rs)
     }
@@ -117,11 +115,9 @@ function UserCardList (props) {
         ));
     }
 
-    const { handlePageTitle, handleSystemCode } = props
+
 
     useEffect(() =>{
-        handlePageTitle(userCardListLang.formTitle[cookies.load('site-lang')])
-        handleSystemCode('sys1')
         getUserList()
     },[])
 
@@ -154,7 +150,7 @@ function UserCardList (props) {
             <div style={{display : 'flex', justifyContent:'center', flexWrap:'wrap'}}>
                 {
                     filteredData.map((oneItem, cardIndex) => (
-                        <UserCard oneItem={oneItem} cardIndex={cardIndex} handlePageTitle = {handlePageTitle} handleSystemCode = {handleSystemCode} />
+                        <UserCard oneItem={oneItem} cardIndex={cardIndex} />
                     ))
                 }
             </div>
