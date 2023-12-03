@@ -98,7 +98,7 @@ function App() {
                         handleSystemCode={handleSystemCode}/>
                     }/>
                     <Route path='/userlist'element = { <UserCardList approvalStatus = {'APPROVED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
-                    <Route path='/userlist_inprogress'element = { <UserCardList approvalStatus = {'UNDER_APPROVAL'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
+                    <Route path='/userlist_inprogress'element = { <UserCardList approvalStatus = {['UNDER_APPROVAL','PREPARED']} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     <Route path='/userlist_void'element = { <UserCardList approvalStatus = {'VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     <Route path='/userlist_undervoid'element = { <UserCardList approvalStatus = {'UNDER_VOID'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>
                     <Route path='/userlist_rejected'element = { <UserCardList approvalStatus = {'REJECTED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>

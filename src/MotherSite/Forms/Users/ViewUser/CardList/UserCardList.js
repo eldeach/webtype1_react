@@ -69,11 +69,20 @@ function UserCardList (props) {
     let [filteredData, setFilteredData] = useState([]);
 
     const getUserList = async function () {
+        console.log(props.approvalStatus)
+        console.log(Array.isArray(props.approvalStatus))
+        let approval_status = ''
+        if (Array.isArray(props.approvalStatus)) {
+            approval_status = props.approvalStatus
+        } else {
+            approval_status = `${props.approvalStatus}`
+        }
+        
         let rs =  await axios({
             method : 'get',
             url : '/getuserlist',
             params : {
-                approval_status : `${props.approvalStatus}`,
+                approval_status : approval_status,
             },
             headers : {
               'Content-Type':'application/json'
