@@ -63,7 +63,9 @@ function ApprovalLine (props) {
                 display : 'flex',
                 flexDirection : 'row'
             }
-
+        },
+        submitButton : {
+            width:500,
         }
     }
 
@@ -253,6 +255,7 @@ function ApprovalLine (props) {
                 
             }
             />
+            <Button fullwidth sx={style.submitButton} variant="contained" color = 'sys1' size="small" type='submit' form={props.forId}>Submit</Button>
         </Paper>
     )
 

@@ -14,7 +14,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 // ======================================================================================== [Import Component] js
 import DetailedBigCard from './DetailBigCard/DetailedBigCard';
-import AddUser from '../../../AddUser/AddUser'
+import AddUser from '../../../UserRecorder/UserRecorder'
 
 // ======================================================================================== [Import Component] CSS
 
