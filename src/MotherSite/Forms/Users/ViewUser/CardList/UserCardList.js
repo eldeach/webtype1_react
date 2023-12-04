@@ -150,7 +150,7 @@ function UserCardList (props) {
             <div style={{display : 'flex', justifyContent:'center', flexWrap:'wrap'}}>
                 {
                     filteredData.map((oneItem, cardIndex) => (
-                        <UserCard oneItem={oneItem} cardIndex={cardIndex} />
+                        <UserCard oneItem={oneItem} cardIndex={cardIndex} handlePageTitle = { props.handlePageTitle } handleSystemCode = { props.handleSystemCode }/>
                     ))
                 }
             </div>

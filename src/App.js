@@ -82,9 +82,10 @@ function App() {
                     <Route path='/myreview' element={<MyReview handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode } />} />
                     <Route path='/adduser' element={
                         <AddUser
-                        addType = 'NEW'
+                        preparedType = 'NEW'
                         initialValues = {{
                             approval_payload :[[]],
+                            previous_approval_payload_id:null,
                             user_account: '',
                             user_pw:'',
                             user_pw_confirm:'',
@@ -95,6 +96,8 @@ function App() {
                             user_email:[],
                             user_phone:[],
                             user_position:[],
+                            user_auth : [],
+                            revision_history : ''
                         }}
                         handlePageTitle={handlePageTitle}
                         handleSystemCode={handleSystemCode}/>

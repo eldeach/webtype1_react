@@ -65,15 +65,16 @@ function LoginButton(props){
     const handleModalClose = () => setPopup(0);
 
  
-    const [approval, setApproval] = useState(0);
+    const [chosenApproval, setChosenApproval] = useState(0);
 
     const onSubmitFunc = async function (values, actions){
         const valuePayload = {
-            approval : approval,
-            user_account : values.user_account,
-            user_pw : values.user_pw,
-            user_comment : values.user_comment,
-            approval_payload_id : props.oneItem.approval_payload_id,
+            chosen_approval : chosenApproval, // 이 form에서 가져옴 (1 : 승인, 0: 반려)
+            user_account : values.user_account, // 이 form에서 가져옴
+            user_pw : values.user_pw, // 이 form에서 가져옴
+            user_comment : values.user_comment, // 이 form에서 가져옴
+            approval_payload_id : props.oneItem.approval_payload_id, // 승인할 데이터는 항상 이 값이 있어야함.
+            tbl_name : props.oneItem.tbl_name // 승인할 데이터는 항상 이 값이 있어야함.
         }
 
         let rs = await axios.put("/elecsign",valuePayload)
@@ -103,7 +104,6 @@ function LoginButton(props){
                         validationSchema={yupSchema}
                         initialValues={initialValues}
                         onSubmit={async (values, actions)=>{
-                            console.log(approval)
                             await onSubmitFunc(values, actions)
                         }}
                         >
@@ -174,8 +174,8 @@ function LoginButton(props){
                                         InputLabelProps={{style: style.inputTexstField}} // font size of input label
                                         />
                                     </div>
-                                    <Button id='submit' sx={{mt:1}} fullWidth variant="contained" size='small' color = 'sys1' type='submit' form='elecSignForm' onClick={() => setApproval(1) }>{elecSignLang.elecSignForm.button.submit[cookies.load('site-lang')]}</Button>
-                                    <Button id='deny' sx={{mt:1}} fullWidth variant="contained" size='small' color = 'denied' type='submit' form='elecSignForm' onClick={() => setApproval(0) }>{elecSignLang.elecSignForm.button.reject[cookies.load('site-lang')]}</Button>
+                                    <Button id='submit' sx={{mt:1}} fullWidth variant="contained" size='small' color = 'sys1' type='submit' form='elecSignForm' onClick={() => setChosenApproval(1) }>{elecSignLang.elecSignForm.button.submit[cookies.load('site-lang')]}</Button>
+                                    <Button id='deny' sx={{mt:1}} fullWidth variant="contained" size='small' color = 'denied' type='submit' form='elecSignForm' onClick={() => setChosenApproval(0) }>{elecSignLang.elecSignForm.button.reject[cookies.load('site-lang')]}</Button>
                                 </form>
                             )}
                     </Formik>

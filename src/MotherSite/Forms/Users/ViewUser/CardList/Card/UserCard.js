@@ -1,5 +1,5 @@
 // ======================================================================================== [Import Libaray]
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import dayjs from 'dayjs';
 import moment from 'moment';
@@ -42,6 +42,10 @@ function UserCard(props) {
 
     const [popup,setPopup] = useState(0);
     const handleModalClose = () => setPopup(0);
+
+    useEffect(() => {
+        console.log(props.oneItem.user_auth)
+    },[])
 
     return (
         <Paper id={`cardPaper${props.cardIndex}`} sx={style.cardPaper} elevation={3}>
@@ -124,9 +128,10 @@ function UserCard(props) {
                                 <Modal open={(popup === 1)} onClose={handleModalClose}>
                                     <Paper id={`cardPaper${props.cardIndex}`} sx={style.detailedBigCardPaper} elevation={3}>
                                         <AddUser
-                                        addType = 'REVISE'
+                                        preparedType = 'REVISE'
                                         initialValues = {{
                                             approval_payload : [[]],
+                                            previous_approval_payload_id : props.oneItem.approval_payload_id,
                                             user_account : props.oneItem.user_account,
                                             user_pw : '',
                                             user_pw_confirm : '',
@@ -137,7 +142,11 @@ function UserCard(props) {
                                             user_email : JSON.parse(props.oneItem.user_email),
                                             user_phone : JSON.parse(props.oneItem.user_phone),
                                             user_position : JSON.parse(props.oneItem.user_position),
+                                            user_auth : JSON.parse(props.oneItem.user_auth),
+                                            revision_history : ''
                                         }}
+                                        handlePageTitle = { props.handlePageTitle }
+                                        handleSystemCode = { props.handleSystemCode }
                                         handleModalClose = { handleModalClose }
                                         />
                                     </Paper>

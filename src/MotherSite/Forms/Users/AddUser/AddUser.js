@@ -168,9 +168,10 @@ function AddUser(props){
             alert ("결재라인!")
         } else {          
             const valuePayload = {
-                add_type : props.addType,
+                prepared_type : props.preparedType,
                 immediate_effective : immediateEffective,
                 approval_payload : values.approval_payload,
+                previous_approval_payload_id : values.previous_approval_payload_id,
                 user_account : values.user_account,
                 user_pw : values.user_pw,
                 user_pw_confirm : values.user_pw_confirm,
@@ -181,8 +182,11 @@ function AddUser(props){
                 user_email : values.user_email,
                 user_phone : values.user_phone,
                 user_position : values.user_position,
+                user_auth : values.user_auth,
+                revision_history : values.revision_history
             }
-    
+            
+            console.log(valuePayload)
             let rs = await axios.post('/addaccount', valuePayload)
             .then(( res ) => {
                return res
@@ -421,6 +425,31 @@ function AddUser(props){
                                     />     
                                 </RadioGroup>
                             </FormControl>
+                            <TextField
+                            multiline
+                            maxRows={4}
+                            variant="outlined"
+                            id="revision_history"
+                            name="revision_history"
+                            label={addUserLang.ppiPaper.inputField.revision_history.placeholder[cookies.load('site-lang')]}
+                            value={formikProps.values.revision_history}
+                            onChange={formikProps.handleChange}
+                            onBlur={formikProps.handleBlur}
+                            helperText={formikProps.touched.revision_history ? formikProps.errors.revision_history : ""}
+                            error={formikProps.touched.revision_history && Boolean(formikProps.errors.revision_history)}
+                            size='small'
+                            margin="dense"
+                            fullWidth
+                            InputProps={{
+                                endAdornment:(
+                                    <IconButton size='small' onClick={()=>{formikProps.setFieldValue('revision_history','')}}>
+                                        <ClearIcon size='small'/>
+                                    </IconButton>
+                                ),
+                                style: style.inputTexstField // font size of input text
+                            }}
+                            InputLabelProps={{style: style.inputTexstField}} // font size of input label
+                            />
                         </Paper>
                         <Paper id='emailPaper' sx={style.paper} elevation={3}>
                             <div style={style.subtitle.box}>

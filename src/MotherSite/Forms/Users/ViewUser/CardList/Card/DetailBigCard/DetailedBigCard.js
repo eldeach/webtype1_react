@@ -145,6 +145,7 @@ function DetailedBigCard (props) {
                                 {props.oneItem.user_phone}
                                 {props.oneItem.user_position}
                                 {props.oneItem.user_birthday.split("T")[0]}
+                                {props.oneItem.approval_payload}
                             </div>
                         </div>
                     </div>

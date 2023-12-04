@@ -81,6 +81,12 @@ const langConfig = {
                     eng : "Gender"
                 }                 
             },
+            revision_history:{
+                placeholder :{
+                    kor : "제개정사유",
+                    eng : "Revision History"
+                }                 
+            },
         },
 
     }

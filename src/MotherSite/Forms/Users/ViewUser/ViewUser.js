@@ -32,7 +32,7 @@ function ViewUser (props) {
                     <Button onClick={() => setViewSelect(2)}>Table View</Button>
                 </ButtonGroup>
                 {
-                    viewSelect === 1 ? <UserCardList approvalStatus = { approvalStatus }/> : <div/>
+                    viewSelect === 1 ? <UserCardList approvalStatus = { approvalStatus } handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode }/> : <div/>
                 }
                 {
                     viewSelect === 2 ? <UserTableList approvalStatus = { approvalStatus }/> : <div/>
