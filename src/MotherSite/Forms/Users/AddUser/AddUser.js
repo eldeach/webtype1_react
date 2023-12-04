@@ -32,6 +32,7 @@ import BusinessIcon from '@mui/icons-material/Business';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import WorkIcon from '@mui/icons-material/Work';
 import Diversity3Icon from '@mui/icons-material/Diversity3';
+import GppGoodIcon from '@mui/icons-material/GppGood';
 // ======================================================================================== [Import Component] js
 import addUserLang from './addUserLang'
 // Popup Form
@@ -528,6 +529,32 @@ function AddUser(props){
                             inheritedArr = { formikProps.values.user_position }
                             updateValue = { function ( newValue ) { formikProps.setFieldValue( 'user_position', newValue )}}
                             />
+                        </Paper>
+                        <Paper id='authPaper' sx={style.paper} elevation={3}>
+                            <div style={style.subtitle.box}>
+                                <GppGoodIcon color='sys1'/>
+                                <div style={style.subtitle.text}>Authority</div>
+                            </div>
+                            {/* { // 현재 폰 배열 객체 정보 출력 iterator
+                                formikProps.values.user_auth.map((oneItem, index)=>(
+                                <div style={style.arrItem.oneItem}>
+                                        <div style={style.arrItem.itemInfo}>
+                                            <Chip size="small" icon={<WorkIcon size="small"/>} color='sys1' label={oneItem.job_position}/>
+                                            <div style={style.arrItem.subInfo}>
+                                                <Chip size="small" icon={<Diversity3Icon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_team}/>
+                                                <Chip size="small" sx={{width:'100%',ml:0.8}} icon={<BusinessIcon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_company}/>
+                                            </div>
+                                        </div>
+                                        <div style={style.arrItem.delItem}>
+                                            <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error' onClick={()=>formikProps.setFieldValue('user_position',arrDelElement(formikProps.values.user_position, index))}><DeleteForeverIcon/></Button>
+                                        </div>
+                                    </div>
+                                ))
+                            }
+                            <AddPositionButton
+                            inheritedArr = { formikProps.values.user_position }
+                            updateValue = { function ( newValue ) { formikProps.setFieldValue( 'user_position', newValue )}}
+                            /> */}
                         </Paper>
                         <Button sx={style.submitButton} variant="contained" color = 'sys1' size="small" type='submit' form='addUser'>Submit</Button>
                     </div>
