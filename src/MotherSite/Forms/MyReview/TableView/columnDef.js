@@ -8,7 +8,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 // Row View
 import RvAccount from "../../../Viewer/RowViewer/Account/RvAccount";
 // Cell View
-import ElecSign from '../../../Viewer/CellViewer/ElecSign/ElecSign'
+import ElecSign from '../../../../System/Forms/ElecSign/ElecSign'
     
 const columnHelper = createColumnHelper();
 const columnDef = [  // TanStack Table은 컬럼 사이즈가 20이 최소
