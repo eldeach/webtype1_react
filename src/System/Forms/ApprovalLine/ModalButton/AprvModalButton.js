@@ -18,7 +18,8 @@ import PeopleIcon from '@mui/icons-material/People';
 // ======================================================================================== [Import Component] js
 import aprvModalButtonLang from './aprvModalButtonLang'
 // objArrHandler
-import objArrAddElement from '../../../Components/ObjArrHandler/objArrAddElement/objArrAddElement'
+import objArrAddElement from '../../../Components/ArrHandler/objArrAddElement/objArrAddElement'
+import doubleArrDelBlankArr from '../../../Components/ArrHandler/doubleArrDelBlankArr'
 // Table
 import TableType1 from '../../../Components/TableType1/TableType1' // System Component
 import columnDef from './columnDef' // this form's columnDef
@@ -110,11 +111,20 @@ function AddPersonnelButton (props){
 
         tableSelected.map(( oneRow, index ) => {
             oneRow.approvalType = approval_type
-            tempElementArr = objArrAddElement( tempElementArr, oneRow, "user_account" )
+            let alreadyAdded = 0
+            tempArr.map((oneStep,stepIndex) => {
+                oneStep.map((onePerson, personIndex) => {
+                    if(onePerson.user_account == oneRow.user_account) {
+                        alreadyAdded += 1
+                        alert (aprvModalButtonLang.alertMsg.duplicated[cookies.load('site-lang')])
+                    }
+                })
+            })
+            if (alreadyAdded === 0) tempElementArr = objArrAddElement( tempElementArr, oneRow, "user_account" )
         })
 
         tempArr.splice( elementIndex, 1, tempElementArr )
-        props.updateValue( tempArr )
+        return tempArr
     };
 
     return (
@@ -135,7 +145,7 @@ function AddPersonnelButton (props){
                         autoComplete='off'
                         onSubmit={formikProps.handleSubmit}
                         >
-                            <Paper id='langPaper' sx={ style.popupPaper } elevation={3}>
+                            <Paper id='addPersonnelPaper' sx={ style.popupPaper } elevation={3}>
                                 <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
                                 <div style={ style.pageTitle.box }>
                                     <PeopleIcon color='sys1' sx = {{ fontSize : 'xx-large' }}/>
@@ -197,7 +207,9 @@ function AddPersonnelButton (props){
                                             size="small"
                                             sx = {{ m : 0.5 }}
                                             onClick={() => {
-                                                arrAddPersonnel( formikProps.values.approval_type, oneElement, elementIndex )
+                                                let tempArr = arrAddPersonnel( formikProps.values.approval_type, oneElement, elementIndex )
+                                                doubleArrDelBlankArr ( tempArr )
+                                                props.updateValue( tempArr )
                                                 handleModalClose()
                                             }}
                                             >

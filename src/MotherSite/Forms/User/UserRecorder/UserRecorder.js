@@ -24,7 +24,7 @@ import AuthRecorder from './SubRecorder/AuthRecorder/AuthRecorder';
 // Popup Form
 import ApprovalLine from '../../../../System/Forms/ApprovalLine/ApprovalLine';
 // objArrHandler
-import doubleArrDelBlankArr from '../../../../System/Components/ObjArrHandler/doubleArrDelBlankArr'
+import doubleArrDelBlankArr from '../../../../System/Components/ArrHandler/doubleArrDelBlankArr'
 
 
 // ======================================================================================== [Import Component] CSS
@@ -69,7 +69,7 @@ function AddUser(props){
         if ( immediateEffective ) {
             actions.setFieldValue('approval_payload', [[]])
         } else {
-            actions.setFieldValue('approval_payload', doubleArrDelBlankArr( values.approval_payload ))
+            // actions.setFieldValue('approval_payload', doubleArrDelBlankArr( values.approval_payload ))
         }
 
 
@@ -150,6 +150,7 @@ function AddUser(props){
                     </div>
                     <div id='UserRecorerA' style={{marginLeft:'20px', marginRight:'auto', marginBottom:'20px' ,display:'flex', flexDirection:'column', boxSizing:'border-box'}} >
                         <PiiRecorder
+                        preparedType = { props.preparedType }
                         formikProps = { formikProps}
                         />
                         <EmailRecorder

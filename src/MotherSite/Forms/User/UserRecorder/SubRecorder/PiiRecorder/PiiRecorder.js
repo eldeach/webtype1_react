@@ -102,6 +102,7 @@ function PiiRecorder (props){
             </div>
             <TextField
             required
+            disabled = {!(props.preparedType == "NEW")}
             variant="outlined"
             id="user_account"
             name="user_account"

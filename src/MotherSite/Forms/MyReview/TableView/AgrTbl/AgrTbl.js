@@ -7,6 +7,7 @@ import axios from 'axios';
 import { IconButton, TextField } from '@mui/material';
 //icon
 import ClearIcon from '@mui/icons-material/Clear';
+import LoopIcon from '@mui/icons-material/Loop';
 // ======================================================================================== [Import Component] js
 import myReviewLang from '../../myReviewLang'
 // Table
@@ -97,6 +98,9 @@ function AgrTbl () {
                 }}
                 InputLabelProps={{style: style.inputTexstField}} // font size of input label
                 />
+                <IconButton size="large" edge="end" color="sys1" sx={{ ml: 1, mr: 1 }} onClick = {() => getMyReviewList()} >
+                    <LoopIcon/>
+                </IconButton>
             </div>
             <div style = {{ width: '100wv', display : 'flex', flexDirection : 'row', justifyContent : 'center' }}>
                 <TableType1

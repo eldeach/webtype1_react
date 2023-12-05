@@ -4,7 +4,7 @@
 // ======================================================================================== [Import Component] js
 
 
-const doubleArrDelBlankArr = function ( arr ) {
+const doubleArrDelBlankArr = function ( arr ) { // 이중 배열 구조에서 공백 안쪽 배열을 삭제 해주는 기능
 
     let tempArr = [...arr];
     let delTarget = []
