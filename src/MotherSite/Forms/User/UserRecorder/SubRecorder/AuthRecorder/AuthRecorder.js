@@ -7,8 +7,11 @@ import { Button, Chip, Paper } from '@mui/material';
 
 import BusinessIcon from '@mui/icons-material/Business';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import WorkIcon from '@mui/icons-material/Work';
-import Diversity3Icon from '@mui/icons-material/Diversity3';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
+import DeveloperBoardIcon from '@mui/icons-material/DeveloperBoard';
+import InfoIcon from '@mui/icons-material/Info';
+import TitleIcon from '@mui/icons-material/Title';
+import RouteIcon from '@mui/icons-material/Route';
 import GppGoodIcon from '@mui/icons-material/GppGood';
 // ======================================================================================== [Import Component] js
 
@@ -32,6 +35,14 @@ function AuthRecorder (props){
             text : {
                 marginTop:'4px', marginLeft:'2px'
             }
+        },
+        descriptionBox : {
+            boxSizing : 'border-box',
+            fontSzie : '7px',
+            color : 'orange',
+            whiteSpace : 'pre-wrap',
+            worWrap : 'break-word',
+            textAlign : 'center',
         },
         paper : { // SubRecorder Paper 객체 스타일
             width:500,
@@ -84,14 +95,19 @@ function AuthRecorder (props){
                 inheritedArr.map((oneItem, index)=>(
                 <div style={style.arrItem.oneItem}>
                         <div style={style.arrItem.itemInfo}>
-                            <Chip size="small" icon={<WorkIcon size="small"/>} color='sys1' label={oneItem.job_position}/>
                             <div style={style.arrItem.subInfo}>
-                                <Chip size="small" icon={<Diversity3Icon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_team}/>
-                                <Chip size="small" sx={{width:'100%',ml:0.8}} icon={<BusinessIcon size="small"/>} color='sys1' variant="outlined" label={oneItem.job_company}/>
+                                <Chip size="small" sx={{mb:1}} icon={<VpnKeyIcon size="small"/>} color='sys1' variant="outlined" label={`Code : ${oneItem.auth_code}`}/>
+                                <Chip size="small" sx={{ml:'auto', mb:1}} icon={<DeveloperBoardIcon size="small"/>} color='sys1' variant="outlined" label={`System Code : ${oneItem.system_code}`}/>
                             </div>
+                            <Chip size="small" sx={{mb:1}} icon={<TitleIcon size="small"/>} color='sys1' variant="outlined" label={`Auth Title : ${oneItem.auth_title}`}/>
+                            <Chip size="small" sx={{mb:1}} icon={<RouteIcon size="small"/>} color='sys1' variant="outlined" label={`Allowed Path "${oneItem.url_path}"`}/>
+                            <div>
+                                <Chip size="small" icon={<InfoIcon size="small"/>} color='sys1' variant="outlined" label={"Description"}/>
+                            </div>
+                            <div style={style.descriptionBox}>{oneItem.auth_description}</div>
                         </div>
                         <div style={style.arrItem.delItem}>
-                            <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error' onClick={()=>updateValue('user_position',arrDelElement(inheritedArr, index))}><DeleteForeverIcon/></Button>
+                            <Button size="small" variant='contained' style={{height:'100%'}} sx={{p: 0}} color='error' onClick={()=>updateValue('user_auth',arrDelElement(inheritedArr, index))}><DeleteForeverIcon/></Button>
                         </div>
                     </div>
                 ))

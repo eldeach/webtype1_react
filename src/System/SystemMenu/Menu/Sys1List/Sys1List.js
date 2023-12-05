@@ -25,6 +25,7 @@ function Sys1List() {
       </List>
       <Divider />
       <List>
+        <ListItemNavPath navPath={'/myprepared'} icon={<DrawIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.myprepared[cookies.load('site-lang')] }/>
         <ListItemNavPath navPath={'/myreview'} icon={<DrawIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.myreview[cookies.load('site-lang')] }/>
       </List>
       <Divider />

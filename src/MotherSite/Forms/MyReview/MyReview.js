@@ -46,7 +46,6 @@ function MyReview (props) {
                     <ToggleButton value={2} >{<Crop32Icon/>}</ToggleButton>
                 </ToggleButtonGroup>
                 <div style={{ flexGrow : 1 }}/>
-                <Button sx={{ ml:0, mt:0, mb:0, mr:1, p:0, height:'30px', fontSize:'16px'}} variant="contained" color = 'sys1' size="small" href='/adduser'><LibraryAddIcon fontSize='inherit'/></Button>
             </div>
             <div>
                 {

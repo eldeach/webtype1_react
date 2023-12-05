@@ -22,6 +22,7 @@ import NoAuthPage from './System/RedirectPage/NoAuthPage/NoAuthPage';
 import SessionExpired from './System/RedirectPage/SessionExpired/SessionExpired';
 
 // Sys 1 Forms
+import MyPrepared from './MotherSite/Forms/MyPrepared/MyPrepared'
 import MyReview from './MotherSite/Forms/MyReview/MyReview'
 import UserRecorder from './MotherSite/Forms/User/UserRecorder/UserRecorder';
 import ViewUser from './MotherSite/Forms/User/ViewUser/ViewUser';
@@ -80,6 +81,7 @@ function App() {
                     <Route path='/noauth' element={<NoAuthPage/>} />
                     <Route path='/sessionexpired' element={<SessionExpired/>} />
 
+                    <Route path='/myprepared' element={<MyPrepared handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode } />} />
                     <Route path='/myreview' element={<MyReview handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode } />} />
                     
                     <Route path='/userlist'element = { <ViewUser approvalStatus = {'APPROVED'} handlePageTitle={handlePageTitle} handleSystemCode={handleSystemCode}/> }/>

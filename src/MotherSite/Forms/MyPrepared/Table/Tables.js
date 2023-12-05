@@ -10,10 +10,8 @@ import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 import tablesLang from './tablesLang'
 
 // Table
-import Approval from './Approval/Approval'
-import Areement from './Areement/Areement'
-import Recieve from './Recieve/Recieve'
-import FinalApproval from './FinalApproval/FinalApproval'
+import Prepared from './Prepared/Prepared'
+
 
 // ======================================================================================== [Import Component] CSS
 
@@ -32,24 +30,12 @@ function Tables () {
                     onChange={handleChange}
                     size = 'small'
                     >
-                    <ToggleButton value={1} >{tablesLang.buttonGroup.approved[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={2} >{tablesLang.buttonGroup.agreement[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={3} >{tablesLang.buttonGroup.recieve[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={4} >{tablesLang.buttonGroup.final_approval[cookies.load('site-lang')]}</ToggleButton>
+                    <ToggleButton value={1} >{tablesLang.buttonGroup.prepared[cookies.load('site-lang')]}</ToggleButton>
                 </ToggleButtonGroup>
             </div>
             <div>
                 {
-                    viewSelect === 1 ? <Approval/> :<div/>
-                }
-                {
-                    viewSelect === 2 ? <Areement/> :<div/>
-                }
-                {
-                    viewSelect === 3 ? <Recieve/> :<div/>
-                }
-                {
-                    viewSelect === 4 ? <FinalApproval/> :<div/>
+                    viewSelect === 1 ? <Prepared/> :<div/>
                 }
             </div>
         </div>      
