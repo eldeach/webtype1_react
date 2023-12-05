@@ -3,6 +3,10 @@ const sys1ListLang = {
         kor : "첫 페이지로",
         eng : "Go to the first page"
     },
+    myreview : {
+        kor : "내 검토",
+        eng : "My Review"
+    },
     addUser : {
         kor : "사용자 추가",
         eng : "Add user"

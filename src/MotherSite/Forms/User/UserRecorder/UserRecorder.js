@@ -22,9 +22,9 @@ import PhoneRecorder from './SubRecorder/PhoneRecorder/PhoneRecorder';
 import PositionRecorder from './SubRecorder/PositionRecorder/PositionRecorder';
 import AuthRecorder from './SubRecorder/AuthRecorder/AuthRecorder';
 // Popup Form
-import ApprovalLine from '../../../../System/Forms/ApprovalLine/ApprovalLine';
+import ApprovalLine from '../../../../System/ApprovalSystem/ApprovalLine/ApprovalLine';
 // objArrHandler
-import doubleArrDelBlankArr from '../../../../System/Components/ArrHandler/doubleArrDelBlankArr'
+import doubleArrDelBlankArr from '../../../../System/Funcs/ArrHandler/doubleArrDelBlankArr'
 
 
 // ======================================================================================== [Import Component] CSS

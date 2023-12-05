@@ -11,8 +11,6 @@ import { ListItemButton, ListItemIcon, ListItemText, ListItem  } from '@mui/mate
 
 
 function ListItemNavPath(props) {
-    const navigate = useNavigate();
-//onClick={()=>{ navigate( props.navPath )}}
     return (
         <div>
             <ListItem disablePadding={true}>

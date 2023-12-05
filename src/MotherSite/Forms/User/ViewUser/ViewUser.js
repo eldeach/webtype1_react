@@ -1,43 +1,63 @@
 // ======================================================================================== [Import Libaray]
 import { useEffect, useState } from 'react';
 import cookies from 'react-cookies';
-import axios from 'axios';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, ButtonGroup , TextField } from '@mui/material';
+import { Button, ToggleButtonGroup, ToggleButton } from '@mui/material';
 //icon
-import ClearIcon from '@mui/icons-material/Clear';
+import BackupTableIcon from '@mui/icons-material/BackupTable';
+import Crop32Icon from '@mui/icons-material/Crop32';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 // ======================================================================================== [Import Component] js
+// its lang Object
 import viewUserLang from './viewUserLang'
-import UserCardList from './CardList/UserCardList';
-import UserTableList from './TableList/UserTableList';
 
+// external page
+import NoCardVeiw from '../../../../System/RedirectPage/NoCardView/NoCardVeiw'
 
+// Table
+import Tables from './Table/Tables'
 
 // ======================================================================================== [Import Component] CSS
 
 function ViewUser (props) {
-    const { approvalStatus, handlePageTitle, handleSystemCode } = props
+    const { handlePageTitle, handleSystemCode } = props
 
     const [viewSelect, setViewSelect] = useState(1);
+    const handleChange = (event, newAlignment) => {
+        setViewSelect(newAlignment);
+    };
 
     useEffect(() =>{
         handlePageTitle(viewUserLang.formTitle[cookies.load('site-lang')])
         handleSystemCode('sys1')
     },[])
     return (
-        <div>
-                <ButtonGroup variant="contained" color='sys1'>
-                    <Button onClick={() => setViewSelect(1)}>Card View</Button>
-                    <Button onClick={() => setViewSelect(2)}>Table View</Button>
-                </ButtonGroup>
+        <div id = 'userView' style ={{ display : 'flex', flexDirection : 'column'}} >
+            <div style ={{ width : '100wv', marginBottom : '6px', display : 'flex', flexDirection : 'row', justifyContent : 'center' }}>
+                <div style={{ flexGrow : 1 }}/>
+                <ToggleButtonGroup
+                    color="sys1"
+                    value={viewSelect}
+                    exclusive
+                    onChange={handleChange}
+                    size = 'small'
+                    >
+                    <ToggleButton value={1} >{<BackupTableIcon/>}</ToggleButton>
+                    <ToggleButton value={2} >{<Crop32Icon/>}</ToggleButton>
+                </ToggleButtonGroup>
+                <div style={{ flexGrow : 1 }}/>
+                <Button sx={{ ml:0, mt:0, mb:0, mr:1, p:0, height:'30px', fontSize:'16px'}} variant="contained" color = 'sys1' size="small" href='/adduser'><LibraryAddIcon fontSize='inherit'/></Button>
+            </div>
+            <div>
                 {
-                    viewSelect === 1 ? <UserCardList approvalStatus = { approvalStatus } handlePageTitle = { handlePageTitle } handleSystemCode = { handleSystemCode }/> : <div/>
+                    viewSelect === 1 ? <Tables/> :<div/>
                 }
                 {
-                    viewSelect === 2 ? <UserTableList approvalStatus = { approvalStatus }/> : <div/>
+                    viewSelect === 2 ? <NoCardVeiw/>:<div/>
                 }
-        </div>
+            </div>
+        </div>      
     )
 }
 

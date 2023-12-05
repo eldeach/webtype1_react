@@ -25,18 +25,11 @@ function Sys1List() {
       </List>
       <Divider />
       <List>
-        <ListItemNavPath navPath={'/myreview'} icon={<DrawIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
+        <ListItemNavPath navPath={'/myreview'} icon={<DrawIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.myreview[cookies.load('site-lang')] }/>
       </List>
       <Divider />
       <List>
-        <ListItemNavPath navPath={'/adduser'} icon={<PersonAddIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.addUser[cookies.load('site-lang')] }/>
         <ListItemNavPath navPath={'/userlist'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ sys1ListLang.viewUser[cookies.load('site-lang')] }/>
-        <ListItemNavPath navPath={'/userlist_inprogress'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_inprogress' }/>
-        <ListItemNavPath navPath={'/userlist_void'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_void' }/>
-        <ListItemNavPath navPath={'/userlist_undervoid'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_undervoid' }/>
-        <ListItemNavPath navPath={'/userlist_rejected'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_rejected' }/>
-        <ListItemNavPath navPath={'/userlist_prepared'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_prepared' }/>
-        <ListItemNavPath navPath={'/userlist_widthdrawn'} icon={<RecentActorsIcon color = 'sys1' size = "small"/>} text={ 'userlist_widthdrawn' }/>
       </List>
     </div>
   )

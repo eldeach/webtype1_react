@@ -8,10 +8,10 @@ import { ToggleButtonGroup, ToggleButton } from '@mui/material';
 // ======================================================================================== [Import Component] js
 import myReviewLang from './myReviewLang'
 // Table
-import AppTbl from './TableView/AppTbl/AppTbl';
-import AgrTbl from './TableView/AgrTbl/AgrTbl';
-import ReciTbl from './TableView/ReciTbl/ReciTbl';
-import FapTbl from './TableView/FapTbl/FapTbl';
+import AppTbl from './ViewMyReview/Table/AppTbl/AppTbl';
+import AgrTbl from './ViewMyReview/Table/AgrTbl/AgrTbl';
+import ReciTbl from './ViewMyReview/Table/ReciTbl/ReciTbl';
+import FapTbl from './ViewMyReview/Table/FapTbl/FapTbl';
 
 // ======================================================================================== [Import Component] CSS
 
