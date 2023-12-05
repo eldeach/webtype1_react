@@ -17,6 +17,8 @@ import NoCardVeiw from '../../../../System/RedirectPage/NoCardView/NoCardVeiw'
 
 // Table
 import Tables from './Table/Tables'
+// Cards
+import Cards from './Card/Cards'
 
 // ======================================================================================== [Import Component] CSS
 
@@ -54,7 +56,7 @@ function ViewUser (props) {
                     viewSelect === 1 ? <Tables/> :<div/>
                 }
                 {
-                    viewSelect === 2 ? <NoCardVeiw/>:<div/>
+                    viewSelect === 2 ? <Cards/>:<div/>
                 }
             </div>
         </div>      

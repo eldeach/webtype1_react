@@ -1,37 +1,40 @@
 // ======================================================================================== [Import Libaray]
-import { useState, useEffect } from 'react';
-import cookies from 'react-cookies'
+import { useEffect, useState } from 'react';
+import cookies from 'react-cookies';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { ToggleButtonGroup, ToggleButton } from '@mui/material';
-
+import { Button, ToggleButtonGroup, ToggleButton } from '@mui/material';
+//icon
+import BackupTableIcon from '@mui/icons-material/BackupTable';
+import Crop32Icon from '@mui/icons-material/Crop32';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
 // ======================================================================================== [Import Component] js
+// its lang Object
 import myReviewLang from './myReviewLang'
-// Table
-import AppTbl from './ViewMyReview/Table/AppTbl/AppTbl';
-import AgrTbl from './ViewMyReview/Table/AgrTbl/AgrTbl';
-import ReciTbl from './ViewMyReview/Table/ReciTbl/ReciTbl';
-import FapTbl from './ViewMyReview/Table/FapTbl/FapTbl';
+
+// Tables
+import Tables from './Table/Tables'
+// Cards
+import Cards from './Card/Cards'
 
 // ======================================================================================== [Import Component] CSS
 
-
 function MyReview (props) {
-
     const { handlePageTitle, handleSystemCode } = props
+
     const [viewSelect, setViewSelect] = useState(1);
     const handleChange = (event, newAlignment) => {
         setViewSelect(newAlignment);
-      };
+    };
 
-    useEffect(() => {
+    useEffect(() =>{
         handlePageTitle(myReviewLang.formTitle[cookies.load('site-lang')])
         handleSystemCode('sys1')
     },[])
-
     return (
-        <div id = 'myReview' style ={{ display : 'flex', flexDirection : 'column'}} >
-            <div style ={{ width : '100wv', display : 'flex', flexDirection : 'row', justifyContent : 'center' }}>
+        <div id = 'userView' style ={{ display : 'flex', flexDirection : 'column'}} >
+            <div style ={{ width : '100wv', marginBottom : '6px', display : 'flex', flexDirection : 'row', justifyContent : 'center' }}>
+                <div style={{ flexGrow : 1 }}/>
                 <ToggleButtonGroup
                     color="sys1"
                     value={viewSelect}
@@ -39,30 +42,22 @@ function MyReview (props) {
                     onChange={handleChange}
                     size = 'small'
                     >
-                    <ToggleButton value={1} onClick={() => setViewSelect(1)}>{myReviewLang.myReview.buttonGroup.approval[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={2} onClick={() => setViewSelect(2)}>{myReviewLang.myReview.buttonGroup.agreement[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={3} onClick={() => setViewSelect(3)}>{myReviewLang.myReview.buttonGroup.recieve[cookies.load('site-lang')]}</ToggleButton>
-                    <ToggleButton value={4} onClick={() => setViewSelect(4)}>{myReviewLang.myReview.buttonGroup.final_approval[cookies.load('site-lang')]}</ToggleButton>
+                    <ToggleButton value={1} >{<BackupTableIcon/>}</ToggleButton>
+                    <ToggleButton value={2} >{<Crop32Icon/>}</ToggleButton>
                 </ToggleButtonGroup>
+                <div style={{ flexGrow : 1 }}/>
+                <Button sx={{ ml:0, mt:0, mb:0, mr:1, p:0, height:'30px', fontSize:'16px'}} variant="contained" color = 'sys1' size="small" href='/adduser'><LibraryAddIcon fontSize='inherit'/></Button>
             </div>
             <div>
                 {
-                    viewSelect === 1 ? <AppTbl/> :<div/>
+                    viewSelect === 1 ? <Tables/> :<div/>
                 }
                 {
-                    viewSelect === 2 ? <AgrTbl/> :<div/>
+                    viewSelect === 2 ? <Cards/>:<div/>
                 }
-                {
-                    viewSelect === 3 ? <ReciTbl/> :<div/>
-                }
-                {
-                    viewSelect === 4 ? <FapTbl/> :<div/>
-                }
-
             </div>
-        </div>
+        </div>      
     )
-
 }
 
 export default MyReview;

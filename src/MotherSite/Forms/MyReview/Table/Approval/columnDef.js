@@ -6,7 +6,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 
 // ======================================================================================== [Import Component] js
 // Row View
-import RvAccount from "../../../../Viewer/RowViewer/Account/RvAccount";
+import RvAccount from "../../UniversalReader/User/Row/RvAccount";
 // Cell View
 import ElecSign from '../../../../../System/ApprovalSystem/ElecSign/ElecSign'
     

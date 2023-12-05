@@ -8,7 +8,7 @@ const langConfig = {
     },
     myReview :{
         buttonGroup : {
-            approval : {
+            approved : {
                 kor : "승인",
                 eng : "Approval"
             },
@@ -34,7 +34,6 @@ const langConfig = {
                     },
                 },
             },
-    
         }
     }
 }
