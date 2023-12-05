@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import axios from 'axios';
 
 // ======================================================================================== [Import Material UI Libaray]
-import { Button, Modal, Paper, InputLabel, MenuItem, Select, Typography } from '@mui/material';
+import { Button, Modal, Paper, Typography } from '@mui/material';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -16,11 +16,11 @@ import FormLabel from '@mui/material/FormLabel';
 import PeopleIcon from '@mui/icons-material/People';
 
 // ======================================================================================== [Import Component] js
-import addPersonnelButtonLang from './addPersonnelButtonLang'
+import aprvModalButtonLang from './aprvModalButtonLang'
 // objArrHandler
-import objArrAddElement from '../../../../Components/ObjArrHandler/objArrAddElement/objArrAddElement'
+import objArrAddElement from '../../../Components/ObjArrHandler/objArrAddElement/objArrAddElement'
 // Table
-import TableType1 from '../../../../Components/TableType1/TableType1' // System Component
+import TableType1 from '../../../Components/TableType1/TableType1' // System Component
 import columnDef from './columnDef' // this form's columnDef
 
 
@@ -139,7 +139,7 @@ function AddPersonnelButton (props){
                                 <div className = "popup-close-button-box"><button className='popup-close-button' onClick={handleModalClose}>X</button></div>
                                 <div style={ style.pageTitle.box }>
                                     <PeopleIcon color='sys1' sx = {{ fontSize : 'xx-large' }}/>
-                                    <div style={style.pageTitle.text}>{addPersonnelButtonLang.pageTitle[cookies.load('site-lang')]}</div>
+                                    <div style={style.pageTitle.text}>{aprvModalButtonLang.pageTitle[cookies.load('site-lang')]}</div>
                                 </div>
                                 <FormControl style={{ border:'#D3D3D3 solid 1px', borderRadius:'5px', marginLeft : '5px', marginRight : '5px', marginTop:'5px', marginBottom:'2px', paddingLeft:'10px', width:'100%', boxSizing:'border-box', display: 'flex', flexDirection: 'row', alignItems:'center' }}>
                                     <FormLabel

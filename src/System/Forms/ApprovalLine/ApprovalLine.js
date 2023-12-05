@@ -14,7 +14,8 @@ import Diversity3Icon from '@mui/icons-material/Diversity3';
 // ======================================================================================== [Import Component] js
 import approvalLineLang from './approvalLineLang'
 // Popup Form
-import AddPersonnelButton from './ModalForm/ButtonAddPersonnel/AddPersonnelButton';
+import AprvModalButton from './ModalButton/AprvModalButton';
+import { useEffect } from 'react';
 
 
 // ======================================================================================== [Import Component] CSS
@@ -79,6 +80,10 @@ function ApprovalLine (props) {
         tempArr.splice(( tempArr.length - 1 ), 0, [])
         return tempArr
     }
+
+    useEffect(() => {
+        
+    })
 
     return (
         <Paper id='approvalPaper' sx={style.paper} elevation={3}>
@@ -242,15 +247,14 @@ function ApprovalLine (props) {
                     </div>
                 ))
             }
-            <AddPersonnelButton
+            <AprvModalButton
             disabled = { props.immediateEffective }
             inheritedArr = { props.inheritedArr }
             updateValue = { props.updateValue }/>
             <FormControlLabel
             control={ <Switch checked={ props.immediateEffective } onChange={ ( e ) => props.setImmediateEffective( e.target.checked ) } name="setImmediate_effective" /> }
             label={
-                <Typography size="small" sx = {{ fontSize : '10px', color : (props.immediateEffective ? 'red' : 'black') }}> { approvalLineLang.approvalPaper.switch.immediateEffective[cookies.load('site-lang')] } </Typography>
-                
+                <Typography size="small" sx = {{ fontSize : '10px', color : (props.immediateEffective ? 'red' : 'black') }}> { approvalLineLang.approvalPaper.switch.immediateEffective[cookies.load('site-lang')] } </Typography>     
             }
             />
             <Button fullwidth sx={style.submitButton} variant="contained" color = 'sys1' size="small" type='submit' form={props.forId}>Submit</Button>

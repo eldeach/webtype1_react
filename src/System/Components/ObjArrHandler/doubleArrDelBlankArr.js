@@ -4,7 +4,7 @@
 // ======================================================================================== [Import Component] js
 
 
-const objArrDelBlankArr = function ( arr ) {
+const doubleArrDelBlankArr = function ( arr ) {
 
     let tempArr = [...arr];
     let delTarget = []
@@ -12,21 +12,21 @@ const objArrDelBlankArr = function ( arr ) {
     
     tempArr.map((oneElement, elementIndex) => { 
         if( Array.isArray(oneElement) && oneElement.length === 0 ) {
-            delTarget.push(elementIndex)
+            delTarget.push(elementIndex) // 안쪽 배열의 길이가 0인 요소가 있으면 삭제 대상으로 편입
         }
     })
 
     tempArr.map((oneElement, elementIndex) => {
         if ( delTarget.indexOf(elementIndex) === -1 ) {
-            newTempArr.push ( oneElement )
+            newTempArr.push ( oneElement ) // 삭제 대상에 없는 것만 새로운 배열로 편입
         }
     })
 
     if ( newTempArr.length === 0 ) {
-        return [[]]
+        return [[]] // 새로운 배열에 안쪽 배열이 없는 경우 이렇게 리턴
     } else {
         return newTempArr;
     }
 };
 
-export default objArrDelBlankArr;
+export default doubleArrDelBlankArr;

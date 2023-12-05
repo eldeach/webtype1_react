@@ -24,7 +24,7 @@ import AuthRecorder from './SubRecorder/AuthRecorder/AuthRecorder';
 // Popup Form
 import ApprovalLine from '../../../../System/Forms/ApprovalLine/ApprovalLine';
 // objArrHandler
-import objArrDelBlankArr from '../../../../System/Components/ObjArrHandler/objArrDelBlankArr'
+import doubleArrDelBlankArr from '../../../../System/Components/ObjArrHandler/doubleArrDelBlankArr'
 
 
 // ======================================================================================== [Import Component] CSS
@@ -69,7 +69,7 @@ function AddUser(props){
         if ( immediateEffective ) {
             actions.setFieldValue('approval_payload', [[]])
         } else {
-            actions.setFieldValue('approval_payload', objArrDelBlankArr( values.approval_payload ))
+            actions.setFieldValue('approval_payload', doubleArrDelBlankArr( values.approval_payload ))
         }
 
 

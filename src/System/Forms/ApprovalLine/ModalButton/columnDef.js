@@ -5,7 +5,7 @@ import { createColumnHelper } from "@tanstack/react-table";
 //icon
 
 // ======================================================================================== [Import Component] js
-import IndeterminateCheckbox from '../../../../Components/TableType1/TableComponents/IndeterminateCheckbox'
+import IndeterminateCheckbox from '../../../Components/TableType1/TableComponents/IndeterminateCheckbox'
     
 const columnHelper = createColumnHelper();
 const columnDef = [  // TanStack Table은 컬럼 사이즈가 20이 최소
